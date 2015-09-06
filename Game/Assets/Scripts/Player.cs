@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
-
+	
+	public int jumpTimes = 2;
 	public float moveSpeed = 1.0f;
 	public float jumpSpeed = 1.0f;
 
@@ -20,12 +21,18 @@ public class Player : MonoBehaviour {
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
 		float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
-		float va = Input.GetAxisRaw ("Vertical") * jumpSpeed;
 
-		if (GetComponent<Rigidbody2D> ().velocity.y != 0) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+		if (Input.GetButtonDown ("Jump") && jumpTimes > 0) {
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
+			jumpTimes--;
 		} else {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2(ha, va);
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+		}
+	}
+
+	void OnCollisionEnter2D (Collision2D hit) {
+		if (hit.gameObject.tag == "Ground") {
+			jumpTimes = 2;
 		}
 	}
 }
