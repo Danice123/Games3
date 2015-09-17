@@ -9,6 +9,7 @@ public class Player : MonoBehaviour {
 
 	public GameObject arrow;
 	public int arrowSpeed = 10;
+    public GameObject samurai;
 
 	public GameObject largeArrow;
 	public int largeArrowSpeed = 20;
@@ -17,8 +18,11 @@ public class Player : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        samurai = GameObject.Find("samurai");
+        samurai.GetComponent<Animation>().Play("Idle");
+        samurai.GetComponent<Animation>()["Attack"].wrapMode = WrapMode.Once;
+        samurai.GetComponent<Animation>()["Attack"].speed = 2.0f;
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -28,6 +32,7 @@ public class Player : MonoBehaviour {
 	void FixedUpdate() {
 		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
 			facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
+            
 		}
 
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
@@ -45,7 +50,8 @@ public class Player : MonoBehaviour {
 			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position, Quaternion.identity);
 			a.GetComponent<Rigidbody2D>().velocity = facing * arrowSpeed + new Vector2(0, 5);
 			a.tag = gameObject.tag;
-		}
+            samurai.GetComponent<Animation>().Play("Attack");
+        }
 
 		if (Input.GetButtonDown ("Y")) {
 			GameObject a = (GameObject) Instantiate(largeArrow, GetComponent<Transform>().position, Quaternion.identity);
