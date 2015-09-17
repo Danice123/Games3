@@ -41,10 +41,12 @@ public class Player : MonoBehaviour {
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
 		}
 
-		if (Input.GetButtonDown ("X")) {
-			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position, Quaternion.identity);
+		if (Input.GetButtonDown ("X")) {;
+			float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+
+			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position, Quaternion.AngleAxis(angle, Vector3.forward));
 			a.GetComponent<Rigidbody2D>().velocity = facing * arrowSpeed + new Vector2(0, 5);
-			a.tag = gameObject.tag;
+			a.GetComponent<Arrow>().owner = gameObject.tag;
 		}
 
 		if (Input.GetButtonDown ("Y")) {
