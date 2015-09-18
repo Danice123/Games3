@@ -11,7 +11,7 @@ public class p2 : MonoBehaviour {
 	public int jabspeed = 2;
 	public GameObject IsSword;
 	public GameObject shield;
-	public float shieldtime = 0.5f;
+	public float shieldtime = 3f;
 	public GameObject IsShield;
 	
 	public Vector2 facing = new Vector2(1, 0);
@@ -29,6 +29,7 @@ public class p2 : MonoBehaviour {
 
 
 	void FixedUpdate() {
+		shieldtime -= Time.deltaTime;
 		if (GetComponent<Health> ().health <= 0) {
 			DestroyObject (gameObject);
 		}
@@ -50,8 +51,8 @@ public class p2 : MonoBehaviour {
 			}
 		}
 		
-		if (Input.GetButtonDown ("Y")) {
-			;
+		if (Input.GetButtonDown ("Y") && shieldtime <=0) {
+			shieldtime = 3.0f;
 			float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
 			
 			IsShield = (GameObject)Instantiate (shield, GetComponent<Transform> ().position, Quaternion.AngleAxis (angle, Vector3.forward));
