@@ -18,7 +18,7 @@ public class p2 : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+
 	}
 	
 	// Update is called once per frame
@@ -52,10 +52,12 @@ public class p2 : MonoBehaviour {
 		}
 		
 		if (Input.GetButtonDown ("Y") && shieldtime <=0) {
+			Debug.Log ("test");
 			shieldtime = 3.0f;
 			float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
 			
 			IsShield = (GameObject)Instantiate (shield, GetComponent<Transform> ().position, Quaternion.AngleAxis (angle, Vector3.forward));
+			IsShield.GetComponent<shield> ().player = gameObject;
 
 		}
 		
@@ -65,7 +67,7 @@ public class p2 : MonoBehaviour {
 			 IsSword = (GameObject)Instantiate (sword, GetComponent<Transform> ().position, Quaternion.identity);
 				IsSword.GetComponent<Rigidbody2D>().velocity = new Vector2(facing.x * jabspeed +GetComponent<Rigidbody2D> ().velocity.x , 0); 
 				IsSword.GetComponent<sword>().owner = gameObject.tag;
-
+				IsSword.GetComponent<sword> ().player = gameObject;
 
 			}
 		}

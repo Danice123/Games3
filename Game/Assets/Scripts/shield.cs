@@ -13,7 +13,7 @@ public class shield : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		player = GameObject.Find ("secondp");
+		//player = GameObject.Find ("secondp");
 		ori = player.GetComponent<p2> ();
 		transform.rotation = Quaternion.FromToRotation (new Vector3 (0, 1, 0),new Vector3 ( ori.facing.x, ori.facing.y, 0));
 		

@@ -16,7 +16,9 @@ public class PlayerSpawn : MonoBehaviour {
 		}
 		if (playerType == 1) {
 			g = (GameObject) Instantiate(warrior, new Vector3(0, 2), Quaternion.identity);
+
 		}
+		g.tag = "Left";
 		GameObject.Find ("Camera").GetComponent<CameraControl>().tracking = g;
 		GameObject.Find ("Boss").GetComponent<Boss> ().target = g;
 	}

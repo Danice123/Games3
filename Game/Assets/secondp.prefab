@@ -93,7 +93,7 @@ MonoBehaviour:
   sword: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
   jabspeed: 2
   IsSword: {fileID: 0}
-  shield: {fileID: 0}
+  shield: {fileID: 144084, guid: 5d04fbf50c4682a4bb9f64c9c1ad8817, type: 2}
   shieldtime: .5
   IsShield: {fileID: 0}
   facing: {x: 1, y: 0}
@@ -142,6 +142,14 @@ Prefab:
       propertyPath: sword
       value: 
       objectReference: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shield
+      value: 
+      objectReference: {fileID: 144084, guid: 5d04fbf50c4682a4bb9f64c9c1ad8817, type: 2}
+    - target: {fileID: 0}
+      propertyPath: shieldtime
+      value: .5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186934}

@@ -7,6 +7,7 @@ public class Boss : MonoBehaviour {
 	public GameObject fireball;
 	public float speed = 1;
 	public GameObject target;
+	public GameObject text;
 
 	private int realTimer = 0;
 
@@ -30,5 +31,11 @@ public class Boss : MonoBehaviour {
 			realTimer = timer;
 		}
 		realTimer--;
+
+		if (GetComponent<Health> ().health <= 0){
+			DestroyObject (gameObject);
+			text.SetActive(true);
+			GameObject.Find("Respawn").GetComponent<Respawn>().gameover = true;
+		}
 	}
 }

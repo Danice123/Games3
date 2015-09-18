@@ -723,6 +723,7 @@ MonoBehaviour:
   fireball: {fileID: 174518, guid: 99beb8e9add38b64391e0c4306a86626, type: 2}
   speed: 1
   target: {fileID: 0}
+  text: {fileID: 951790562}
 --- !u!61 &2049776360
 BoxCollider2D:
   m_ObjectHideFlags: 0
