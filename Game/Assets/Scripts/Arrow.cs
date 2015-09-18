@@ -28,7 +28,7 @@ public class Arrow : MonoBehaviour {
 		if (collider.CompareTag ("Ground")) {
 			DestroyObject(gameObject);
 		}
-		if (collider.CompareTag ("Right")) {
+		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			collider.gameObject.GetComponent<Health>().health -= damage;
 			DestroyObject(gameObject);
 		}
