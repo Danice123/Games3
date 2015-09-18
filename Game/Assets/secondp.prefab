@@ -88,9 +88,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpTimes: 3
-  moveSpeed: 1
-  jumpSpeed: 1
-  sword: {fileID: 0}
+  moveSpeed: 5
+  jumpSpeed: 12
+  sword: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
   jabspeed: 2
   IsSword: {fileID: 0}
   shield: {fileID: 0}
@@ -129,7 +129,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: moveSpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: sword
+      value: 
+      objectReference: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186934}
