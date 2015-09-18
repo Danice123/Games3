@@ -21,7 +21,7 @@ public class spawnbb : MonoBehaviour {
 
 	void FixedUpdate(){
 		timer -= Time.deltaTime;
-		turret = GameObject.FindWithTag("turret");
+		turret = GameObject.Find("turretf");
 		tracker = turret.GetComponent<CantoPlayer>();
 		target = tracker.player;
 

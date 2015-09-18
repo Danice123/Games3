@@ -6,40 +6,51 @@ public class CantoPlayer : MonoBehaviour {
 
 	public Transform target;
 	public GameObject player;
+	bool attacking;
 
 
 	void Start () {
-		player = GameObject.FindWithTag("P1");
-		target = player.transform;
+		attacking = false;
 	}
 
 	// Update is called once per frame
 	void FixedUpdate () {
-		if (player == null) {
-			player = GameObject.FindWithTag("P1");
-			target = player.transform;
+		if (attacking) {
+			if (player == null) {
+
+				attacking = false;
+				return;
+
+			}
+		
+			Quaternion rotation = Quaternion.LookRotation
+			(target.transform.position - transform.position, transform.TransformDirection (Vector3.up));
+			transform.rotation = new Quaternion (0, 0, rotation.z, rotation.w);
 
 		}
-		Quaternion rotation = Quaternion.LookRotation
-			(target.transform.position - transform.position, transform.TransformDirection(Vector3.up));
-		transform.rotation = new Quaternion(0, 0, rotation.z, rotation.w);
-
 	
 	}
 
 	void OnTriggerStay2D (Collider2D col) {
 	
-		if (col.gameObject.tag == "Right") {
-			player = col.gameObject;
-			target = player.transform;
+		if (!attacking) {
+			if (col.gameObject.CompareTag ("Left") || col.gameObject.CompareTag ("Right")) {
+				attacking = true;
+				player = col.gameObject;
+				target = player.transform;
+			}
 		}
 
 			
-		else if (col.gameObject.tag == "P1" && (Vector2.Distance(gameObject.transform.position, player.transform.position)) > (Vector2.Distance(gameObject.transform.position,col.gameObject.transform.position))) 
-		{
-			player = col.gameObject;
-			target = player.transform;
+
+	}
+	void OnTriggerExit2D (Collider2D col) {
+		if (col.gameObject == player) {
+
+			player = null;
 		}
+
+
 	}
 }
 
