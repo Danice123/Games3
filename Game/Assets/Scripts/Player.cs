@@ -15,6 +15,9 @@ public class Player : MonoBehaviour {
 
 	private Vector2 facing = new Vector2(1, 0);
 
+	private int ticksHeld = -1;
+	public int maxTicksHeld = 5;
+
 	// Use this for initialization
 	void Start () {
 	
@@ -26,19 +29,25 @@ public class Player : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
+		if (GetComponent<Health> ().health <= 0) {
+			DestroyObject(gameObject);
+		}
+
 		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
 			facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
 		}
 
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
-		float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
+		if (!Input.GetButton ("Y")) {
+			float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
 
-		if (Input.GetButtonDown ("A") && jumpTimes > 0) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
-			jumpTimes--;
-		} else {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+			if (Input.GetButtonDown ("A") && jumpTimes > 0) {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
+				jumpTimes--;
+			} else {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+			}
 		}
 
 		if (Input.GetButtonDown ("X")) {;
@@ -50,9 +59,18 @@ public class Player : MonoBehaviour {
 		}
 
 		if (Input.GetButtonDown ("Y")) {
-			GameObject a = (GameObject) Instantiate(largeArrow, GetComponent<Transform>().position, Quaternion.identity);
-			a.GetComponent<Rigidbody2D>().velocity = facing * largeArrowSpeed;
-			a.tag = gameObject.tag;
+			ticksHeld = 0;
+		}
+
+		if (ticksHeld >= 0) {
+			ticksHeld++;
+
+			if (Input.GetButtonUp ("Y") || ticksHeld > maxTicksHeld) {
+				GameObject a = (GameObject)Instantiate (largeArrow, GetComponent<Transform> ().position, Quaternion.identity);
+				a.GetComponent<Rigidbody2D> ().velocity = facing * largeArrowSpeed;
+				a.GetComponent<Arrow> ().owner = gameObject.tag;
+				ticksHeld = -1;
+			}
 		}
 	}
 
