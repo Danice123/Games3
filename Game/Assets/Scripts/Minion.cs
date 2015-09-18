@@ -28,7 +28,7 @@ public class Minion : MonoBehaviour {
 			GetComponent<Rigidbody2D> ().velocity = new Vector2(0, 0);
 
 			if (attackCooldown <= 0) {
-				if (target == null) {
+				if (target == null || !target.activeSelf) {
 					attackMode = false;
 					return;
 				}
@@ -49,6 +49,7 @@ public class Minion : MonoBehaviour {
 	void OnTriggerEnter2D ( Collider2D collider) {
 		if (!attackMode) {
 			if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
+				if (Vector2.Distance(collider.gameObject.GetComponent<Transform>().position, gameObject.GetComponent<Transform>().position) > 10) return;
 				attackMode = true;
 				target = collider.gameObject;
 			}
