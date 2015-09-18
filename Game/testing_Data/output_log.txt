@@ -23,23 +23,33 @@ Loading D:\Games3\Game\testing_Data\Managed\UnityEngine.Networking.dll into Unit
 Platform assembly: D:\Games3\Game\testing_Data\Managed\UnityEngine.UI.dll (this message is harmless)
 Loading D:\Games3\Game\testing_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
 Platform assembly: D:\Games3\Game\testing_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.088 seconds
+- Completed reload, in  0.094 seconds
 desktop: 3840x2160 60Hz; virtual: 3840x3240 at 0,-1080
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: D:\Games3\Game\testing_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 31b0 -> priority: 1 
+  Thread -> id: 25c8 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 3.794798 ms
+UnloadTime: 3.737713 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 235.
-Total: 0.208138 ms (FindLiveObjects: 0.016393 ms CreateObjectMapping: 0.022833 ms MarkObjects: 0.162471 ms  DeleteObjects: 0.006147 ms)
+Total: 0.206089 ms (FindLiveObjects: 0.016100 ms CreateObjectMapping: 0.008489 ms MarkObjects: 0.174766 ms  DeleteObjects: 0.006147 ms)
 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.305621 ms
+UnloadTime: 0.302108 ms
 
 Unloading 6 unused Assets to reduce memory usage. Loaded Objects now: 448.
-Total: 0.203454 ms (FindLiveObjects: 0.015807 ms CreateObjectMapping: 0.014637 ms MarkObjects: 0.143150 ms  DeleteObjects: 0.029274 ms)
+Total: 0.224824 ms (FindLiveObjects: 0.019613 ms CreateObjectMapping: 0.013173 ms MarkObjects: 0.160129 ms  DeleteObjects: 0.031615 ms)
+
+The animation state Idle could not be played because it couldn't be found!
+Please attach an animation clip with the name 'Idle' or call this function only for existing animations.
+ 
+(Filename:  Line: 421)
+
+NullReferenceException: Object reference not set to an instance of an object
+  at Player.Start () [0x00000] in <filename unknown>:0 
+ 
+(Filename:  Line: -1)
 
