@@ -6,17 +6,12 @@ public class Player : MonoBehaviour {
 	public int jumpTimes = 2;
 	public float moveSpeed = 1.0f;
 	public float jumpSpeed = 1.0f;
+	public int respawnTimer = 60;
 
-	public GameObject arrow;
-	public int arrowSpeed = 10;
+	public bool canMove = true;
 
-	public GameObject largeArrow;
-	public int largeArrowSpeed = 20;
-
-	private Vector2 facing = new Vector2(1, 0);
-
-	private int ticksHeld = -1;
-	public int maxTicksHeld = 5;
+	public Vector2 facing = new Vector2(1, 0);
+	public int jumped = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +25,11 @@ public class Player : MonoBehaviour {
 
 	void FixedUpdate() {
 		if (GetComponent<Health> ().health <= 0) {
-			DestroyObject(gameObject);
+			respawnTimer = 60 * 1;
+			GetComponent<Transform>().position = new Vector2(0, 2);
+			GetComponent<Health>().health = GetComponent<Health>().maxHealth;
+			GameObject.Find("Respawn").GetComponent<Respawn>().addSpawn(gameObject);
+			gameObject.SetActive(false);
 		}
 
 		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
@@ -39,44 +38,21 @@ public class Player : MonoBehaviour {
 
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
-		if (!Input.GetButton ("Y")) {
+		if (canMove) {
 			float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
 
-			if (Input.GetButtonDown ("A") && jumpTimes > 0) {
+			if (Input.GetButtonDown ("A") && jumped > 0) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
-				jumpTimes--;
+				jumped--;
 			} else {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
-			}
-		}
-
-		if (Input.GetButtonDown ("X")) {;
-			float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-
-			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position, Quaternion.AngleAxis(angle, Vector3.forward));
-			a.GetComponent<Rigidbody2D>().velocity = facing * arrowSpeed + new Vector2(0, 5);
-			a.GetComponent<Arrow>().owner = gameObject.tag;
-		}
-
-		if (Input.GetButtonDown ("Y")) {
-			ticksHeld = 0;
-		}
-
-		if (ticksHeld >= 0) {
-			ticksHeld++;
-
-			if (Input.GetButtonUp ("Y") || ticksHeld > maxTicksHeld) {
-				GameObject a = (GameObject)Instantiate (largeArrow, GetComponent<Transform> ().position, Quaternion.identity);
-				a.GetComponent<Rigidbody2D> ().velocity = facing * largeArrowSpeed;
-				a.GetComponent<Arrow> ().owner = gameObject.tag;
-				ticksHeld = -1;
 			}
 		}
 	}
 
 	void OnCollisionEnter2D (Collision2D hit) {
 		if (hit.gameObject.tag == "Ground") {
-			jumpTimes = 2;
+			jumped = jumpTimes;
 		}
 	}
 }

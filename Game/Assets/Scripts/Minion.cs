@@ -28,7 +28,7 @@ public class Minion : MonoBehaviour {
 			GetComponent<Rigidbody2D> ().velocity = new Vector2(0, 0);
 
 			if (attackCooldown <= 0) {
-				if (target == null) {
+				if (target == null || !target.activeSelf) {
 					attackMode = false;
 					return;
 				}
