@@ -49,6 +49,7 @@ public class Minion : MonoBehaviour {
 	void OnTriggerEnter2D ( Collider2D collider) {
 		if (!attackMode) {
 			if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
+				if (Vector2.Distance(collider.gameObject.GetComponent<Transform>().position, gameObject.GetComponent<Transform>().position) > 10) return;
 				attackMode = true;
 				target = collider.gameObject;
 			}
