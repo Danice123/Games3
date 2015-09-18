@@ -11,7 +11,7 @@ public class p2 : MonoBehaviour {
 	public int swingSpeed = 10;
 	
 	public GameObject shield;
-	public int shieldtime = 0.5;
+	public float shieldtime = 0.5f;
 	
 	private Vector2 facing = new Vector2(1, 0);
 

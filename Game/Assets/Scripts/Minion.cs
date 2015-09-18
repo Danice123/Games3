@@ -48,7 +48,7 @@ public class Minion : MonoBehaviour {
 
 	void OnTriggerEnter2D ( Collider2D collider) {
 		if (!attackMode) {
-			if (collider.CompareTag ("Left") || collider.CompareTag ("Right")) {
+			if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
 				attackMode = true;
 				target = collider.gameObject;
 			}
@@ -57,7 +57,7 @@ public class Minion : MonoBehaviour {
 
 	void OnTriggerExit2D ( Collider2D collider) {
 		if (attackMode) {
-			if (collider.CompareTag ("Left") || collider.CompareTag ("Right")) {
+			if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
 				attackMode = false;
 			}
 		}
