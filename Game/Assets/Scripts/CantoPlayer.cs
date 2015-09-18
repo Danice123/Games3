@@ -7,6 +7,7 @@ public class CantoPlayer : MonoBehaviour {
 	public Transform target;
 	public GameObject player;
 	bool attacking;
+	public string team;
 
 
 	void Start () {
@@ -34,7 +35,7 @@ public class CantoPlayer : MonoBehaviour {
 	void OnTriggerStay2D (Collider2D col) {
 	
 		if (!attacking) {
-			if (col.gameObject.CompareTag ("Left") || col.gameObject.CompareTag ("Right")) {
+			if ((col.CompareTag ("Left") || col.CompareTag ("Right")) && !col.CompareTag(team)) {
 				attacking = true;
 				player = col.gameObject;
 				target = player.transform;

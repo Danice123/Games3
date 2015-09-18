@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class Respawn : MonoBehaviour {
 
 	List<GameObject> respawnList;
+	public bool gameover = false;
+	public int timeout = 120;
 
 	// Use this for initialization
 	void Start () {
@@ -20,6 +22,10 @@ public class Respawn : MonoBehaviour {
 				respawnList.Remove(o);
 			}
 		}
+		if (gameover)
+			timeout--;
+		if (timeout <= 0)
+			Application.LoadLevel(0);
 	}
 
 	public void addSpawn(GameObject o) {

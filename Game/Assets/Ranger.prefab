@@ -139,7 +139,7 @@ MonoBehaviour:
   arrowSpeed: 10
   largeArrow: {fileID: 127852, guid: 910c96d4f3a54cc44ab6a12f54cd003a, type: 2}
   largeArrowSpeed: 20
-  maxTicksHeld: 5
+  maxTicksHeld: 60
 --- !u!212 &21262852
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -211,6 +211,10 @@ Prefab:
       propertyPath: largeArrow
       value: 
       objectReference: {fileID: 127852, guid: 910c96d4f3a54cc44ab6a12f54cd003a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: maxTicksHeld
+      value: 60
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121062}

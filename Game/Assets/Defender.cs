@@ -3,10 +3,10 @@ using System.Collections;
 
 public class Defender : MonoBehaviour {
 	public GameObject turret;
+	public GameObject text;
 
 	// Use this for initialization
 	void Start () {
-		turret = GameObject.Find ("turretf");
 	
 	}
 	
@@ -14,10 +14,15 @@ public class Defender : MonoBehaviour {
 	void Update () {
 	
 	}
+
+
 	void FixedUpdate() {
 		if (GetComponent<Health> ().health <= 0){
 			Destroy(turret);
 			DestroyObject (gameObject);
-	}
+			text.SetActive(true);
+			GameObject.Find("Respawn").GetComponent<Respawn>().gameover = true;
+		}
+
 	}
 }
