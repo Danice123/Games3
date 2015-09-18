@@ -132,7 +132,7 @@ MonoBehaviour:
   m_CancelButton: B
   m_InputActionsPerSecond: 10
   m_RepeatDelay: .5
-  m_ForceModuleActive: 0
+  m_ForceModuleActive: 1
 --- !u!114 &48363161
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,6 +338,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a98cb95f74b7eea4a90a5a9da4cc6c5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Char1: {fileID: 915921858}
+  Char2: {fileID: 812996566}
+  Char3: {fileID: 1190532776}
 --- !u!1 &174836085
 GameObject:
   m_ObjectHideFlags: 0

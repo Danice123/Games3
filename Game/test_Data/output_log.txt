@@ -15,17 +15,23 @@ Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.UI.dll
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.092 seconds
+- Completed reload, in  0.042 seconds
 desktop: 3840x2160 60Hz; virtual: 3840x3240 at 0,-1080
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 163c -> priority: 1 
+  Thread -> id: 2e50 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 11.317063 ms
+UnloadTime: 15.060925 ms
 
 Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 216.
-Total: 0.245902 ms (FindLiveObjects: 0.019613 ms CreateObjectMapping: 0.009953 ms MarkObjects: 0.208724 ms  DeleteObjects: 0.007318 ms)
+Total: 0.500586 ms (FindLiveObjects: 0.066452 ms CreateObjectMapping: 0.025175 ms MarkObjects: 0.393150 ms  DeleteObjects: 0.014637 ms)
+
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 1.440284 ms
+
+Unloading 8 unused Assets to reduce memory usage. Loaded Objects now: 318.
+Total: 0.741219 ms (FindLiveObjects: 0.047131 ms CreateObjectMapping: 0.055620 ms MarkObjects: 0.521371 ms  DeleteObjects: 0.115632 ms)
 
