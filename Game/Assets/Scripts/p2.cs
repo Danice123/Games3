@@ -8,12 +8,13 @@ public class p2 : MonoBehaviour {
 	public float jumpSpeed = 1.0f;
 	
 	public GameObject sword;
-	public int swingSpeed = 10;
-	
+	public int jabspeed = 2;
+	public GameObject IsSword;
 	public GameObject shield;
 	public float shieldtime = 0.5f;
+	public GameObject IsShield;
 	
-	private Vector2 facing = new Vector2(1, 0);
+	public Vector2 facing = new Vector2(1, 0);
 
 	// Use this for initialization
 	void Start () {
@@ -28,33 +29,48 @@ public class p2 : MonoBehaviour {
 
 
 	void FixedUpdate() {
+		if (GetComponent<Health> ().health <= 0) {
+			DestroyObject (gameObject);
+		}
+		
 		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
-			facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
+			facing = new Vector2 (Input.GetAxisRaw ("Horizontal"), -Input.GetAxisRaw ("Vertical")).normalized;
 		}
 		
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 		
-		float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
-		
-		if (Input.GetButtonDown ("A") && jumpTimes > 0) {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
-			jumpTimes--;
-		} else {
-			GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
-		}
-		
-		if (Input.GetButtonDown ("X")) {
-			GameObject a = (GameObject) Instantiate(sword, GetComponent<Transform>().position, Quaternion.identity);
-
+		if (!Input.GetButton ("Y")) {
+			float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
+			
+			if (Input.GetButtonDown ("A") && jumpTimes > 0) {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
+				jumpTimes--;
+			} else {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+			}
 		}
 		
 		if (Input.GetButtonDown ("Y")) {
-			GameObject a = (GameObject) Instantiate(shield, GetComponent<Transform>().position, Quaternion.identity);
+			;
+			float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
+			
+			IsShield = (GameObject)Instantiate (shield, GetComponent<Transform> ().position, Quaternion.AngleAxis (angle, Vector3.forward));
 
 		}
+		
+		if (Input.GetButtonDown ("X")) {
+
+			if (IsSword == null){
+			 IsSword = (GameObject)Instantiate (sword, GetComponent<Transform> ().position, Quaternion.identity);
+				IsSword.GetComponent<Rigidbody2D>().velocity = new Vector2(facing.x * jabspeed +GetComponent<Rigidbody2D> ().velocity.x , 0); 
+				IsSword.GetComponent<sword>().owner = gameObject.tag;
+
+
+			}
+		}
+
+
 	}
-
-
 
 
 
