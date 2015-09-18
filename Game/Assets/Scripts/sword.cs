@@ -14,8 +14,8 @@ public class sword : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		//player = GameObject.Find ("secondp");
-		ori = player.GetComponent<p2> ();
-		transform.rotation = Quaternion.FromToRotation (new Vector3 (0, 1, 0),new Vector3 ( ori.facing.x, ori.facing.y, 0));
+		Vector2 facing = player.GetComponent<Player> ().facing;
+		transform.rotation = Quaternion.FromToRotation (new Vector3 (0, 1, 0),new Vector3 ( facing.x, facing.y, 0));
 
 	}
 	

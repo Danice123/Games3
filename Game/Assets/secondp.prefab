@@ -13,6 +13,7 @@ GameObject:
   - 50: {fileID: 5099718}
   - 114: {fileID: 11473444}
   - 114: {fileID: 11432534}
+  - 114: {fileID: 11454410}
   m_Layer: 0
   m_Name: secondp
   m_TagString: Untagged
@@ -76,6 +77,24 @@ MonoBehaviour:
   maxHealth: 100
   xOffset: 40
   yOffset: 50
+--- !u!114 &11454410
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd0f8449dafcfe4db9c3f0b4fb0f6f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpTimes: 3
+  moveSpeed: 10
+  jumpSpeed: 10
+  respawnTimer: 60
+  canMove: 1
+  facing: {x: 1, y: 0}
+  jumped: 0
 --- !u!114 &11473444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -87,16 +106,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e280c0ac150e60f42af450aca2db73c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpTimes: 3
-  moveSpeed: 5
-  jumpSpeed: 12
   sword: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
   jabspeed: 2
   IsSword: {fileID: 0}
   shield: {fileID: 144084, guid: 5d04fbf50c4682a4bb9f64c9c1ad8817, type: 2}
   shieldtime: .5
   IsShield: {fileID: 0}
-  facing: {x: 1, y: 0}
 --- !u!212 &21259240
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -132,11 +147,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 0}
       propertyPath: moveSpeed
-      value: 5
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: jumpSpeed
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: sword
@@ -149,6 +164,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: shieldtime
       value: .5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpTimes
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

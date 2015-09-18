@@ -19,6 +19,6 @@ public class menuScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-	
+		Debug.Log (Input.GetKey (KeyCode.Joystick1Button0).ToString());
 	}
 }

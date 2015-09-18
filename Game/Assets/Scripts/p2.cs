@@ -3,9 +3,7 @@ using System.Collections;
 
 public class p2 : MonoBehaviour {
 
-	public int jumpTimes = 3;
-	public float moveSpeed = 1.0f;
-	public float jumpSpeed = 1.0f;
+
 	
 	public GameObject sword;
 	public int jabspeed = 2;
@@ -14,7 +12,7 @@ public class p2 : MonoBehaviour {
 	public float shieldtime = 3f;
 	public GameObject IsShield;
 	
-	public Vector2 facing = new Vector2(1, 0);
+
 
 	// Use this for initialization
 	void Start () {
@@ -29,26 +27,16 @@ public class p2 : MonoBehaviour {
 
 
 	void FixedUpdate() {
+		Vector2 facing = GetComponent<Player> ().facing;
 		shieldtime -= Time.deltaTime;
-		if (GetComponent<Health> ().health <= 0) {
-			DestroyObject (gameObject);
-		}
+
 		
-		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
-			facing = new Vector2 (Input.GetAxisRaw ("Horizontal"), -Input.GetAxisRaw ("Vertical")).normalized;
-		}
-		
-		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
+
 		
 		if (!Input.GetButton ("Y")) {
-			float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
+			float ha = Input.GetAxisRaw ("Horizontal") * GetComponent<Player> ().moveSpeed;
 			
-			if (Input.GetButtonDown ("A") && jumpTimes > 0) {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
-				jumpTimes--;
-			} else {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
-			}
+
 		}
 		
 		if (Input.GetButtonDown ("Y") && shieldtime <=0) {
@@ -79,11 +67,6 @@ public class p2 : MonoBehaviour {
 
 
 
-	void OnCollisionEnter2D (Collision2D hit) {
-		if (hit.gameObject.tag == "Ground") {
-			jumpTimes = 3;
-		}
-	}
 
 
 }
