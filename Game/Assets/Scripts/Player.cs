@@ -13,14 +13,21 @@ public class Player : MonoBehaviour {
 	public Vector2 facing = new Vector2(1, 0);
 	public int jumped = 0;
 
+	private Animator animator;
+
 	// Use this for initialization
 	void Start () {
-	
+		animator = GetComponentInChildren<Animator> ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		if (facing.x > 0) {
+
+			GetComponentsInChildren<Transform>()[1].rotation = Quaternion.AngleAxis(90, Vector3.up);
+		} else {
+			GetComponentsInChildren<Transform>()[1].rotation = Quaternion.AngleAxis(-90, Vector3.up);
+		}
 	}
 
 	void FixedUpdate() {
@@ -47,6 +54,7 @@ public class Player : MonoBehaviour {
 			} else {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
 			}
+			animator.SetFloat("Speed", Mathf.Abs(ha));
 		}
 	}
 

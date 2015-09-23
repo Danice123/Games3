@@ -44,6 +44,7 @@ public class Ranger : MonoBehaviour {
 		if (Input.GetButtonDown ("Y")) {
 			ticksHeld = 0;
 			GetComponent<Player>().canMove = false;
+			GetComponentInChildren<Animator> ().SetTrigger("Attack");
 		}
 		
 		if (ticksHeld >= 0) {
@@ -57,5 +58,6 @@ public class Ranger : MonoBehaviour {
 				GetComponent<Player>().canMove = true;
 			}
 		}
+		GetComponentInChildren<Animator> ().SetBool("isAttacking", GetComponent<Player>().canMove);
 	}
 }

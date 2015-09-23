@@ -1,0 +1,23 @@
+Initialize engine version: 5.1.2p3 (65486b59c7a9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon R9 200 Series (ID=0x67b0)
+    Vendor:   ATI
+    VRAM:     4078 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: C:\Users\Daniel\Git\Games3\Game\gh_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.052 seconds
+desktop: 1920x1080 60Hz; virtual: 1920x1080 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
