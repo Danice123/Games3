@@ -208,6 +208,7 @@ GameObject:
   - 114: {fileID: 11499684}
   - 114: {fileID: 11442506}
   - 108: {fileID: 10865700}
+  - 114: {fileID: 11494672}
   m_Layer: 0
   m_Name: Mage 1
   m_TagString: Untagged
@@ -823,10 +824,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd0f8449dafcfe4db9c3f0b4fb0f6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 1
   jumpTimes: 2
   moveSpeed: 10
   jumpSpeed: 10
   respawnTimer: 60
+  canMove: 1
+  facing: {x: 1, y: 0}
+  jumped: 0
+--- !u!114 &11494672
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84b3c1a10fc12b94385857b4e0b64d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpTimes: 2
+  moveSpeed: 1
+  jumpSpeed: 1
+  respawnTimer: 60
+  frostBall: {fileID: 183118, guid: 55f8303d60af0e4429afd9bf0dd0f175, type: 2}
   canMove: 1
   facing: {x: 1, y: 0}
   jumped: 0
@@ -919,6 +940,10 @@ Prefab:
       propertyPath: m_Type
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: frostBall
+      value: 
+      objectReference: {fileID: 183118, guid: 55f8303d60af0e4429afd9bf0dd0f175, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 141716}
