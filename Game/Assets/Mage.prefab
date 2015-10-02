@@ -10,7 +10,6 @@ GameObject:
   - 4: {fileID: 460972}
   - 61: {fileID: 6130424}
   - 50: {fileID: 5070956}
-  - 114: {fileID: 11427596}
   - 114: {fileID: 11454422}
   - 114: {fileID: 11422280}
   m_Layer: 0
@@ -79,17 +78,6 @@ MonoBehaviour:
   canMove: 1
   facing: {x: 1, y: 0}
   jumped: 0
---- !u!114 &11427596
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 186602}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84b3c1a10fc12b94385857b4e0b64d22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &11454422
 MonoBehaviour:
   m_ObjectHideFlags: 1

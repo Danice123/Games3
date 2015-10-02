@@ -2,6 +2,8 @@
 using System.Collections;
 
 public class Player : MonoBehaviour {
+
+	public string playerNumber = "1";
 	
 	public int jumpTimes = 2;
 	public float moveSpeed = 1.0f;
@@ -39,16 +41,16 @@ public class Player : MonoBehaviour {
 			gameObject.SetActive(false);
 		}
 
-		if (Input.GetAxisRaw ("Horizontal") != 0 || Input.GetAxisRaw ("Vertical") != 0) {
-			facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
+		if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
+			facing = new Vector2(Input.GetAxisRaw("Horizontal" + playerNumber), -Input.GetAxisRaw("Vertical" + playerNumber)).normalized;
 		}
 
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
 		if (canMove) {
-			float ha = Input.GetAxisRaw ("Horizontal") * moveSpeed;
+			float ha = Input.GetAxisRaw ("Horizontal" + playerNumber) * moveSpeed;
 
-			if (Input.GetButtonDown ("A") && jumped > 0) {
+			if (Input.GetButtonDown ("Jump" + playerNumber) && jumped > 0) {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
 				jumped--;
 			} else {

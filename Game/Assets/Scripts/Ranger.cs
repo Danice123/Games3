@@ -14,7 +14,7 @@ public class Ranger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		
 	}
 
 	void Update () {
@@ -32,8 +32,9 @@ public class Ranger : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		string playerNumber = GetComponent<Player> ().playerNumber;
 		Vector2 facing = GetComponent<Player> ().facing;
-		if (Input.GetButtonDown ("X")) {
+		if (Input.GetButtonDown (playerNumber + "Ability1")) {
 			float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
 			
 			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
@@ -42,15 +43,18 @@ public class Ranger : MonoBehaviour {
 			GetComponentInChildren<Animator> ().SetTrigger("Attack");
 		}
 		
-		if (Input.GetButtonDown ("Y")) {
+		if (Input.GetButtonDown (playerNumber + "Ability2")) {
 			ticksHeld = 0;
 			GetComponent<Player>().canMove = false;
+
+			Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
+			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, vel.y);
 		}
 		
 		if (ticksHeld >= 0) {
 			ticksHeld++;
 			
-			if (Input.GetButtonUp ("Y") || ticksHeld > maxTicksHeld) {
+			if (Input.GetButtonUp (playerNumber + "Ability2") || ticksHeld > maxTicksHeld) {
 				GameObject a = (GameObject)Instantiate (largeArrow, GetComponent<Transform> ().position + new Vector3(0, 1, 0), Quaternion.identity);
 				a.GetComponent<Rigidbody2D> ().velocity = facing * largeArrowSpeed;
 				a.GetComponent<Arrow> ().owner = gameObject.tag;
