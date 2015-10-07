@@ -9,8 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 492648}
   - 212: {fileID: 21210054}
-  - 114: {fileID: 11469290}
   - 58: {fileID: 5829922}
+  - 114: {fileID: 11471492}
   m_Layer: 0
   m_Name: turretshot
   m_TagString: Untagged
@@ -43,7 +43,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: .319999993
---- !u!114 &11469290
+--- !u!114 &11471492
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -51,12 +51,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 185660}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8d565d5bf2a17b45a9c8776af3625ae, type: 3}
+  m_Script: {fileID: 11500000, guid: d7f22d4e80b242743846d9acd441d8c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  speed: 9
-  turret: {fileID: 0}
+  speed: 2
 --- !u!212 &21210054
 SpriteRenderer:
   m_ObjectHideFlags: 1

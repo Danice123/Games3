@@ -7,10 +7,6 @@ TagManager:
   - Ground
   - Left
   - Right
-  - P1
-  - turret
-  - arrow
-  - shield
   layers:
   - Default
   - TransparentFX

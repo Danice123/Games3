@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd0f8449dafcfe4db9c3f0b4fb0f6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 1
   jumpTimes: 2
   moveSpeed: 10
   jumpSpeed: 10
@@ -78,6 +79,12 @@ MonoBehaviour:
   canMove: 1
   facing: {x: 1, y: 0}
   jumped: 0
+  level: 1
+  ability1Level: 0
+  ability2Level: 0
+  ability3Level: 0
+  exp: 0
+  abilityPoints: 0
 --- !u!114 &11454422
 MonoBehaviour:
   m_ObjectHideFlags: 1

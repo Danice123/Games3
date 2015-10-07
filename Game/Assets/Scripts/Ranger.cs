@@ -12,9 +12,11 @@ public class Ranger : MonoBehaviour {
 	private int ticksHeld = -1;
 	public int maxTicksHeld = 5;
 
+	private Player player;
+
 	// Use this for initialization
 	void Start () {
-		
+		player = GetComponent<Player> ();
 	}
 
 	void Update () {
@@ -32,9 +34,9 @@ public class Ranger : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		string playerNumber = GetComponent<Player> ().playerNumber;
-		Vector2 facing = GetComponent<Player> ().facing;
-		if (Input.GetButtonDown (playerNumber + "Ability1")) {
+		string playerNumber = player.playerNumber;
+		Vector2 facing = player.facing;
+		if (Input.GetButtonDown (playerNumber + "Ability1") && player.ability1Level > 0) {
 			float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
 			
 			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
@@ -43,9 +45,9 @@ public class Ranger : MonoBehaviour {
 			GetComponentInChildren<Animator> ().SetTrigger("Attack");
 		}
 		
-		if (Input.GetButtonDown (playerNumber + "Ability2")) {
+		if (Input.GetButtonDown (playerNumber + "Ability2") && player.ability2Level > 0) {
 			ticksHeld = 0;
-			GetComponent<Player>().canMove = false;
+			player.canMove = false;
 
 			Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 			GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, vel.y);
@@ -59,10 +61,10 @@ public class Ranger : MonoBehaviour {
 				a.GetComponent<Rigidbody2D> ().velocity = facing * largeArrowSpeed;
 				a.GetComponent<Arrow> ().owner = gameObject.tag;
 				ticksHeld = -1;
-				GetComponent<Player>().canMove = true;
+				player.canMove = true;
 				GetComponentInChildren<Animator> ().SetTrigger("Attack");
 			}
 		}
-		GetComponentInChildren<Animator> ().SetBool("isAttacking", GetComponent<Player>().canMove);
+		GetComponentInChildren<Animator> ().SetBool("isAttacking", player.canMove);
 	}
 }

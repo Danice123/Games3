@@ -20,7 +20,8 @@ public class Player : MonoBehaviour {
 	public int ability2Level = 0;
 	public int ability3Level = 0;
 	public int exp = 0;
-	public int abilityPoints = 0;
+	public int abilityPoints = 1;
+	bool levelupMode = false;
 
 	private Animator animator;
 
@@ -53,7 +54,7 @@ public class Player : MonoBehaviour {
 
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
-		if (canMove) {
+		if (canMove || levelupMode) {
 			float ha = Input.GetAxisRaw ("Horizontal" + playerNumber) * moveSpeed;
 
 			if (Input.GetButtonDown ("Jump" + playerNumber) && jumped > 0) {
@@ -63,6 +64,26 @@ public class Player : MonoBehaviour {
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
 			}
 			animator.SetFloat("Speed", Mathf.Abs(ha));
+		}
+		if (!levelupMode && abilityPoints > 0 && Input.GetButtonDown ("LevelUp" + playerNumber)) {
+			levelupMode = true;
+		}
+		if (levelupMode) {
+			if (Input.GetButtonDown (playerNumber + "Ability1")) {
+				ability1Level++;
+				abilityPoints--;
+				levelupMode = false;
+			}
+			if (Input.GetButtonDown (playerNumber + "Ability2")) {
+				ability2Level++;
+				abilityPoints--;
+				levelupMode = false;
+			}
+			if (Input.GetButtonDown (playerNumber + "Ability3")) {
+				ability3Level++;
+				abilityPoints--;
+				levelupMode = false;
+			}
 		}
 	}
 

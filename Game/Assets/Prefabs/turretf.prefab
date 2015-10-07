@@ -9,10 +9,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 427382}
   - 212: {fileID: 21261134}
-  - 114: {fileID: 11490650}
-  - 114: {fileID: 11401892}
-  - 58: {fileID: 5810502}
   - 58: {fileID: 5813984}
+  - 114: {fileID: 11487974}
   m_Layer: 0
   m_Name: turretf
   m_TagString: turret
@@ -32,19 +30,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!58 &5810502
-CircleCollider2D:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148836}
-  m_Enabled: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: .132671162
 --- !u!58 &5813984
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -58,7 +43,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 2.12196589
---- !u!114 &11401892
+--- !u!114 &11487974
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -66,29 +51,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 148836}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42b6b3e102d018049a8ad9d2a8a16cb0, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ba9ca8146d2ec8458c08b3eedccbeb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnloc: {fileID: 427382}
-  bb: {fileID: 185660, guid: 4318ca218047ebe42a65f13d5194c462, type: 2}
-  spawntime: 2
-  timer: 0
-  turret: {fileID: 0}
-  tracker: {fileID: 0}
-  target: {fileID: 0}
---- !u!114 &11490650
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 148836}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae11864d2276fc145bc3d320aad5d3bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  player: {fileID: 0}
+  TowerShot: {fileID: 185660, guid: 4318ca218047ebe42a65f13d5194c462, type: 2}
+  delay: 120
 --- !u!212 &21261134
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -121,7 +88,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: TowerShot
+      value: 
+      objectReference: {fileID: 185660, guid: 4318ca218047ebe42a65f13d5194c462, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148836}

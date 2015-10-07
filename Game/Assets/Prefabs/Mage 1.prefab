@@ -832,6 +832,12 @@ MonoBehaviour:
   canMove: 1
   facing: {x: 1, y: 0}
   jumped: 0
+  level: 1
+  ability1Level: 0
+  ability2Level: 0
+  ability3Level: 0
+  exp: 0
+  abilityPoints: 0
 --- !u!114 &11494672
 MonoBehaviour:
   m_ObjectHideFlags: 1

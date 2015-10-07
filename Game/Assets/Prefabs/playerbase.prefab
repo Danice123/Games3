@@ -72,13 +72,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd0f8449dafcfe4db9c3f0b4fb0f6f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerNumber: 1
   jumpTimes: 2
   moveSpeed: 5
   jumpSpeed: 12
-  arrow: {fileID: 163518, guid: 7a3a21b77c8d5f44bb577476a7dfe496, type: 2}
-  arrowSpeed: 20
-  largeArrow: {fileID: 0}
-  largeArrowSpeed: 20
+  respawnTimer: 60
+  canMove: 1
+  facing: {x: 1, y: 0}
+  jumped: 0
+  level: 1
+  ability1Level: 0
+  ability2Level: 0
+  ability3Level: 0
+  exp: 0
+  abilityPoints: 0
 --- !u!114 &11415274
 MonoBehaviour:
   m_ObjectHideFlags: 1
