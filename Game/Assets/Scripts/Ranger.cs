@@ -36,7 +36,7 @@ public class Ranger : MonoBehaviour {
 	void FixedUpdate () {
 		string playerNumber = player.playerNumber;
 		Vector2 facing = player.facing;
-		if (Input.GetButtonDown (playerNumber + "Ability1") && player.ability1Level > 0) {
+		if (Input.GetButtonDown (playerNumber + "Ability1")/* && player.ability1Level > 0*/) {
 			float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
 			
 			GameObject a = (GameObject) Instantiate(arrow, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
