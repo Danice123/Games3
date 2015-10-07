@@ -15,6 +15,13 @@ public class Player : MonoBehaviour {
 	public Vector2 facing = new Vector2(1, 0);
 	public int jumped = 0;
 
+	public int level = 1;
+	public int ability1Level = 0;
+	public int ability2Level = 0;
+	public int ability3Level = 0;
+	public int exp = 0;
+	public int abilityPoints = 0;
+
 	private Animator animator;
 
 	// Use this for initialization
@@ -25,7 +32,6 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (facing.x > 0) {
-
 			GetComponentsInChildren<Transform>()[1].rotation = Quaternion.AngleAxis(90, Vector3.up);
 		} else {
 			GetComponentsInChildren<Transform>()[1].rotation = Quaternion.AngleAxis(-90, Vector3.up);

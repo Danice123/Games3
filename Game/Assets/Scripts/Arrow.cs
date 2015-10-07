@@ -25,10 +25,11 @@ public class Arrow : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.CompareTag ("Ground")|| collider.CompareTag ("shield")) {
+		if (collider.CompareTag ("Ground")) {
 			DestroyObject(gameObject);
 		}
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
+			if (collider.GetComponent<Health>() == null) return;
 			collider.gameObject.GetComponent<Health>().health -= damage;
 			DestroyObject(gameObject);
 		}

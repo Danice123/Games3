@@ -24,6 +24,8 @@ public class Health : MonoBehaviour {
 	}
 	
 	void OnGUI() {
+		if (Camera.current == null)
+			return;
 		Vector3 screenPosition = Camera.current.WorldToScreenPoint(transform.position);
 		
 		screenPosition.y = Screen.height - (screenPosition.y + 1);

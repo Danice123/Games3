@@ -23,12 +23,12 @@ public class Ranger : MonoBehaviour {
 		GameObject bow = GameObject.Find ("longbow");
 		float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
 		var q = Quaternion.AngleAxis(angle + 45.0f, Vector3.forward);
-		bow.GetComponent<Transform> ().rotation = q;
+		//bow.GetComponent<Transform> ().rotation = q;
 
 
 		Vector2 newPos = GetComponent<Transform> ().position;
 		newPos += facing * 0.5f;
-		bow.GetComponent<Transform>().position = new Vector3(newPos.x, newPos.y, 0);
+		//bow.GetComponent<Transform>().position = new Vector3(newPos.x, newPos.y, 0);
 	}
 
 	void FixedUpdate () {
