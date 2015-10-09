@@ -9,6 +9,9 @@ public class Minion : MonoBehaviour {
 	private bool attackMode = false;
 	public int attackCooldown = 20;
 
+	public GameObject exp;
+	public float expSpeed = 1.0f;
+
 	// Use this for initialization
 	void Start () {
 
@@ -20,8 +23,14 @@ public class Minion : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (GetComponent<Health>().health <= 0)
+		if (GetComponent<Health> ().health <= 0) {
+			GameObject a = (GameObject) Instantiate(exp, GetComponent<Transform>().position, Quaternion.identity);
+			if (tag == "Left")
+				a.GetComponent<Rigidbody2D>().velocity = new Vector2(-0.5f, 0.5f) * expSpeed;
+			else
+				a.GetComponent<Rigidbody2D>().velocity = new Vector2(0.5f, 0.5f) * expSpeed;
 			DestroyObject (gameObject);
+		}
 		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
 		if (attackMode) {
