@@ -14,17 +14,18 @@ public class p3 : MonoBehaviour
     public Vector2 facing = new Vector2(1, 0);
     public int jumped = 0;
 
-    private Animator animator;
+    private Player player;
 
     // Use this for initialization
     void Start()
     {
-        animator = GetComponentInChildren<Animator>();
+        player = GetComponent<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        Vector2 facing = GetComponent<Player>().facing;
         if (facing.x > 0)
         {
 
@@ -38,6 +39,7 @@ public class p3 : MonoBehaviour
 
     void FixedUpdate()
     {
+        Vector2 facing = player.facing;
         string playerNumber = GetComponent<Player>().playerNumber;
         if (GetComponent<Health>().health <= 0)
         {
@@ -54,32 +56,18 @@ public class p3 : MonoBehaviour
 
             GameObject a = (GameObject)Instantiate(frostBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
             a.GetComponent<Rigidbody2D>().velocity = facing * FROSTBALL_SPEED + new Vector2(0, 5);
-            a.GetComponent<Arrow>().owner = gameObject.tag;
+            a.GetComponent<frostBall>().owner = gameObject.tag;
             GetComponentInChildren<Animator>().SetTrigger("Attack");
         }
 
-        if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
-        {
-            facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
-        }
+        //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
+        //{
+        //    facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
+        //}
 
         Vector2 vel = GetComponent<Rigidbody2D>().velocity;
 
-        if (canMove)
-        {
-            float ha = Input.GetAxisRaw("Horizontal") * moveSpeed;
-
-            if (Input.GetButtonDown("A") && jumped > 0)
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(ha, jumpSpeed);
-                jumped--;
-            }
-            else
-            {
-                GetComponent<Rigidbody2D>().velocity = new Vector2(ha, vel.y);
-            }
-            animator.SetFloat("Speed", Mathf.Abs(ha));
-        }
+       
     }
 
     void OnCollisionEnter2D(Collision2D hit)
