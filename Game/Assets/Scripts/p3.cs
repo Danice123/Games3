@@ -9,6 +9,7 @@ public class p3 : MonoBehaviour
     public float jumpSpeed = 1.0f;
     public int respawnTimer = 60;
     public GameObject frostBall;
+    public GameObject fireBall;
     public bool canMove = true;
     const float FROSTBALL_SPEED = 15.0f;
     public Vector2 facing = new Vector2(1, 0);
