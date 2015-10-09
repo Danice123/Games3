@@ -90,6 +90,15 @@ public class Player : MonoBehaviour {
 	void OnCollisionEnter2D (Collision2D hit) {
 		if (hit.gameObject.tag == "Ground") {
 			jumped = jumpTimes;
+		} else if (hit.gameObject.tag == "Exp") {
+			exp += 10;
+			if (exp >= 100) {
+				level++;
+				abilityPoints++;
+			}
+			DestroyObject(hit.gameObject);
+		} else {
+			Physics2D.IgnoreCollision(hit.collider, GetComponent<Collider2D>());
 		}
 	}
 }
