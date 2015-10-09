@@ -43,13 +43,10 @@ public class Ranger : MonoBehaviour {
 				Vector2 vel = facing * arrowSpeed + new Vector2 (0, 5);
 				Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
 				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-				if (Network.isClient || Network.isServer)
-					view.RPC("shootArrow", RPCMode.All, pos, q, new Vector3(vel.x, vel.y, 0));
-				else {
-					GameObject a = (GameObject)Instantiate (arrow, pos, q);
-					a.GetComponent<Rigidbody2D> ().velocity = vel;
-					a.GetComponent<Arrow> ().owner = gameObject.tag;
-				}
+				GameObject a = (GameObject)Instantiate (arrow, pos, q);
+				a.GetComponent<Rigidbody2D> ().velocity = vel;
+				a.GetComponent<Arrow> ().owner = gameObject.tag;
+				view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
 			}
@@ -66,7 +63,7 @@ public class Ranger : MonoBehaviour {
 				ticksHeld++;
 			
 				if (Input.GetButtonUp (playerNumber + "Ability2") || ticksHeld > maxTicksHeld) {
-					GameObject a = (GameObject)Instantiate (largeArrow, GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.identity, 0);
+					GameObject a = (GameObject)Instantiate (largeArrow, GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.identity);
 					a.GetComponent<Rigidbody2D> ().velocity = facing * largeArrowSpeed;
 					a.GetComponent<Arrow> ().owner = gameObject.tag;
 					ticksHeld = -1;
@@ -80,7 +77,7 @@ public class Ranger : MonoBehaviour {
 
 	[RPC]
 	void shootArrow (Vector3 position, Quaternion angle, Vector3 velocity) {
-		GameObject a = (GameObject)Network.Instantiate (arrow, position, angle, 0);
+		GameObject a = (GameObject)Instantiate (arrow, position, angle);
 		a.GetComponent<Rigidbody2D> ().velocity = velocity;
 		a.GetComponent<Arrow> ().owner = gameObject.tag;
 	}
