@@ -48,7 +48,7 @@ GameObject:
   - 61: {fileID: 6176302}
   - 212: {fileID: 21284144}
   m_Layer: 0
-  m_Name: ErekiBall2
+  m_Name: frostBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

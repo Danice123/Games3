@@ -48,41 +48,43 @@ public class Player : MonoBehaviour {
 			gameObject.SetActive(false);
 		}
 
-		if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
-			facing = new Vector2(Input.GetAxisRaw("Horizontal" + playerNumber), -Input.GetAxisRaw("Vertical" + playerNumber)).normalized;
-		}
-
-		Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
-
-		if (canMove || levelupMode) {
-			float ha = Input.GetAxisRaw ("Horizontal" + playerNumber) * moveSpeed;
-
-			if (Input.GetButtonDown ("Jump" + playerNumber) && jumped > 0) {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
-				jumped--;
-			} else {
-				GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+		if (GetComponent<NetworkView> ().isMine) {
+			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
+				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
 			}
-			animator.SetFloat("Speed", Mathf.Abs(ha));
-		}
-		if (!levelupMode && abilityPoints > 0 && Input.GetButtonDown ("LevelUp" + playerNumber)) {
-			levelupMode = true;
-		}
-		if (levelupMode) {
-			if (Input.GetButtonDown (playerNumber + "Ability1")) {
-				ability1Level++;
-				abilityPoints--;
-				levelupMode = false;
+
+			Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
+
+			if (canMove || levelupMode) {
+				float ha = Input.GetAxisRaw ("Horizontal" + playerNumber) * moveSpeed;
+
+				if (Input.GetButtonDown ("Jump" + playerNumber) && jumped > 0) {
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, jumpSpeed);
+					jumped--;
+				} else {
+					GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
+				}
+				animator.SetFloat ("Speed", Mathf.Abs (ha));
 			}
-			if (Input.GetButtonDown (playerNumber + "Ability2")) {
-				ability2Level++;
-				abilityPoints--;
-				levelupMode = false;
+			if (!levelupMode && abilityPoints > 0 && Input.GetButtonDown ("LevelUp" + playerNumber)) {
+				levelupMode = true;
 			}
-			if (Input.GetButtonDown (playerNumber + "Ability3")) {
-				ability3Level++;
-				abilityPoints--;
-				levelupMode = false;
+			if (levelupMode) {
+				if (Input.GetButtonDown (playerNumber + "Ability1")) {
+					ability1Level++;
+					abilityPoints--;
+					levelupMode = false;
+				}
+				if (Input.GetButtonDown (playerNumber + "Ability2")) {
+					ability2Level++;
+					abilityPoints--;
+					levelupMode = false;
+				}
+				if (Input.GetButtonDown (playerNumber + "Ability3")) {
+					ability3Level++;
+					abilityPoints--;
+					levelupMode = false;
+				}
 			}
 		}
 	}

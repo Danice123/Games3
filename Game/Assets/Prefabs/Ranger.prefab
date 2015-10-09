@@ -121,6 +121,7 @@ GameObject:
   - 114: {fileID: 11464228}
   - 114: {fileID: 11495910}
   - 108: {fileID: 10816474}
+  - 148: {fileID: 14848050}
   m_Layer: 0
   m_Name: Ranger
   m_TagString: Left
@@ -984,6 +985,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -.0934681892, y: .0218799263, z: .0241682678}
     m_Extent: {x: .623893738, y: .206772625, z: .370224893}
   m_DirtyAABB: 0
+--- !u!148 &14848050
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 121062}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 419200}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1014,6 +1027,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: abilityPoints
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StateSynchronization
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
