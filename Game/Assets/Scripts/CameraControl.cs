@@ -14,6 +14,8 @@ public class CameraControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if (tracking == null)
+			return;
 		Vector3 pos = GetComponent<Transform> ().position;
 		if (trackTwo) {
 			Vector3 t1p = tracking.GetComponent<Transform> ().position;

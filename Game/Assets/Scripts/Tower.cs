@@ -45,4 +45,9 @@ public class Tower : MonoBehaviour {
 			Debug.Log("removed " + collider.gameObject.name);
 		}
 	}
+
+	[RPC]
+	void networkSetTag(string tag) {
+		this.tag = tag;
+	}
 }
