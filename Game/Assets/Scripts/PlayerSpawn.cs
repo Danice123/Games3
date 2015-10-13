@@ -8,7 +8,7 @@ public class PlayerSpawn : MonoBehaviour {
     public GameObject mage;
 
     //set to two for mike's debugging
-	public static int playerType = -1;
+	public static int playerType = 2;
 
 	// Use this for initialization
 	void Start () {

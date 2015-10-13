@@ -48,7 +48,7 @@ public class Player : MonoBehaviour {
 			gameObject.SetActive(false);
 		}
 
-		if (GetComponent<NetworkView> ().isMine) {
+		//if (GetComponent<NetworkView> ().isMine) {
 			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
 				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
 			}
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour {
 					levelupMode = false;
 				}
 			}
-		}
+		//}
 	}
 
 	void OnCollisionEnter2D (Collision2D hit) {

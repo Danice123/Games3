@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class fireBall : MonoBehaviour {
+public class fireball : MonoBehaviour {
 
-    public int damage = 10;
-    public int ticksAlive = 30;
-    public int rotateSpeed = 0;
+    public int damage = 30;
+    public int ticksAlive = 50;
+    public int rotateSpeed = 100;
     public string owner;
     // Use this for initialization
     void Start() {
@@ -19,16 +19,12 @@ public class fireBall : MonoBehaviour {
         ticksAlive--;
 
         Vector2 dir = GetComponent<Rigidbody2D>().velocity;
-        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        var q = Quaternion.AngleAxis(angle, Vector3.forward);
+       
       
     }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        
-
-
         if (collider.CompareTag("Ground") || collider.CompareTag("shield"))
         {
             DestroyObject(gameObject);
