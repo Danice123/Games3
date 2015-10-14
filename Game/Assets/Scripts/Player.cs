@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public int respawnTimer = 60;
 
 	public bool canMove = true;
-
+    public float triangleCooldownTimer, triangleCooldown;
 	public Vector2 facing = new Vector2(1, 0);
 	public int jumped = 0;
 
@@ -24,12 +24,18 @@ public class Player : MonoBehaviour {
 	bool levelupMode = false;
 
 	private Animator animator;
-
+    
 	// Use this for initialization
 	void Start () {
 		animator = GetComponentInChildren<Animator> ();
 	}
 	
+    public void setcooldown(int cd)
+    {
+        triangleCooldown = cd;
+        triangleCooldownTimer = cd;
+    }
+    
 	// Update is called once per frame
 	void Update () {
 		if (facing.x > 0) {

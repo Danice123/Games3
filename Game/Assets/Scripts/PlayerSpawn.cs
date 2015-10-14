@@ -25,6 +25,7 @@ public class PlayerSpawn : MonoBehaviour {
         }
         g.tag = "Left";
 		GameObject.Find ("Camera").GetComponent<CameraControl>().tracking = g;
+        GameObject.Find("Canvas").GetComponentInChildren<cooldownView>().player = g;
 		GameObject.Find ("Boss").GetComponent<Boss> ().target = g;
 	}
 }

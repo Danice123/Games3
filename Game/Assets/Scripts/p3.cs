@@ -15,13 +15,14 @@ public class p3 : MonoBehaviour
     const float FIREBALL_SPEED = 20.0f;
     public Vector2 facing = new Vector2(1, 0);
     public int jumped = 0;
-    public int cooldown = 0;
     private Player player;
 
     // Use this for initialization
     void Start()
     {
         player = GetComponent<Player>();
+        player.triangleCooldown = 240;
+        
     }
 
     // Update is called once per frame
@@ -58,32 +59,33 @@ public class p3 : MonoBehaviour
             a.GetComponent<frostBall>().owner = gameObject.tag;
             GetComponentInChildren<Animator>().SetTrigger("Attack");
         }
-        if (Input.GetButtonDown(playerNumber + "Ability2") && cooldown == 0)
+        if (Input.GetButtonDown(playerNumber + "Ability2") && player.triangleCooldownTimer == 0)
         {
 
             float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            GameObject a = (GameObject)Instantiate(fireBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
-            a.GetComponent<Rigidbody2D>().velocity = facing * FIREBALL_SPEED;
-            a.GetComponent<fireball>().owner = gameObject.tag;
+            for (int b = 0; b< 4; b++)
+            {
+                GameObject a = (GameObject)Instantiate(fireBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
+                a.GetComponent<Rigidbody2D>().velocity = facing * FIREBALL_SPEED;
+                a.GetComponent<fireball>().owner = gameObject.tag;
+            }
+
             GetComponentInChildren<Animator>().SetTrigger("Attack");
-            cooldown = 240;
+            player.triangleCooldownTimer = 240;
         }
         else
         {
-            cooldown--;
-            if(cooldown < 0)
+            player.triangleCooldownTimer--;
+            if(player.triangleCooldownTimer < 0)
             {
-                cooldown = 0;
+                player.triangleCooldownTimer = 0;
             }
         }
         //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         //{
         //    facing = new Vector2(Input.GetAxisRaw("Horizontal"), -Input.GetAxisRaw("Vertical")).normalized;
         //}
-
         Vector2 vel = GetComponent<Rigidbody2D>().velocity;
-
-       
     }
 
     void OnCollisionEnter2D(Collision2D hit)
