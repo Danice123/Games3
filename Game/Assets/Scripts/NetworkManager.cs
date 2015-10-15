@@ -9,7 +9,7 @@ public class NetworkManager : MonoBehaviour
 	private bool hostDataFound = false;
 	private HostData[] hostData;
 	public GameObject player1;
-	public GameObject player2;
+    public GameObject player2;
 	public GameObject tower;
 	public GameObject camera;
 	GUIStyle customButtonStyle;
@@ -59,7 +59,10 @@ public class NetworkManager : MonoBehaviour
 			foo = (GameObject) Network.Instantiate(player2, new Vector3(5, 5, 0), Quaternion.identity, 0);
 			camera.GetComponent<CameraControl>().tracking = foo;
 			foo.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Right");
-		}		
+            GameObject.Find("HUD1").GetComponent<cooldownView>().player = foo;
+            GameObject.Find("HUD1").GetComponent<cooldownView>().initPlayer();
+
+        }		
 		else {
 			//Player
 			foo = (GameObject) Network.Instantiate(player1, new Vector3(-5, 5, 0), Quaternion.identity, 0);
@@ -70,7 +73,10 @@ public class NetworkManager : MonoBehaviour
 			foo.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Left");
 			foo = (GameObject) Network.Instantiate(tower, new Vector3(20, 5.5f, 0), Quaternion.identity, 0);
 			foo.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Right");
-		}
+            GameObject.Find("HUD2").GetComponent<cooldownView>().player = foo;
+            GameObject.Find("HUD2").GetComponent<cooldownView>().initPlayer();
+        }
+
 	}
 
 	//Messages

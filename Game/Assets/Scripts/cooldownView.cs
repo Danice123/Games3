@@ -8,11 +8,19 @@ public class cooldownView : MonoBehaviour {
     public GameObject HUD;
     public GameObject healthBar;
     public GameObject expBar;
+    public GameObject circleOutline, squareOutline, triangleOutline, xOutline;
     // Use this for initialization
     private float healthBarOriginalPos, expBarOriginalPos;
     private int previousHealth, previousExp;
     public float startingHealthPos;
     void Start () {
+        healthBarOriginalPos = healthBar.transform.position.x;
+        expBarOriginalPos = expBar.transform.position.x;
+        previousHealth = player.GetComponent<Health>().health;
+        startingHealthPos = healthBar.transform.position.x;
+    }
+    public void initPlayer()
+    {
         healthBarOriginalPos = healthBar.transform.position.x;
         expBarOriginalPos = expBar.transform.position.x;
         previousHealth = player.GetComponent<Health>().health;
@@ -56,7 +64,10 @@ public class cooldownView : MonoBehaviour {
         }
         previousExp = player.GetComponent<Player>().exp;
         previousHealth = player.GetComponent<Health>().health;
-
+        squareOutline.GetComponent<Image>().fillAmount = (float)player.GetComponent<Player>().ability1Level / 4.0f;
+        triangleOutline.GetComponent<Image>().fillAmount = (float)player.GetComponent<Player>().ability2Level / 4.0f;
+        circleOutline.GetComponent<Image>().fillAmount = (float)player.GetComponent<Player>().ability3Level / 4.0f;
+        //circleOutline.GetComponent<Image>().fillAmount = (float)player.GetComponent<Player>().ability1Level / 4.0f;
     }
 
 }
