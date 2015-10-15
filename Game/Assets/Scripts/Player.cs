@@ -21,6 +21,7 @@ public class Player : MonoBehaviour {
 	public int ability3Level = 0;
 	public int exp = 0;
 	public int abilityPoints = 1;
+    public int max_exp = 100;
 	bool levelupMode = false;
 
 	private Animator animator;
@@ -100,7 +101,7 @@ public class Player : MonoBehaviour {
 			jumped = jumpTimes;
 		} else if (hit.gameObject.tag == "Exp") {
 			exp += 10;
-			if (exp >= 100) {
+			if (exp >= max_exp) {
 				level++;
 				abilityPoints++;
 			}

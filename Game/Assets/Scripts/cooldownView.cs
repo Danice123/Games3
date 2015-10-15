@@ -7,23 +7,14 @@ public class cooldownView : MonoBehaviour {
     public GameObject player;
     public GameObject HUD;
     public GameObject healthBar;
+    public GameObject expBar;
     // Use this for initialization
-
-    private Texture2D healthFront;
-    private Texture2D healthBack;
-    private GUIStyle RectStyle;
-    private float healthBarOriginalPos;
-    private int previousHealth;
+    private float healthBarOriginalPos, expBarOriginalPos;
+    private int previousHealth, previousExp;
     public float startingHealthPos;
     void Start () {
-        healthFront = new Texture2D(1, 1);
-        healthBack = new Texture2D(1, 1);
-        RectStyle = new GUIStyle();
-        healthFront.SetPixel(0, 0, Color.green);
-        healthFront.Apply();
-        healthBack.SetPixel(0, 0, Color.red);
-        healthBack.Apply();
         healthBarOriginalPos = healthBar.transform.position.x;
+        expBarOriginalPos = expBar.transform.position.x;
         previousHealth = player.GetComponent<Health>().health;
         startingHealthPos = healthBar.transform.position.x;
     }
@@ -45,7 +36,7 @@ public class cooldownView : MonoBehaviour {
         //(RectTransform)healthBar.transform).GetComponent<RectTransform>().rect.width *
 
         if (previousHealth != player.GetComponent<Health>().health && previousHealth != 0)
-            {
+        {
                 //healthBar.transform.Translate(new Vector3(healthBarOriginalPos - healthBar.transform.position.x, 0, 0));
                 healthBar.transform.Translate(new Vector3(((float)player.GetComponent<Health>().health - previousHealth) * ((RectTransform)healthBar.transform).GetComponent<RectTransform>().rect.width 
                     / (float)player.GetComponent<Health>().maxHealth, 0, 0));
@@ -53,8 +44,17 @@ public class cooldownView : MonoBehaviour {
                 {
                     healthBar.transform.Translate(new Vector3(healthBarOriginalPos - healthBar.transform.position.x, 0, 0));
                 }
+        }
+        if (previousExp != player.GetComponent<Player>().exp)
+        {
+            expBar.transform.Translate(new Vector3(((float)player.GetComponent<Player>().exp - previousExp) * ((RectTransform)expBar.transform).GetComponent<RectTransform>().rect.width
+                    / (float)player.GetComponent<Player>().max_exp, 0, 0));
+            if (player.GetComponent<Player>().exp >= player.GetComponent<Player>().max_exp)
+            {
+                expBar.transform.Translate(new Vector3(-((RectTransform)expBar.transform).GetComponent<RectTransform>().rect.width, 0, 0));
             }
-
+        }
+        previousExp = player.GetComponent<Player>().exp;
         previousHealth = player.GetComponent<Health>().health;
 
     }
