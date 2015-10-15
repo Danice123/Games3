@@ -87,7 +87,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isLeftMinion: 1
-  moveSpeed: 1
+  moveSpeed: 2.5
+  jumpSpeed: 15
   attackCooldown: 10
   exp: {fileID: 119986, guid: 1fcfa30d326d949449fd562fca3da5ca, type: 2}
   expSpeed: 1
@@ -103,6 +104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+  max_health: 100
   maxHealth: 100
   xOffset: 40
   yOffset: 50
@@ -167,6 +169,14 @@ Prefab:
       propertyPath: exp
       value: 
       objectReference: {fileID: 119986, guid: 1fcfa30d326d949449fd562fca3da5ca, type: 2}
+    - target: {fileID: 0}
+      propertyPath: jumpSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: moveSpeed
+      value: 2.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 102784}

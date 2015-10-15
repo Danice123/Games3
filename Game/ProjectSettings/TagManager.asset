@@ -13,6 +13,8 @@ TagManager:
   - shield
   - frostBall
   - fireball
+  - Jump
+  - fireBall
   layers:
   - Default
   - TransparentFX

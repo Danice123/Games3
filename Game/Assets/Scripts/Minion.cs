@@ -5,6 +5,7 @@ public class Minion : MonoBehaviour {
 
 	public bool isLeftMinion = true;
 	public float moveSpeed = 1.0f;
+	public float jumpSpeed = 1.0f;
 
 	private bool attackMode = false;
 	public int attackCooldown = 20;
@@ -61,6 +62,9 @@ public class Minion : MonoBehaviour {
 				if (Vector2.Distance(collider.gameObject.GetComponent<Transform>().position, gameObject.GetComponent<Transform>().position) > 10) return;
 				attackMode = true;
 				target = collider.gameObject;
+			}
+			if (collider.CompareTag("Jump")) {
+				GetComponent<Rigidbody2D> ().velocity = new Vector2 (GetComponent<Rigidbody2D> ().velocity.x, jumpSpeed);
 			}
 		}
 	}
