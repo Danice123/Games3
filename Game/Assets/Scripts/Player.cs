@@ -11,7 +11,7 @@ public class Player : MonoBehaviour {
 	public int respawnTimer = 60;
 
 	public bool canMove = true;
-
+    public float triangleCooldownTimer, triangleCooldown;
 	public Vector2 facing = new Vector2(1, 0);
 	public int jumped = 0;
 
@@ -21,15 +21,22 @@ public class Player : MonoBehaviour {
 	public int ability3Level = 0;
 	public int exp = 0;
 	public int abilityPoints = 1;
+    public int max_exp = 100;
 	bool levelupMode = false;
 
 	private Animator animator;
-
+    
 	// Use this for initialization
 	void Start () {
 		animator = GetComponentInChildren<Animator> ();
 	}
 	
+    public void setcooldown(int cd)
+    {
+        triangleCooldown = cd;
+        triangleCooldownTimer = cd;
+    }
+    
 	// Update is called once per frame
 	void Update () {
 		if (facing.x > 0) {
@@ -48,7 +55,7 @@ public class Player : MonoBehaviour {
 			gameObject.SetActive(false);
 		}
 
-		if (GetComponent<NetworkView> ().isMine) {
+		//if (GetComponent<NetworkView> ().isMine) {
 			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
 				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
 			}
@@ -86,7 +93,7 @@ public class Player : MonoBehaviour {
 					levelupMode = false;
 				}
 			}
-		}
+		//}
 	}
 
 	void OnCollisionEnter2D (Collision2D hit) {
@@ -94,7 +101,7 @@ public class Player : MonoBehaviour {
 			jumped = jumpTimes;
 		} else if (hit.gameObject.tag == "Exp") {
 			exp += 10;
-			if (exp >= 100) {
+			if (exp >= max_exp) {
 				level++;
 				abilityPoints++;
 			}

@@ -4,6 +4,7 @@ using System.Collections;
 public class Health : MonoBehaviour {
 
 	public int health = 100;
+    public int max_health = 100;
 	public int maxHealth = 100;
 	public int xOffset = 40;
 	public int yOffset = 50;
