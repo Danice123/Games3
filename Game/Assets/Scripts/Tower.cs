@@ -47,7 +47,8 @@ public class Tower : MonoBehaviour {
 	}
 
 	[RPC]
-	void networkSetTag(string tag) {
+	public void networkSetTag(string tag) {
 		this.tag = tag;
+		transform.Find ("turretbase").tag = tag;
 	}
 }
