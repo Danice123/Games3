@@ -15,20 +15,27 @@ public class Tower : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		Rdelay--;
-		if (attackList.Count > 0 && attackList [0].gameObject == null) {
-			attackList.RemoveAt(0);
-			Debug.Log("removed " + GetComponent<Collider>().gameObject.name);
-		}
-		if (attackList.Count > 0 && attackList [0].GetComponent<Health> () != null && attackList [0].GetComponent<Health> ().health <= 0) {
-			attackList.RemoveAt(0);
-			Debug.Log("removed " + GetComponent<Collider>().gameObject.name);
-		}
-		if (attackList.Count > 0 && Rdelay <= 0 && attackList [0] != null) {
-			GameObject shot = (GameObject) Instantiate (TowerShot, GetComponent<Transform>().position, Quaternion.identity);
-			shot.GetComponent<TowerShot>().target = attackList[0];
-			shot.tag = tag;
-			Rdelay = delay;
+		if (!Network.isClient) {
+			Rdelay--;
+			if (attackList.Count > 0 && attackList [0].gameObject == null) {
+				attackList.RemoveAt (0);
+				Debug.Log ("removed " + GetComponent<Collider> ().gameObject.name);
+			}
+			if (attackList.Count > 0 && attackList [0].GetComponent<Health> () != null && attackList [0].GetComponent<Health> ().health <= 0) {
+				attackList.RemoveAt (0);
+				Debug.Log ("removed " + GetComponent<Collider> ().gameObject.name);
+			}
+			if (attackList.Count > 0 && Rdelay <= 0 && attackList [0] != null) {
+				GameObject shot;
+				if (Network.isServer) {
+					shot = (GameObject)Network.Instantiate (TowerShot, GetComponent<Transform> ().position, Quaternion.identity, 0);
+				} else {
+					shot = (GameObject)Instantiate (TowerShot, GetComponent<Transform> ().position, Quaternion.identity);
+				}
+				shot.GetComponent<TowerShot> ().target = attackList [0];
+				shot.tag = tag;
+				Rdelay = delay;
+			}
 		}
 	}
 
@@ -49,6 +56,6 @@ public class Tower : MonoBehaviour {
 	[RPC]
 	public void networkSetTag(string tag) {
 		this.tag = tag;
-		transform.Find ("turretbase").tag = tag;
+		transform.FindChild ("turretbase").tag = tag;
 	}
 }

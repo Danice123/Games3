@@ -89,14 +89,14 @@ public class Ranger : MonoBehaviour {
 
 	[RPC]
 	void shootArrow(Vector3 position, Quaternion angle, Vector3 velocity) {
-		GameObject a = (GameObject)Network.Instantiate (arrow, position, angle, 0);
+		GameObject a = (GameObject)Instantiate (arrow, position, angle);
 		a.GetComponent<Rigidbody2D> ().velocity = velocity;
 		a.GetComponent<Arrow> ().owner = gameObject.tag;
 	}
 
 	[RPC]
 	void shootLargeArrow(Vector3 position, Quaternion angle, Vector3 velocity) {
-		GameObject a = (GameObject)Network.Instantiate (largeArrow, position, angle, 0);
+		GameObject a = (GameObject)Instantiate (largeArrow, position, angle);
 		a.GetComponent<Rigidbody2D> ().velocity = velocity;
 		a.GetComponent<Arrow> ().owner = gameObject.tag;
 	}
