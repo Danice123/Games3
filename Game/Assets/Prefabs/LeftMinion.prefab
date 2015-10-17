@@ -14,6 +14,7 @@ GameObject:
   - 114: {fileID: 11437998}
   - 61: {fileID: 6188122}
   - 114: {fileID: 11492432}
+  - 148: {fileID: 14827444}
   m_Layer: 0
   m_Name: LeftMinion
   m_TagString: Left
@@ -104,10 +105,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
-  max_health: 100
   maxHealth: 100
   xOffset: 40
   yOffset: 50
+--- !u!148 &14827444
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 102784}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 409862}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!212 &21290856
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -176,6 +188,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: moveSpeed
       value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Observed
+      value: 
+      objectReference: {fileID: 11492432}
+    - target: {fileID: 0}
+      propertyPath: m_StateSynchronization
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

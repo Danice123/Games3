@@ -907,6 +907,8 @@ MonoBehaviour:
   jumpSpeed: 12
   respawnTimer: 60
   canMove: 1
+  triangleCooldownTimer: 0
+  triangleCooldown: 0
   facing: {x: 1, y: 0}
   jumped: 0
   level: 1
@@ -915,6 +917,7 @@ MonoBehaviour:
   ability3Level: 0
   exp: 0
   abilityPoints: 1
+  max_exp: 100
 --- !u!114 &11495910
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -10,4 +10,9 @@ public class Experiance : MonoBehaviour {
 			Physics2D.IgnoreCollision(hit.collider, GetComponent<Collider2D>());
 		}
 	}
+
+	[RPC]
+	public void kill() {
+		DestroyObject (gameObject);
+	}
 }

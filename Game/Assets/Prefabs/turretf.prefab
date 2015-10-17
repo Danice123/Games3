@@ -12,6 +12,7 @@ GameObject:
   - 58: {fileID: 5813984}
   - 114: {fileID: 11487974}
   - 148: {fileID: 14830066}
+  - 50: {fileID: 5026694}
   m_Layer: 0
   m_Name: turretf
   m_TagString: Left
@@ -31,6 +32,7 @@ GameObject:
   - 61: {fileID: 6120882}
   - 114: {fileID: 11423294}
   - 114: {fileID: 11496896}
+  - 148: {fileID: 14896022}
   m_Layer: 0
   m_Name: turretbase
   m_TagString: Left
@@ -63,6 +65,22 @@ Transform:
   - {fileID: 425608}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!50 &5026694
+Rigidbody2D:
+  serializedVersion: 2
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 148836}
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: .0500000007
+  m_GravityScale: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 7
 --- !u!58 &5813984
 CircleCollider2D:
   m_ObjectHideFlags: 1
@@ -129,7 +147,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turret: {fileID: 148836}
-  text: {fileID: 0}
 --- !u!148 &14830066
 NetworkView:
   m_ObjectHideFlags: 1
@@ -139,6 +156,18 @@ NetworkView:
   m_Enabled: 1
   m_StateSynchronization: 1
   m_Observed: {fileID: 11487974}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
+--- !u!148 &14896022
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 194532}
+  m_Enabled: 1
+  m_StateSynchronization: 0
+  m_Observed: {fileID: 11496896}
   m_ViewID:
     m_ID: 0
     m_Type: 0
@@ -208,7 +237,15 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Observed
       value: 
-      objectReference: {fileID: 11487974}
+      objectReference: {fileID: 11496896}
+    - target: {fileID: 0}
+      propertyPath: m_Constraints
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StateSynchronization
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148836}

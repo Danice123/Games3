@@ -16,8 +16,10 @@ public class LocalStart : MonoBehaviour {
 			gm.player1 = ranger;
 			break;
 		case 1:
+			return;
 			break;
 		case 2:
+			return;
 			break;
 		}
 		canvas.GetComponent<EventSystem>().SetSelectedGameObject (p2Select);

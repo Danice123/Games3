@@ -8,7 +8,9 @@ public class Player : MonoBehaviour {
 	public int jumpTimes = 2;
 	public float moveSpeed = 1.0f;
 	public float jumpSpeed = 1.0f;
+	public bool isDead = false;
 	public int respawnTimer = 60;
+	public Transform respawnPosition;
 
 	public bool canMove = true;
     public float triangleCooldownTimer, triangleCooldown;
@@ -47,15 +49,15 @@ public class Player : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		if (GetComponent<Health> ().health <= 0) {
-			respawnTimer = 60 * 1;
-			GetComponent<Transform>().position = new Vector2(0, 2);
+		if ((!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) && GetComponent<Health> ().health <= 0) {
+			respawnTimer = 60 * level;
+			isDead = true;
+			GetComponent<Transform>().position = respawnPosition.position;
 			GetComponent<Health>().health = GetComponent<Health>().maxHealth;
-			GameObject.Find("Respawn").GetComponent<Respawn>().addSpawn(gameObject);
 			gameObject.SetActive(false);
 		}
 
-		//if (GetComponent<NetworkView> ().isMine) {
+		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
 			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
 				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
 			}
@@ -93,17 +95,19 @@ public class Player : MonoBehaviour {
 					levelupMode = false;
 				}
 			}
-		//}
+		}
 	}
 
 	void OnCollisionEnter2D (Collision2D hit) {
 		if (hit.gameObject.tag == "Ground") {
 			jumped = jumpTimes;
 		} else if (hit.gameObject.tag == "Exp") {
-			exp += 10;
-			if (exp >= max_exp) {
-				level++;
-				abilityPoints++;
+			if (!(Network.isServer && Network.isClient) || GetComponent<NetworkView> ().isMine) {
+				exp += 10;
+				if (exp >= max_exp) {
+					level++;
+					abilityPoints++;
+				}
 			}
 			DestroyObject(hit.gameObject);
 		} else {

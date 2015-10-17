@@ -55,8 +55,8 @@ public class NetworkGameManager : MonoBehaviour {
 			gotower.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Right");
 
 			//Setup Spawners
-			//LeftSpawner = (GameObject)Instantiate (LeftSpawner, player1Spawn.position, Quaternion.identity);
-			//RightSpawner = (GameObject)Instantiate (RightSpawner, player2Spawn.position, Quaternion.identity);
+			LeftSpawner = (GameObject)Instantiate (LeftSpawner, player1Spawn.position, Quaternion.identity);
+			RightSpawner = (GameObject)Instantiate (RightSpawner, player2Spawn.position, Quaternion.identity);
 		}
 	}
 

@@ -14,8 +14,10 @@ public class NetworkStart : MonoBehaviour {
 			gm.GetComponent<NetworkGameManager>().player = ranger;
 			break;
 		case 1:
+			return;
 			break;
 		case 2:
+			return;
 			break;
 		}
 		canvas.SetActive (false);

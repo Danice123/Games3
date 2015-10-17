@@ -4,7 +4,6 @@ using System.Collections;
 public class Health : MonoBehaviour {
 
 	public int health = 100;
-    public int max_health = 100;
 	public int maxHealth = 100;
 	public int xOffset = 40;
 	public int yOffset = 50;
@@ -38,5 +37,15 @@ public class Health : MonoBehaviour {
 		rect = new Rect(screenPosition.x - xOffset, screenPosition.y - yOffset, 80 * ((float) health / (float) maxHealth), 5);
 		RectStyle.normal.background = healthFront;
 		GUI.Box (rect, GUIContent.none, RectStyle);
+	}
+
+	[RPC]
+	public void changeHealth(int change) {
+		health += change;
+	}
+
+	[RPC]
+	public void changeMaxHealth(int change) {
+		maxHealth += change;
 	}
 }

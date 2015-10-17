@@ -14,8 +14,9 @@ public class Arrow : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (ticksAlive == 0)
+		if (ticksAlive == 0) {
 			DestroyObject (gameObject);
+		}
 		ticksAlive--;
 
 		Vector2 dir = GetComponent<Rigidbody2D> ().velocity;
@@ -30,8 +31,11 @@ public class Arrow : MonoBehaviour {
 		}
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			if (collider.GetComponent<Health>() == null) return;
-			collider.gameObject.GetComponent<Health>().health -= damage;
-			DestroyObject(gameObject);
+			if (!Network.isClient) {
+				collider.GetComponent<Health>().changeHealth(-damage);
+				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+			}
+			DestroyObject (gameObject);
 		}
 	}
 }

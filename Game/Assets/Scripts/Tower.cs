@@ -58,4 +58,9 @@ public class Tower : MonoBehaviour {
 		this.tag = tag;
 		transform.FindChild ("turretbase").tag = tag;
 	}
+
+	[RPC]
+	public void kill() {
+		DestroyObject (gameObject);
+	}
 }

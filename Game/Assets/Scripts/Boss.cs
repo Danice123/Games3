@@ -35,7 +35,7 @@ public class Boss : MonoBehaviour {
 		if (GetComponent<Health> ().health <= 0){
 			DestroyObject (gameObject);
 			text.SetActive(true);
-			GameObject.Find("Respawn").GetComponent<Respawn>().gameover = true;
+			//GameObject.Find("Respawn").GetComponent<Respawn>().gameover = true;
 		}
 	}
 }

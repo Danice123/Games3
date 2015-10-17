@@ -22,7 +22,11 @@ public class Spawn : MonoBehaviour {
 		}
 		if (timer == 0) {
 			Vector3 pos = GetComponent<Transform>().position;
-			Instantiate(spawn, new Vector3 (pos.x, pos.y, pos.z), Quaternion.identity);
+			if (Network.isServer) {
+				Network.Instantiate(spawn, new Vector3 (pos.x, pos.y, pos.z), Quaternion.identity, 0);
+			} else {
+				Instantiate(spawn, new Vector3 (pos.x, pos.y, pos.z), Quaternion.identity);
+			}
 		}
 		timer++;
 	}

@@ -7,15 +7,25 @@ public class TowerShot : MonoBehaviour {
 	public float speed = 2f;
 	
 	void FixedUpdate () {
-		if (!Network.isClient && target == null)
-			Destroy (gameObject);
-		transform.position = Vector2.MoveTowards(GetComponent<Transform>().position, target.GetComponent<Transform>().position, speed * Time.deltaTime);
+		if (!Network.isClient && target == null) {
+			GetComponent<NetworkView> ().RPC ("kill", RPCMode.OthersBuffered, null);
+			kill ();
+		}
+		if (!Network.isClient)
+			transform.position = Vector2.MoveTowards(GetComponent<Transform>().position, target.GetComponent<Transform>().position, speed * Time.deltaTime);
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {
 		if (!Network.isClient && (col.CompareTag ("Left") || col.CompareTag ("Right")) && !col.CompareTag(gameObject.tag)) {
-			col.gameObject.GetComponent<Health>().health -= 25;
-			Destroy(gameObject);
+			target.GetComponent<Health>().changeHealth(-10);
+			target.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+			GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
+			kill ();
 		}
+	}
+
+	[RPC]
+	void kill() {
+		DestroyObject (gameObject);
 	}
 }

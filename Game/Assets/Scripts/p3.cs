@@ -48,7 +48,6 @@ public class p3 : MonoBehaviour
             respawnTimer = 60 * 1;
             GetComponent<Transform>().position = new Vector2(0, 2);
             GetComponent<Health>().health = GetComponent<Health>().maxHealth;
-            GameObject.Find("Respawn").GetComponent<Respawn>().addSpawn(gameObject);
             gameObject.SetActive(false);
         }
         if (Input.GetButtonDown(playerNumber + "Ability1"))

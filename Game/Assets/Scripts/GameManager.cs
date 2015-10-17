@@ -31,16 +31,32 @@ public class GameManager : MonoBehaviour {
 			Application.LoadLevel(0);
 			Debug.Log("Game is Quit");
 		}
+		if (player1 != null && player1.GetComponent<Player> ().isDead) {
+			player1.GetComponent<Player>().respawnTimer--;
+			if (player1.GetComponent<Player>().respawnTimer <= 0) {
+				player1.SetActive(true);
+				player1.GetComponent<Player>().isDead = false;
+			}
+		}
+		if (player2 != null && player2.GetComponent<Player> ().isDead) {
+			player2.GetComponent<Player>().respawnTimer--;
+			if (player2.GetComponent<Player>().respawnTimer <= 0) {
+				player2.SetActive(true);
+				player2.GetComponent<Player>().isDead = false;
+			}
+		}
 	}
 
 	public void StartGame() {
 		//Create Players
 		player1 = (GameObject) Instantiate (player1, player1Spawn.position, Quaternion.identity);
 		player1.tag = "Left";
+		player1.GetComponent<Player> ().respawnPosition = player1Spawn;
 
 		player2 = (GameObject) Instantiate (player2, player2Spawn.position, Quaternion.identity);
 		player2.GetComponent<Player> ().playerNumber = "2";
 		player2.tag = "Right";
+		player2.GetComponent<Player> ().respawnPosition = player2Spawn;
 
 		//Setup Camera
 		camera.GetComponent<CameraControl> ().tracking = player1;

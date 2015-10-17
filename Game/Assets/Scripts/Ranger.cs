@@ -17,9 +17,8 @@ public class Ranger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Player> ();
-		if (!GetComponent<NetworkView> ().isMine) {
+		if ((Network.isServer || Network.isClient) && !GetComponent<NetworkView> ().isMine) {
 			Destroy (GetComponent<Rigidbody2D>());
-			Destroy (GetComponent<Player>());
 		}
 	}
 
@@ -38,7 +37,7 @@ public class Ranger : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (GetComponent<NetworkView> ().isMine) {
+		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
 			NetworkView view = GetComponent<NetworkView> ();
 			string playerNumber = player.playerNumber;
 			Vector2 facing = player.facing;
