@@ -13,8 +13,11 @@ public class Minion : MonoBehaviour {
 	public GameObject exp;
 	public float expSpeed = 1.0f;
 
+	private Animator animator;
+
 	// Use this for initialization
 	void Start () {
+		animator = GetComponentInChildren<Animator> ();
 		if (Network.isClient) {
 			Destroy (GetComponent<Rigidbody2D>());
 		}
@@ -22,7 +25,7 @@ public class Minion : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 
 	void FixedUpdate() {
@@ -49,11 +52,15 @@ public class Minion : MonoBehaviour {
 				}
 				if (attackCooldown > 0)
 					attackCooldown--;
+				animator.SetBool ("walking", false);
+				animator.SetBool ("attack", true);
 			} else {
 				if (isLeftMinion)
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, vel.y);
 				else
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-moveSpeed, vel.y);
+				animator.SetBool ("walking", true);
+				animator.SetBool ("attack", false);
 			}
 		}
 	}

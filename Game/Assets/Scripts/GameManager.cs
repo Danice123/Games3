@@ -64,9 +64,9 @@ public class GameManager : MonoBehaviour {
 
 		//Setup Towers
 		GameObject gotower;
-		gotower = (GameObject)Instantiate (tower, LeftTowerSpawn.position + new Vector3(0, 5, 0), Quaternion.identity);
+		gotower = (GameObject)Instantiate (tower, LeftTowerSpawn.position, Quaternion.identity);
 
-		gotower = (GameObject)Instantiate (tower, RightTowerSpawn.position + new Vector3(0, 5, 0), Quaternion.identity);
+		gotower = (GameObject)Instantiate (tower, RightTowerSpawn.position, Quaternion.identity);
 		gotower.GetComponent<Tower> ().networkSetTag ("Right");
 
 		//Setup Spawners

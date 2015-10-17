@@ -8,6 +8,10 @@ public class Tower : MonoBehaviour {
 	public GameObject TowerShot;
 	public int delay = 120;
 	int Rdelay;
+	public GameObject cannon;
+	public GameObject crystal;
+	public Transform cannon_point;
+	public Transform crystal_point;
 	
 	void Start () {
 		attackList = new List<GameObject> ();
@@ -15,6 +19,10 @@ public class Tower : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
+		if (tag == "Right") {
+			crystal.SetActive(true);
+			cannon.SetActive(false);
+		}
 		if (!Network.isClient) {
 			Rdelay--;
 			if (attackList.Count > 0 && attackList [0].gameObject == null) {
@@ -26,11 +34,17 @@ public class Tower : MonoBehaviour {
 				Debug.Log ("removed " + GetComponent<Collider> ().gameObject.name);
 			}
 			if (attackList.Count > 0 && Rdelay <= 0 && attackList [0] != null) {
+				//GetComponent<Animator>().SetBool("shoot", true);
 				GameObject shot;
+				Transform point;
+				if (tag == "Right")
+					point = crystal_point;
+				else
+					point = cannon_point;
 				if (Network.isServer) {
-					shot = (GameObject)Network.Instantiate (TowerShot, GetComponent<Transform> ().position, Quaternion.identity, 0);
+					shot = (GameObject)Network.Instantiate (TowerShot, point.position, Quaternion.identity, 0);
 				} else {
-					shot = (GameObject)Instantiate (TowerShot, GetComponent<Transform> ().position, Quaternion.identity);
+					shot = (GameObject)Instantiate (TowerShot, point.position, Quaternion.identity);
 				}
 				shot.GetComponent<TowerShot> ().target = attackList [0];
 				shot.tag = tag;

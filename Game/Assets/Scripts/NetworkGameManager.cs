@@ -48,10 +48,10 @@ public class NetworkGameManager : MonoBehaviour {
 		if (Network.isServer) {
 			//Setup Towers
 			GameObject gotower;
-			gotower = (GameObject)Network.Instantiate (tower, LeftTowerSpawn.position + new Vector3 (0, 5, 0), Quaternion.identity, 0);
+			gotower = (GameObject)Network.Instantiate (tower, LeftTowerSpawn.position, Quaternion.identity, 0);
 			gotower.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Left");
 
-			gotower = (GameObject)Network.Instantiate (tower, RightTowerSpawn.position + new Vector3 (0, 5, 0), Quaternion.identity, 0);
+			gotower = (GameObject)Network.Instantiate (tower, RightTowerSpawn.position, Quaternion.identity, 0);
 			gotower.GetComponent<NetworkView> ().RPC("networkSetTag", RPCMode.AllBuffered, "Right");
 
 			//Setup Spawners
