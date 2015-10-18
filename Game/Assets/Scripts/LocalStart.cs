@@ -8,6 +8,8 @@ public class LocalStart : MonoBehaviour {
 	public GameObject p2Select;
 
 	public GameObject ranger;
+	public GameObject warrior;
+	public GameObject mage;
 	public GameManager gm;
 
 	public void playerOneChooseCharacter(int character) {
@@ -16,10 +18,10 @@ public class LocalStart : MonoBehaviour {
 			gm.player1 = ranger;
 			break;
 		case 1:
-			return;
+			gm.player1 = warrior;
 			break;
 		case 2:
-			return;
+			gm.player1 = mage;
 			break;
 		}
 		canvas.GetComponent<EventSystem>().SetSelectedGameObject (p2Select);
@@ -31,8 +33,10 @@ public class LocalStart : MonoBehaviour {
 			gm.player2 = ranger;
 			break;
 		case 1:
+			gm.player2 = warrior;
 			break;
 		case 2:
+			gm.player2 = mage;
 			break;
 		}
 		canvas.SetActive (false);

@@ -974,6 +974,8 @@ MonoBehaviour:
   canvas: {fileID: 752689510}
   p2Select: {fileID: 533221415}
   ranger: {fileID: 121062, guid: 075253024deb62144a7552a12098a650, type: 2}
+  warrior: {fileID: 186934, guid: 1f51a265c97781e429415490c0dc38fd, type: 2}
+  mage: {fileID: 141716, guid: f210ee3b91e50a447a3b72937cd0b4d6, type: 2}
   gm: {fileID: 1835060744}
 --- !u!224 &752689512
 RectTransform:
