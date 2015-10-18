@@ -30,6 +30,13 @@ public class NetworkGameManager : MonoBehaviour {
 			Application.LoadLevel(0);
 			Debug.Log("Game is Quit");
 		}
+		if (player != null && player.GetComponent<Player> ().isDead) {
+			player.GetComponent<Player>().respawnTimer--;
+			if (player.GetComponent<Player>().respawnTimer <= 0) {
+				player.SetActive(true);
+				player.GetComponent<Player>().isDead = false;
+			}
+		}
 	}
 
 	public void StartGame() {

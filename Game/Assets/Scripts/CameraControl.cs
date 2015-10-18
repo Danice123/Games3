@@ -21,12 +21,19 @@ public class CameraControl : MonoBehaviour {
 			Vector3 t1p = tracking.GetComponent<Transform> ().position;
 			Vector3 t2p = tracking2.GetComponent<Transform> ().position;
 			float dif = Mathf.Abs(t1p.x - t2p.x);
-			if (dif > 10)
-				GetComponent<Camera>().orthographicSize = dif / 2.0f;
+			if (dif > 40)
+				GetComponent<Camera>().orthographicSize = dif / 4.0f;
+			float dif2 = Mathf.Abs(t1p.y - t2p.y);
 			if (t1p.x > t2p.x)
-				GetComponent<Transform> ().position = new Vector3 (t2p.x + dif / 2, t1p.y, pos.z);
+				if (t1p.y > t2p.y)
+					GetComponent<Transform> ().position = new Vector3 (t2p.x + dif / 2, t2p.y + dif2 / 2, pos.z);
+				else
+					GetComponent<Transform> ().position = new Vector3 (t2p.x + dif / 2, t1p.y + dif2 / 2, pos.z);
 			else
-				GetComponent<Transform> ().position = new Vector3 (t1p.x + dif / 2, t1p.y, pos.z);
+				if (t1p.y > t2p.y)
+					GetComponent<Transform> ().position = new Vector3 (t1p.x + dif / 2, t2p.y + dif2 / 2, pos.z);
+				else
+					GetComponent<Transform> ().position = new Vector3 (t1p.x + dif / 2, t1p.y + dif2 / 2, pos.z);
 			return;
 		}
 		Vector3 newPos = tracking.GetComponent<Transform> ().position;
