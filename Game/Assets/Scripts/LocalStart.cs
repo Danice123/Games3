@@ -8,6 +8,8 @@ public class LocalStart : MonoBehaviour {
 	public GameObject p2Select;
 
 	public GameObject ranger;
+    public GameObject warrior;
+    public GameObject mage;
 	public GameManager gm;
 
 	public void playerOneChooseCharacter(int character) {
@@ -16,6 +18,7 @@ public class LocalStart : MonoBehaviour {
 			gm.player1 = ranger;
 			break;
 		case 1:
+                
 			return;
 			break;
 		case 2:

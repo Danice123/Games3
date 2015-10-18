@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject camera;
 
+    //Use this to access all pertinent info from the menus
+    public GameObject persistObject;
+
 	public Transform LeftTowerSpawn;
 	public Transform RightTowerSpawn;
 	public GameObject tower;
@@ -22,8 +25,8 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        persistObject = GameObject.Find("persistObject");
+    }
 	
 	// Update is called once per frame
 	void Update () {
