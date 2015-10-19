@@ -905,7 +905,9 @@ MonoBehaviour:
   jumpTimes: 2
   moveSpeed: 5
   jumpSpeed: 12
+  isDead: 0
   respawnTimer: 60
+  respawnPosition: {fileID: 0}
   canMove: 1
   triangleCooldownTimer: 0
   triangleCooldown: 0
@@ -1043,6 +1045,10 @@ Prefab:
       propertyPath: m_Observed
       value: 
       objectReference: {fileID: 11464228}
+    - target: {fileID: 0}
+      propertyPath: triangleCooldownTimer
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 121062}
