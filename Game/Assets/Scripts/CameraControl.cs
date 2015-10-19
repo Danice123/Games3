@@ -22,7 +22,7 @@ public class CameraControl : MonoBehaviour {
 			Vector3 t2p = tracking2.GetComponent<Transform> ().position;
 			float dif = Mathf.Abs(t1p.x - t2p.x);
 			if (dif > 40)
-				GetComponent<Camera>().orthographicSize = dif / 4.0f;
+				GetComponent<Camera>().orthographicSize = dif / 4.0f + 5;
 			float dif2 = Mathf.Abs(t1p.y - t2p.y);
 			if (t1p.x > t2p.x)
 				if (t1p.y > t2p.y)
