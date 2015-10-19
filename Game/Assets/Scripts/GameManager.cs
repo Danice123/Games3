@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour {
 	public GameObject RightSpawner;
     public GameObject HUD1, HUD2;
 
+
 	public GameObject GameOverCanvas;
 	bool gameOver = false;
 

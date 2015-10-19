@@ -886,8 +886,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a948dada9daa444580ec5973371381a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  maxHealth: 100
+  health: 400
+  maxHealth: 400
   xOffset: 40
   yOffset: 50
 --- !u!114 &11479062
@@ -920,6 +920,8 @@ MonoBehaviour:
   exp: 0
   abilityPoints: 1
   max_exp: 100
+  squareCooldown: 0
+  squareCooldownTimer: 0
 --- !u!114 &11495910
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -932,7 +934,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   arrow: {fileID: 163518, guid: 7a3a21b77c8d5f44bb577476a7dfe496, type: 2}
-  arrowSpeed: 10
+  arrowSpeed: 13
   largeArrow: {fileID: 127852, guid: 910c96d4f3a54cc44ab6a12f54cd003a, type: 2}
   largeArrowSpeed: 20
   maxTicksHeld: 60
@@ -1039,7 +1041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 100
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Observed
@@ -1048,6 +1050,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: triangleCooldownTimer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: arrowSpeed
+      value: 13
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -828,7 +828,9 @@ MonoBehaviour:
   jumpTimes: 2
   moveSpeed: 10
   jumpSpeed: 10
+  isDead: 0
   respawnTimer: 60
+  respawnPosition: {fileID: 0}
   canMove: 1
   triangleCooldownTimer: 0
   triangleCooldown: 0
@@ -840,6 +842,7 @@ MonoBehaviour:
   ability3Level: 0
   exp: 0
   abilityPoints: 0
+  max_exp: 100
 --- !u!114 &11494672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -871,9 +874,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a948dada9daa444580ec5973371381a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
-  max_health: 100
-  maxHealth: 100
+  health: 300
+  maxHealth: 300
   xOffset: 40
   yOffset: 50
 --- !u!137 &13752204
@@ -965,6 +967,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: health
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: maxHealth
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

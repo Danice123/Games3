@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 30
-  ticksAlive: 50
+  ticksAlive: 70
   rotateSpeed: 0
   owner: 
 --- !u!198 &19800000
@@ -3389,6 +3389,14 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_TagString
       value: fireBall
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: damage
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: ticksAlive
+      value: 70
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

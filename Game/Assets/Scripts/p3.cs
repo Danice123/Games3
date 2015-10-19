@@ -22,7 +22,7 @@ public class p3 : MonoBehaviour
     {
         player = GetComponent<Player>();
         player.triangleCooldown = 240;
-        
+		player.squareCooldown = 15;
     }
 
     // Update is called once per frame
@@ -50,19 +50,23 @@ public class p3 : MonoBehaviour
             GetComponent<Health>().health = GetComponent<Health>().maxHealth;
             gameObject.SetActive(false);
         }
-        if (Input.GetButtonDown(playerNumber + "Ability1"))
+        if (Input.GetButtonDown(playerNumber + "Ability1") && player.squareCooldownTimer == 0)
         {
-            float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            GameObject a = (GameObject)Instantiate(frostBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
-            a.GetComponent<Rigidbody2D>().velocity = facing * FROSTBALL_SPEED + new Vector2(0, 5);
-            a.GetComponent<frostBall>().owner = gameObject.tag;
-            GetComponentInChildren<Animator>().SetTrigger("Attack");
-        }
-        if (Input.GetButtonDown(playerNumber + "Ability2") && player.triangleCooldownTimer == 0)
+			for(int b = 0; b <= player.ability1Level; b++){
+				float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
+				GameObject a = (GameObject)Instantiate(frostBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
+				a.GetComponent<Rigidbody2D>().velocity = facing * FROSTBALL_SPEED + new Vector2(0, 5);
+				a.GetComponent<frostBall>().owner = gameObject.tag;
+				GetComponentInChildren<Animator>().SetTrigger("Attack");
+				player.squareCooldownTimer = 15;
+			}
+			
+		}
+		if (Input.GetButtonDown(playerNumber + "Ability2") && player.triangleCooldownTimer == 0)
         {
 
             float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-            for (int b = 0; b< 4; b++)
+            for (int b = 0; b< 3 + 2 * player.ability2Level; b++)
             {
                 GameObject a = (GameObject)Instantiate(fireBall, GetComponent<Transform>().position + new Vector3(0, 1, 0), Quaternion.AngleAxis(angle, Vector3.forward));
                 a.GetComponent<Rigidbody2D>().velocity = facing * FIREBALL_SPEED;
@@ -79,6 +83,11 @@ public class p3 : MonoBehaviour
             {
                 player.triangleCooldownTimer = 0;
             }
+			player.squareCooldownTimer--;
+			if(player.squareCooldownTimer < 0)
+			{
+				player.squareCooldownTimer = 0;
+			}
         }
         //if (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0)
         //{

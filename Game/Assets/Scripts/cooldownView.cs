@@ -40,28 +40,41 @@ public class cooldownView : MonoBehaviour {
                 c.a = 1.0f;
             }
             tImage.color = c;
-        //healthBar.transform.Translate(new Vector3(-0.5f, 0, 0));
-        //(RectTransform)healthBar.transform).GetComponent<RectTransform>().rect.width *
+
+		var sImage = square.GetComponent<Image>();
+		c = sImage.color;
+		if(player.GetComponent<Player>().squareCooldownTimer != 0)
+		{
+			c.a = (1.0f - (player.GetComponent<Player>().squareCooldownTimer + 0.0f) / player.GetComponent<Player>().squareCooldown)/2.0f;
+		}
+		else
+		{
+			c.a = 1.0f;
+		}
+		sImage.color = c;
+
 
         if (previousHealth != player.GetComponent<Health>().health && previousHealth != 0)
         {
                 //healthBar.transform.Translate(new Vector3(healthBarOriginalPos - healthBar.transform.position.x, 0, 0));
                 healthBar.transform.Translate(new Vector3(((float)player.GetComponent<Health>().health - previousHealth) * ((RectTransform)healthBar.transform).GetComponent<RectTransform>().rect.width 
                     / (float)player.GetComponent<Health>().maxHealth, 0, 0));
-                if(player.GetComponent<Health>().health <= 0)
-                {
-                    healthBar.transform.Translate(new Vector3(healthBarOriginalPos - healthBar.transform.position.x, 0, 0));
-                }
+
         }
         if (previousExp != player.GetComponent<Player>().exp)
         {
             expBar.transform.Translate(new Vector3(((float)player.GetComponent<Player>().exp - previousExp) * ((RectTransform)expBar.transform).GetComponent<RectTransform>().rect.width
                     / (float)player.GetComponent<Player>().max_exp, 0, 0));
-            if (player.GetComponent<Player>().exp >= player.GetComponent<Player>().max_exp)
-            {
-                expBar.transform.Translate(new Vector3(-((RectTransform)expBar.transform).GetComponent<RectTransform>().rect.width, 0, 0));
-            }
+
         }
+		if (player.GetComponent<Player>().exp >= player.GetComponent<Player>().max_exp)
+		{
+			expBar.transform.position.Set(expBarOriginalPos, expBar.transform.position.y, expBar.transform.position.z);
+		}
+		if(player.GetComponent<Health>().health <= 0)
+		{
+			healthBar.transform.position.Set(healthBarOriginalPos, healthBar.transform.position.y, healthBar.transform.position.z);
+		}
         previousExp = player.GetComponent<Player>().exp;
         previousHealth = player.GetComponent<Health>().health;
         squareOutline.GetComponent<Image>().fillAmount = (float)player.GetComponent<Player>().ability1Level / 4.0f;

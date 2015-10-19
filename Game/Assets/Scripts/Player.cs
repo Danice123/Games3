@@ -24,6 +24,7 @@ public class Player : MonoBehaviour {
 	public int exp = 0;
 	public int abilityPoints = 1;
     public int max_exp = 100;
+	public float squareCooldown, squareCooldownTimer;
 	bool levelupMode = false;
 
 	private Animator animator;
