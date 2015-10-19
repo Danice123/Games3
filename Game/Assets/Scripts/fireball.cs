@@ -3,7 +3,7 @@ using System.Collections;
 
 public class fireball : MonoBehaviour {
 
-    public int damage = 30;
+    public int damage = 20;
     public int ticksAlive = 50;
     public int rotateSpeed = 100;
     public string owner;
@@ -17,10 +17,7 @@ public class fireball : MonoBehaviour {
         if (ticksAlive == 0)
             DestroyObject(gameObject);
         ticksAlive--;
-
         Vector2 dir = GetComponent<Rigidbody2D>().velocity;
-       
-      
     }
 
     void OnTriggerEnter2D(Collider2D collider)

@@ -50,8 +50,9 @@ public class cooldownView : MonoBehaviour {
                     / (float)player.GetComponent<Health>().maxHealth, 0, 0));
                 if(player.GetComponent<Health>().health <= 0)
                 {
-                    healthBar.transform.Translate(new Vector3(healthBarOriginalPos - healthBar.transform.position.x, 0, 0));
-                }
+					healthBar.transform.position.Set(healthBarOriginalPos, healthBar.transform.position.y, healthBar.transform.position.z);
+					//healthBar.transform.Translate(new Vector3(((RectTransform)expBar.transform).GetComponent<RectTransform>().rect.width, 0, 0));
+				}
         }
         if (previousExp != player.GetComponent<Player>().exp)
         {

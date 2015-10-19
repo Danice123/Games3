@@ -29,30 +29,33 @@ public class GameManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         persistObject = GameObject.Find("persistObject");
-        switch (persistObject.GetComponent<menuObjectScript>().player1)
-        {
-            case 0:
-                player1 = ranger;
-                break;
-            case 1:
-                player1 = warrior;
-                break;
-            case 2:
-                player1 = mage;
-                break;
-        }
-        switch (persistObject.GetComponent<menuObjectScript>().player2)
-        {
-            case 0:
-                player2 = ranger;
-                break;
-            case 1:
-                player2 = warrior;
-                break;
-            case 2:
-                player2 = mage;
-                break;
-        }
+
+		player1 = mage;
+		player2 = mage;
+//        switch (persistObject.GetComponent<menuObjectScript>().player1)
+//        {
+//            case 0:
+//                player1 = ranger;
+//                break;
+//            case 1:
+//                player1 = warrior;
+//                break;
+//            case 2:
+//                player1 = mage;
+//                break;
+//        }
+//        switch (persistObject.GetComponent<menuObjectScript>().player2)
+//        {
+//            case 0:
+//                player2 = ranger;
+//                break;
+//            case 1:
+//                player2 = warrior;
+//                break;
+//            case 2:
+//                player2 = mage;
+//                break;
+//        }
         StartGame();
     }
 	
@@ -97,16 +100,16 @@ public class GameManager : MonoBehaviour {
         HUD2.GetComponent<cooldownView>().player = player2;
 
         //Setup Camera
-        camera.GetComponent<CameraControl> ().tracking = player1;
-		camera.GetComponent<CameraControl> ().tracking2 = player2;
+        //camera.GetComponent<CameraControl> ().tracking = player1;
+		//camera.GetComponent<CameraControl> ().tracking2 = player2;
 
 		//Setup Towers
 		GameObject gotower;
-		gotower = (GameObject)Instantiate (tower, LeftTowerSpawn.position, Quaternion.identity);
 
+		gotower = (GameObject)Instantiate (tower, LeftTowerSpawn.position, Quaternion.identity);
 		gotower = (GameObject)Instantiate (tower, RightTowerSpawn.position, Quaternion.identity);
 		gotower.GetComponent<Tower> ().networkSetTag ("Right");
-
+		//gotower.transform.GetComponentInChildren ("turretf").GetComponent<Health>().health = 1000;
 		//Setup Spawners
 		LeftSpawner = (GameObject) Instantiate (LeftSpawner, player1Spawn.position, Quaternion.identity);
 		RightSpawner = (GameObject) Instantiate (RightSpawner, player2Spawn.position, Quaternion.identity);
