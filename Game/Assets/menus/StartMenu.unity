@@ -371,7 +371,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2036422493}
-        m_MethodName: LoadCharSelect
+        m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -761,6 +761,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chooseLabel: {fileID: 0}
   persistObject: {fileID: 0}
+  p1: {fileID: 0}
+  p2: {fileID: 0}
 --- !u!1 &1778234537
 GameObject:
   m_ObjectHideFlags: 0
@@ -915,3 +917,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chooseLabel: {fileID: 0}
   persistObject: {fileID: 1778234537}
+  p1: {fileID: 0}
+  p2: {fileID: 0}

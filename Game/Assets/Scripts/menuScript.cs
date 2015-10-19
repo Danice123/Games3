@@ -25,6 +25,10 @@ public class menuScript : MonoBehaviour {
         DontDestroyOnLoad(persistObject);
         Application.LoadLevel(1);
     }
+    public void LoadLevel(int level)
+    {
+        Application.LoadLevel(level);
+    }
     
 	public void LoadGame(int ch) {
         //Multiplayer Game mode
