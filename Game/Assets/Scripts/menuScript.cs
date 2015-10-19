@@ -18,10 +18,6 @@ public class menuScript : MonoBehaviour {
 	public void LoadCharSelect(int gameType)
     {
         persistObject.GetComponent<menuObjectScript>().gameType = gameType;
-        if(persistObject.GetComponent<menuObjectScript>().gameType >= 3)
-        {
-
-        }
         DontDestroyOnLoad(persistObject);
         Application.LoadLevel(1);
     }
@@ -63,6 +59,6 @@ public class menuScript : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-		
+
 	}
 }
