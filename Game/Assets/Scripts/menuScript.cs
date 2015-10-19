@@ -8,11 +8,12 @@ public class menuScript : MonoBehaviour {
     int charsChosen = 0;
     public GameObject chooseLabel;
     public GameObject persistObject;
+    public GameObject p1, p2;
     Text labelText;
 	// Use this for initialization
 	void Start () {
         persistObject = GameObject.Find("persistObject");
-        labelText = chooseLabel.GetComponent<Text>();
+        
 	}
 	public void LoadCharSelect(int gameType)
     {
@@ -33,11 +34,19 @@ public class menuScript : MonoBehaviour {
             {
                 persistObject.GetComponent<menuObjectScript>().player2 = ch;
                 Application.LoadLevel(persistObject.GetComponent<menuObjectScript>().gameType);
+              
             }
             else
             {
                 persistObject.GetComponent<menuObjectScript>().player1 = ch;
                 charsChosen = 1;
+                var pImage = p1.GetComponent<Image>();
+                var p2Image = p2.GetComponent<Image>();
+                Color c = pImage.color;
+                c.a = 0.0f;
+                pImage.color = c;
+                c.a = 1.0f;
+                p2Image.color = c;
                 //labelText = "Player Two Choose" as Text;
             }
         }

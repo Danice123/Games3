@@ -17,47 +17,28 @@ Loading D:\MichaelsWorkingStuff\Games3\Game\fd_Data\Managed\UnityEngine.UI.dll i
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\fd_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
 Loading D:\MichaelsWorkingStuff\Games3\Game\fd_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\fd_Data\Managed\System.Core.dll (this message is harmless)
-- Completed reload, in  0.098 seconds
+- Completed reload, in  0.095 seconds
 desktop: 3840x2160 60Hz; virtual: 3840x3240 at 0,-1080
 <RI> Initializing input.
 <RI> Input initialized.
 <RI> Initialized touch support.
 Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\fd_Data\Managed\System.dll (this message is harmless)
 Setting up 1 worker threads for Enlighten.
-  Thread -> id: 3864 -> priority: 1 
-1
- 
-(Filename: C:/buildslave/unity/build/artifacts/generated/common/runtime/UnityEngineDebugBindings.gen.cpp Line: 64)
-
+  Thread -> id: 37b8 -> priority: 1 
 Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 8.998546 ms
+UnloadTime: 4.268740 ms
 
-Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 225.
-Total: 0.321136 ms (FindLiveObjects: 0.025175 ms CreateObjectMapping: 0.019906 ms MarkObjects: 0.263759 ms  DeleteObjects: 0.011416 ms)
+Unloading 4 unused Assets to reduce memory usage. Loaded Objects now: 241.
+Total: 0.254391 ms (FindLiveObjects: 0.033079 ms CreateObjectMapping: 0.015222 ms MarkObjects: 0.196136 ms  DeleteObjects: 0.007903 ms)
 
-Unloading 5 Unused Serialized files (Serialized files now loaded: 0)
-UnloadTime: 0.312061 ms
+Unloading 4 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 0.375585 ms
 
-Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 700.
-Total: 0.362705 ms (FindLiveObjects: 0.015515 ms CreateObjectMapping: 0.026932 ms MarkObjects: 0.292154 ms  DeleteObjects: 0.027517 ms)
+Unloading 16 unused Assets to reduce memory usage. Loaded Objects now: 996.
+Total: 0.491218 ms (FindLiveObjects: 0.055620 ms CreateObjectMapping: 0.033665 ms MarkObjects: 0.365047 ms  DeleteObjects: 0.036299 ms)
 
-Can't send RPC function since no connection was started.
+NullReferenceException: Object reference not set to an instance of an object
+  at cooldownView.Start () [0x00000] in <filename unknown>:0 
  
-(Filename:  Line: 2480)
-
-Can't send RPC function since no connection was started.
- 
-(Filename:  Line: 2480)
-
-Can't send RPC function since no connection was started.
- 
-(Filename:  Line: 2480)
-
-Can't send RPC function since no connection was started.
- 
-(Filename:  Line: 2480)
-
-Can't send RPC function since no connection was started.
- 
-(Filename:  Line: 2480)
+(Filename:  Line: -1)
 
