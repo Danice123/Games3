@@ -10,20 +10,51 @@ public class GameManager : MonoBehaviour {
 
 	public GameObject camera;
 
+    //Use this to access all pertinent info from the menus
+    public GameObject persistObject;
+
 	public Transform LeftTowerSpawn;
 	public Transform RightTowerSpawn;
 	public GameObject tower;
-
+    public GameObject ranger;
+    public GameObject warrior;
+    public GameObject mage;
 	public GameObject LeftSpawner;
 	public GameObject RightSpawner;
+    public GameObject HUD1, HUD2;
 
 	public GameObject GameOverCanvas;
 	bool gameOver = false;
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        persistObject = GameObject.Find("persistObject");
+        switch (persistObject.GetComponent<menuObjectScript>().player1)
+        {
+            case 0:
+                player1 = ranger;
+                break;
+            case 1:
+                player1 = warrior;
+                break;
+            case 2:
+                player1 = mage;
+                break;
+        }
+        switch (persistObject.GetComponent<menuObjectScript>().player2)
+        {
+            case 0:
+                player2 = ranger;
+                break;
+            case 1:
+                player2 = warrior;
+                break;
+            case 2:
+                player2 = mage;
+                break;
+        }
+        StartGame();
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -53,13 +84,20 @@ public class GameManager : MonoBehaviour {
 		player1.tag = "Left";
 		player1.GetComponent<Player> ().respawnPosition = player1Spawn;
 
+
+
 		player2 = (GameObject) Instantiate (player2, player2Spawn.position, Quaternion.identity);
 		player2.GetComponent<Player> ().playerNumber = "2";
 		player2.tag = "Right";
 		player2.GetComponent<Player> ().respawnPosition = player2Spawn;
 
-		//Setup Camera
-		camera.GetComponent<CameraControl> ().tracking = player1;
+
+        //HUDS
+        HUD1.GetComponent<cooldownView>().player = player1;
+        HUD2.GetComponent<cooldownView>().player = player2;
+
+        //Setup Camera
+        camera.GetComponent<CameraControl> ().tracking = player1;
 		camera.GetComponent<CameraControl> ().tracking2 = player2;
 
 		//Setup Towers
