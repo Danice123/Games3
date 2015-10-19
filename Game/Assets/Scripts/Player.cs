@@ -53,7 +53,7 @@ public class Player : MonoBehaviour {
 			respawnTimer = 60 * level;
 			isDead = true;
 			GetComponent<Transform>().position = respawnPosition.position;
-			GetComponent<Health>().health = GetComponent<Health>().maxHealth;
+			GetComponent<Health>().resetHealth();
 			gameObject.SetActive(false);
 		}
 

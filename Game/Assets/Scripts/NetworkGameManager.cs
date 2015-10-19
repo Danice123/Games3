@@ -44,9 +44,11 @@ public class NetworkGameManager : MonoBehaviour {
 		if (Network.isServer) {
 			player = (GameObject)Network.Instantiate (player, player1Spawn.position, Quaternion.identity, 0);
 			player.GetComponent<NetworkView> ().RPC ("networkSetTag", RPCMode.AllBuffered, "Left");
+			player.GetComponent<Player> ().respawnPosition = player1Spawn;
 		} else {
 			player = (GameObject) Network.Instantiate(player, player2Spawn.position, Quaternion.identity, 0);
 			player.GetComponent<NetworkView> ().RPC ("networkSetTag", RPCMode.AllBuffered, "Right");
+			player.GetComponent<Player> ().respawnPosition = player2Spawn;
 		}
 		
 		//Setup Camera

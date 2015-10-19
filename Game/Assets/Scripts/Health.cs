@@ -48,4 +48,9 @@ public class Health : MonoBehaviour {
 	public void changeMaxHealth(int change) {
 		maxHealth += change;
 	}
+
+	[RPC]
+	public void resetHealth() {
+		health = maxHealth;
+	}
 }
