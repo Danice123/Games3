@@ -4,14 +4,16 @@ using System.Collections.Generic;
 public class p2 : MonoBehaviour {
 
 
-	
 	public GameObject sword;
+	public GameObject blade1;
+	public GameObject blade2;
 	public GameObject IsSword;
-	public float swordtime = 2f;
+	public float swordtime = 1f;
 	public GameObject shield;
 	public float shieldtime = 3f;
 	public GameObject IsShield;
 	private Player player;
+	public float bladetime = 4f;
 
 
 	
@@ -48,6 +50,7 @@ public class p2 : MonoBehaviour {
 		string playerNumber = GetComponent<Player> ().playerNumber;
 		Vector2 facing = GetComponent<Player> ().facing;
 		shieldtime -= Time.deltaTime;
+		swordtime -= Time.deltaTime;
 		if (!IsSword.activeSelf) {
 			IsSword.transform.position = gameObject.transform.position;
 		}
@@ -70,8 +73,15 @@ public class p2 : MonoBehaviour {
 			IsShield.SetActive(true);
 
 		}
+
+		if (Input.GetButtonDown (playerNumber + "Ability3") && bladetime <=0) {
+
+
+			
+		}
 		
-		if (Input.GetButtonDown (playerNumber + "Ability1")) {
+		if (Input.GetButtonDown (playerNumber + "Ability1") && swordtime <=0) {
+			swordtime = 1.0f;
 			IsSword.SetActive(true);
 
 
