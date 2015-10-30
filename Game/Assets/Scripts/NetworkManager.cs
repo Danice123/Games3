@@ -111,6 +111,41 @@ public class NetworkManager : MonoBehaviour
 		}
 	}
 
+	int ticks = 0;
+	float timer = 0;
+	bool timerRunning = false;
+
+	float averageLatency = 0;
+	int averageTimes = 0;
+
+	void FixedUpdate() {
+		if (Network.isServer) {
+			if (ticks >= 60) {
+				ticks = 0;
+				GetComponent<NetworkView> ().RPC ("latencyCheck", RPCMode.Others, null);
+				timerRunning = true;
+			}
+			if (timerRunning)
+				timer += Time.deltaTime;
+			ticks++;
+		}
+	}
+
+	[RPC]
+	void latencyCheck() {
+		GetComponent<NetworkView> ().RPC ("latencyReturn", RPCMode.Others, null);
+	}
+
+	[RPC]
+	void latencyReturn() {
+		timerRunning = false;
+		Debug.Log (timer * 1000 + " ms");
+		averageLatency += timer;
+		averageTimes++;
+		Debug.Log(averageLatency / averageTimes * 1000 + " average ms");
+		timer = 0;
+	}
+
 
 }
 
