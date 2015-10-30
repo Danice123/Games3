@@ -348,6 +348,7 @@ GameObject:
   - 114: {fileID: 11432534}
   - 114: {fileID: 11454410}
   - 108: {fileID: 10896924}
+  - 148: {fileID: 14840736}
   m_Layer: 0
   m_Name: Warrior
   m_TagString: Untagged
@@ -1055,6 +1056,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -.106906354, y: -.019914344, z: -6.2584877e-07}
     m_Extent: {x: .637331903, y: .203833118, z: .374050587}
   m_DirtyAABB: 0
+--- !u!148 &14840736
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 186934}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 462530}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -1101,6 +1114,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Constraints
       value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StateSynchronization
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

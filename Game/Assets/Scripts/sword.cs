@@ -5,7 +5,7 @@ public class sword : MonoBehaviour {
 
 	public int damage = 10;
 	public int ticksAlive = 20;
-	public int rotateSpeed = 800;
+
 	public string owner;
 	public GameObject player;
 	public p2 ori;
@@ -25,22 +25,25 @@ public class sword : MonoBehaviour {
 	}
 
 	void FixedUpdate () {
-		if (ticksAlive == 0)
-			DestroyObject (gameObject);
+		Vector2 facing = player.GetComponent<Player> ().facing;
+		if (ticksAlive == 0) {
+			ticksAlive = 20;
+			gameObject.SetActive (false);
+		}
 		ticksAlive--;
-		gameObject.transform.position = new Vector2 (gameObject.transform.position.x, player.transform.position.y);
-		Vector2 dir = GetComponent<Rigidbody2D> ().velocity;
+		gameObject.transform.position = new Vector2 (player.transform.position.x +1*facing.x, player.transform.position.y +1*facing.y +1);
+		transform.rotation = Quaternion.FromToRotation (new Vector3 (0, 1, 0),new Vector3 ( facing.x, facing.y, 0));
+
 
 
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider) {
-		if (collider.CompareTag ("Ground")) {
-			DestroyObject(gameObject);
-		}
+
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			collider.gameObject.GetComponent<Health>().health -= damage;
-			DestroyObject(gameObject);
+			ticksAlive = 20;
+			gameObject.SetActive(false);
 		}
 	}
 }

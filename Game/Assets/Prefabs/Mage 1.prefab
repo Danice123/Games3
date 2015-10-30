@@ -209,6 +209,7 @@ GameObject:
   - 114: {fileID: 11442506}
   - 108: {fileID: 10865700}
   - 114: {fileID: 11494672}
+  - 148: {fileID: 14833362}
   m_Layer: 0
   m_Name: Mage 1
   m_TagString: Player
@@ -843,6 +844,8 @@ MonoBehaviour:
   exp: 0
   abilityPoints: 0
   max_exp: 100
+  squareCooldown: 0
+  squareCooldownTimer: 0
 --- !u!114 &11494672
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -933,6 +936,18 @@ SkinnedMeshRenderer:
     m_Center: {x: -.0644496977, y: .000188477337, z: -5.36441803e-07}
     m_Extent: {x: .621649027, y: .18199876, z: .346056044}
   m_DirtyAABB: 0
+--- !u!148 &14833362
+NetworkView:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 141716}
+  m_Enabled: 1
+  m_StateSynchronization: 2
+  m_Observed: {fileID: 431088}
+  m_ViewID:
+    m_ID: 0
+    m_Type: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -975,6 +990,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: maxHealth
       value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_StateSynchronization
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
