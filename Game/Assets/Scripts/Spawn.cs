@@ -1,19 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Spawn : MonoBehaviour {
 
 	public GameObject spawn;
 	private int timer = 0;
+	List<GameObject> spawnList;
 
 	// Use this for initialization
 	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		spawnList = new List<GameObject> ();
 	}
 
 	void FixedUpdate() {
@@ -22,10 +19,30 @@ public class Spawn : MonoBehaviour {
 		}
 		if (timer == 0) {
 			Vector3 pos = GetComponent<Transform>().position;
+			bool recycle = false;
 			if (Network.isServer) {
-				Network.Instantiate(spawn, new Vector3 (pos.x, pos.y, pos.z), Quaternion.identity, 0);
+				foreach (GameObject g in spawnList) {
+					if (!g.activeSelf) {
+						g.GetComponent<Transform>().position = pos;
+						g.GetComponent<NetworkView>().RPC("resetHealth", RPCMode.AllBuffered, null);
+						g.GetComponent<NetworkView>().RPC("respawn", RPCMode.AllBuffered, null);
+						//g.SetActive(true);
+						recycle = true;
+						break;
+					}
+				}
+				if (!recycle) spawnList.Add ((GameObject) Network.Instantiate(spawn, pos, Quaternion.identity, 0));
 			} else {
-				Instantiate(spawn, new Vector3 (pos.x, pos.y, pos.z), Quaternion.identity);
+				foreach (GameObject g in spawnList) {
+					if (!g.activeSelf) {
+						g.GetComponent<Transform>().position = pos;
+						g.GetComponent<Health>().resetHealth();
+						g.SetActive(true);
+						recycle = true;
+						break;
+					}
+				}
+				if (!recycle) spawnList.Add ((GameObject) Instantiate(spawn, pos, Quaternion.identity));
 			}
 		}
 		timer++;

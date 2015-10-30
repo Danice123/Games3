@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Ranger : MonoBehaviour {
 
@@ -13,6 +14,8 @@ public class Ranger : MonoBehaviour {
 	public int maxTicksHeld = 5;
 
 	private Player player;
+	List<GameObject> arrowList;
+	List<GameObject> largeArrowList;
 
 	// Use this for initialization
 	void Start () {
@@ -20,20 +23,12 @@ public class Ranger : MonoBehaviour {
 		if ((Network.isServer || Network.isClient) && !GetComponent<NetworkView> ().isMine) {
 			Destroy (GetComponent<Rigidbody2D>());
 		}
+		arrowList = new List<GameObject> ();
+		largeArrowList = new List<GameObject> ();
 	}
 
 	void Update () {
-		//Vector2 facing = GetComponent<Player> ().facing;
 
-		//GameObject bow = GameObject.Find ("longbow");
-		//float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
-		//var q = Quaternion.AngleAxis(angle + 45.0f, Vector3.forward);
-		//bow.GetComponent<Transform> ().rotation = q;
-
-
-		//Vector2 newPos = GetComponent<Transform> ().position;
-		//newPos += facing * 0.5f;
-		//bow.GetComponent<Transform>().position = new Vector3(newPos.x, newPos.y, 0);
 	}
 
 	void FixedUpdate () {
@@ -47,10 +42,7 @@ public class Ranger : MonoBehaviour {
 				Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
 				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 
-				GameObject a = (GameObject)Instantiate (arrow, pos, q);
-				a.GetComponent<Rigidbody2D> ().velocity = vel;
-				a.GetComponent<Arrow> ().owner = gameObject.tag;
-
+				shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
 				view.RPC("shootArrow", RPCMode.Others, pos, q, new Vector3(vel.x, vel.y, 0));
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
 			}
@@ -72,10 +64,7 @@ public class Ranger : MonoBehaviour {
 					Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
 					Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 
-					GameObject a = (GameObject)Instantiate (largeArrow, pos, q);
-					a.GetComponent<Rigidbody2D> ().velocity = vel;
-					a.GetComponent<Arrow> ().owner = gameObject.tag;
-
+					shootLargeArrow(pos, q, new Vector3(vel.x, vel.y, 0));
 					view.RPC("shootLargeArrow", RPCMode.Others, pos, q, new Vector3(vel.x, vel.y, 0));
 					ticksHeld = -1;
 					player.canMove = true;
@@ -88,16 +77,45 @@ public class Ranger : MonoBehaviour {
 
 	[RPC]
 	void shootArrow(Vector3 position, Quaternion angle, Vector3 velocity) {
-		GameObject a = (GameObject)Instantiate (arrow, position, angle);
-		a.GetComponent<Rigidbody2D> ().velocity = velocity;
-		a.GetComponent<Arrow> ().owner = gameObject.tag;
+		bool recycle = false;
+		foreach (GameObject g in arrowList) {
+			if (!g.activeSelf) {
+				g.SetActive(true);
+				g.GetComponent<Transform>().position = position;
+				g.GetComponent<Transform>().rotation = angle;
+				g.GetComponent<Rigidbody2D>().velocity = velocity;
+
+				recycle = true;
+				break;
+			}
+		}
+		if (!recycle) {
+			GameObject a = (GameObject)Instantiate (arrow, position, angle);
+			a.GetComponent<Rigidbody2D> ().velocity = velocity;
+			a.GetComponent<Arrow> ().owner = gameObject.tag;
+			arrowList.Add (a);
+		}
 	}
 
 	[RPC]
 	void shootLargeArrow(Vector3 position, Quaternion angle, Vector3 velocity) {
-		GameObject a = (GameObject)Instantiate (largeArrow, position, angle);
-		a.GetComponent<Rigidbody2D> ().velocity = velocity;
-		a.GetComponent<Arrow> ().owner = gameObject.tag;
+		bool recycle = false;
+		foreach (GameObject g in largeArrowList) {
+			if (!g.activeSelf) {
+				g.SetActive(true);
+				g.GetComponent<Transform>().position = position;
+				g.GetComponent<Transform>().rotation = angle;
+				g.GetComponent<Rigidbody2D>().velocity = velocity;
+				recycle = true;
+				break;
+			}
+		}
+		if (!recycle) {
+			GameObject a = (GameObject)Instantiate (largeArrow, position, angle);
+			a.GetComponent<Rigidbody2D> ().velocity = velocity;
+			a.GetComponent<Arrow> ().owner = gameObject.tag;
+			largeArrowList.Add (a);
+		}
 	}
 
 	[RPC]

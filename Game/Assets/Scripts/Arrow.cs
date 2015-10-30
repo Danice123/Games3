@@ -15,7 +15,7 @@ public class Arrow : MonoBehaviour {
 
 	void FixedUpdate () {
 		if (ticksAlive == 0) {
-			DestroyObject (gameObject);
+			gameObject.SetActive(false);
 		}
 		ticksAlive--;
 
@@ -27,7 +27,7 @@ public class Arrow : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.CompareTag ("Ground")) {
-			DestroyObject(gameObject);
+			gameObject.SetActive(false);
 		}
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			if (collider.GetComponent<Health>() == null) return;
@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour {
 				collider.GetComponent<Health>().changeHealth(-damage);
 				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
 			}
-			DestroyObject (gameObject);
+			gameObject.SetActive(false);
 		}
 	}
 }

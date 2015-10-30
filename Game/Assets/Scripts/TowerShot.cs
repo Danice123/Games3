@@ -7,12 +7,16 @@ public class TowerShot : MonoBehaviour {
 	public GameObject persistObject;
 	public GameObject target;
 	public float speed = 2f;
-	bool local = false;
 
 
 	void FixedUpdate () {
-		if (!Network.isClient)
-			transform.position = Vector2.MoveTowards(GetComponent<Transform>().position, target.GetComponent<Transform>().position, speed * Time.deltaTime);
+		if (!Network.isClient) {
+			if (target == null || !target.activeSelf) {
+				GetComponent<NetworkView> ().RPC ("kill", RPCMode.OthersBuffered, null);
+				kill ();
+			}
+			transform.position = Vector2.MoveTowards (GetComponent<Transform> ().position, target.GetComponent<Transform> ().position, speed * Time.deltaTime);
+		}
 	}
 
 	void OnTriggerEnter2D (Collider2D col) {

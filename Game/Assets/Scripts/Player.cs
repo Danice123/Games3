@@ -54,7 +54,7 @@ public class Player : MonoBehaviour {
 			respawnTimer = 60 * level;
 			isDead = true;
 			GetComponent<Transform>().position = respawnPosition.position;
-			GetComponent<Health>().resetHealth();
+			GetComponent<NetworkView>().RPC("resetHealth", RPCMode.AllBuffered, null);
 			gameObject.SetActive(false);
 		}
 

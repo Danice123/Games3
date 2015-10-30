@@ -25,16 +25,23 @@ public class Tower : MonoBehaviour {
 		}
 		if (!Network.isClient) {
 			Rdelay--;
-			if (attackList.Count > 0 && attackList [0].gameObject == null) {
+			if (attackList.Count > 0 && !attackList [0].gameObject.activeSelf) {
+				Debug.Log ("removed " + attackList [0].gameObject.name);
 				attackList.RemoveAt (0);
-				Debug.Log ("removed " + GetComponent<Collider> ().gameObject.name);
 			}
 			if (attackList.Count > 0 && attackList [0].GetComponent<Health> () != null && attackList [0].GetComponent<Health> ().health <= 0) {
+				Debug.Log ("removed " + attackList [0].gameObject.name);
 				attackList.RemoveAt (0);
-				Debug.Log ("removed " + GetComponent<Collider> ().gameObject.name);
 			}
 			if (attackList.Count > 0 && Rdelay <= 0 && attackList [0] != null) {
 				//GetComponent<Animator>().SetBool("shoot", true);
+				var distance = Vector3.Distance(attackList[0].transform.position, transform.position);
+				float scaledRadius = Mathf.Max(transform.localScale.x, transform.localScale.y) * GetComponent<CircleCollider2D>().radius;
+				if (distance > scaledRadius + 2f) {
+					Debug.Log ("removed " + attackList [0].gameObject.name);
+					attackList.RemoveAt (0);
+					return;
+				}
 				GameObject shot;
 				Transform point;
 				if (tag == "Right")
@@ -57,13 +64,6 @@ public class Tower : MonoBehaviour {
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
 			attackList.Add(collider.gameObject);
 			Debug.Log("added " + collider.gameObject.name);
-		}
-	}
-	
-	void OnTriggerExit2D ( Collider2D collider) {
-		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(gameObject.tag)) {
-			attackList.Remove(collider.gameObject);
-			Debug.Log("removed " + collider.gameObject.name);
 		}
 	}
 

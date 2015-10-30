@@ -90,7 +90,13 @@ public class Minion : MonoBehaviour {
 
 	[RPC]
 	void kill() {
-		DestroyObject (gameObject);
+		attackMode = false;
+		gameObject.SetActive (false);
+	}
+
+	[RPC]
+	void respawn() {
+		gameObject.SetActive (true);
 	}
 
 	[RPC]
