@@ -1,0 +1,35 @@
+Initialize engine version: 5.1.2p3 (65486b59c7a9)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: NVIDIA GeForce GTX 970 (ID=0x13c2)
+    Vendor:   NVIDIA
+    VRAM:     3072 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\Assembly-UnityScript.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\Assembly-UnityScript.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Analytics.dll (this message is harmless)
+Loading D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\UnityEngine.Analytics.dll into Unity Child Domain
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\System.Core.dll (this message is harmless)
+- Completed reload, in  0.113 seconds
+desktop: 3840x2160 60Hz; virtual: 3840x3240 at 0,-1080
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+Platform assembly: D:\MichaelsWorkingStuff\Games3\Game\test_Data\Managed\System.dll (this message is harmless)
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 18d4 -> priority: 1 
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 4.984784 ms
+
+Unloading 13 unused Assets to reduce memory usage. Loaded Objects now: 230.
+Total: 0.328162 ms (FindLiveObjects: 0.011416 ms CreateObjectMapping: 0.007903 ms MarkObjects: 0.297717 ms  DeleteObjects: 0.010538 ms)
+
