@@ -17,6 +17,9 @@ public class NetworkManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		samples = new float[30];
+		for (int i = 0; i < 30; i++)
+			samples [i] = 0f;
 		btnX = Screen.width * 0.01f;
 		btnY = Screen.width * 0.01f;
 		btnW = Screen.width * 0.15f;
@@ -37,7 +40,7 @@ public class NetworkManager : MonoBehaviour
 	void startServer ()
 	{
 		Network.InitializeServer (2, 25001, !Network.HavePublicAddress ());
-		MasterServer.RegisterHost (gameName, "Dan", "Testing  stuff");
+		MasterServer.RegisterHost (gameName, "Mine!", "Testing  stuff");
 	}
 
 	//Get the list of servers from the Master Server
@@ -115,12 +118,15 @@ public class NetworkManager : MonoBehaviour
 	float timer = 0;
 	bool timerRunning = false;
 
-	float averageLatency = 0;
-	int averageTimes = 0;
+	public GameObject latencyCounter;
+	float[] samples;
+	int iSamples = 0;
+	float sum;
+	bool full = false;
 
 	void FixedUpdate() {
 		if (Network.isServer) {
-			if (ticks >= 60) {
+			if (ticks >= 30) {
 				ticks = 0;
 				GetComponent<NetworkView> ().RPC ("latencyCheck", RPCMode.Others, null);
 				timerRunning = true;
@@ -139,10 +145,17 @@ public class NetworkManager : MonoBehaviour
 	[RPC]
 	void latencyReturn() {
 		timerRunning = false;
-		Debug.Log (timer * 1000 + " ms");
-		averageLatency += timer;
-		averageTimes++;
-		Debug.Log(averageLatency / averageTimes * 1000 + " average ms");
+		samples [iSamples] = timer;
+		int previous = (iSamples + 30 - 1) % 30;
+		sum = sum + timer - samples [previous];
+		if (iSamples == 30)
+			full = true;
+		iSamples = (iSamples + 1) % 30;
+		if (full) {
+			Debug.Log (sum / 30f * 1000f + " ms");
+		} else {
+			Debug.Log (sum / iSamples * 1000f + " ms");
+		}
 		timer = 0;
 	}
 
