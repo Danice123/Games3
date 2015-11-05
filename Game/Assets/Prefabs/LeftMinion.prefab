@@ -569,7 +569,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 102784}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.0860252, y: 11.2823772, z: 0}
+  m_LocalPosition: {x: -25.2037048, y: 19.974596, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 418620}
@@ -1111,6 +1111,8 @@ MonoBehaviour:
   maxHealth: 100
   xOffset: 40
   yOffset: 50
+  showBar: 0
+  model: {fileID: 184678}
 --- !u!137 &13755522
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1229,6 +1231,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_StateSynchronization
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: showBar
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

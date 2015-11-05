@@ -7,6 +7,9 @@ public class Health : MonoBehaviour {
 	public int maxHealth;
 	public int xOffset = 40;
 	public int yOffset = 50;
+	public bool showBar = true;
+
+	public GameObject model;
 
 	private Texture2D healthFront;
 	private Texture2D healthBack;
@@ -24,7 +27,7 @@ public class Health : MonoBehaviour {
 	}
 	
 	void OnGUI() {
-		if (Camera.current == null)
+		if (Camera.current == null || !showBar)
 			return;
 		Vector3 screenPosition = Camera.current.WorldToScreenPoint(transform.position);
 		
@@ -37,6 +40,14 @@ public class Health : MonoBehaviour {
 		rect = new Rect(screenPosition.x - xOffset, screenPosition.y - yOffset, 80 * ((float) health / (float) maxHealth), 5);
 		RectStyle.normal.background = healthFront;
 		GUI.Box (rect, GUIContent.none, RectStyle);
+	}
+
+	void Update () {
+		if (model != null) {
+			Color o = model.GetComponent<SkinnedMeshRenderer> ().material.color;
+			Color n = new Color (o.r, health / (float)maxHealth, health / (float)maxHealth);
+			model.GetComponent<SkinnedMeshRenderer> ().material.color = n;
+		}
 	}
 
 	[RPC]

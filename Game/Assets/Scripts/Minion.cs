@@ -91,12 +91,18 @@ public class Minion : MonoBehaviour {
 	[RPC]
 	void kill() {
 		attackMode = false;
-		gameObject.SetActive (false);
+		if (Network.isClient)
+			transform.GetChild (0).gameObject.SetActive (false);
+		else
+			gameObject.SetActive (false);
 	}
 
 	[RPC]
 	void respawn() {
-		gameObject.SetActive (true);
+		if (Network.isClient)
+			transform.GetChild (0).gameObject.SetActive (true);
+		else
+			gameObject.SetActive (true);
 	}
 
 	[RPC]

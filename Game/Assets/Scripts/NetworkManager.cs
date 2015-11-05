@@ -17,9 +17,7 @@ public class NetworkManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
-		samples = new float[30];
-		for (int i = 0; i < 30; i++)
-			samples [i] = 0f;
+		initAverage ();
 		btnX = Screen.width * 0.01f;
 		btnY = Screen.width * 0.01f;
 		btnW = Screen.width * 0.15f;
@@ -118,15 +116,22 @@ public class NetworkManager : MonoBehaviour
 	float timer = 0;
 	bool timerRunning = false;
 
-	public GameObject latencyCounter;
-	float[] samples;
-	int iSamples = 0;
+	float[] runningAverage;
+	int current;
 	float sum;
-	bool full = false;
+	bool full;
+
+	void initAverage() {
+		runningAverage = new float[30];
+		current = 0;
+		sum = 0f;
+		full = false;
+	}
+
 
 	void FixedUpdate() {
 		if (Network.isServer) {
-			if (ticks >= 30) {
+			if (ticks >= 60) {
 				ticks = 0;
 				GetComponent<NetworkView> ().RPC ("latencyCheck", RPCMode.Others, null);
 				timerRunning = true;
@@ -145,18 +150,26 @@ public class NetworkManager : MonoBehaviour
 	[RPC]
 	void latencyReturn() {
 		timerRunning = false;
-		samples [iSamples] = timer;
-		int previous = (iSamples + 30 - 1) % 30;
-		sum = sum + timer - samples [previous];
-		if (iSamples == 30)
-			full = true;
-		iSamples = (iSamples + 1) % 30;
+		//Debug.Log( "Sample: " + timer * 1000f + " ms");
+
+		//running average
 		if (full) {
-			Debug.Log (sum / 30f * 1000f + " ms");
+			sum = sum + timer - runningAverage[current];
+			runningAverage[current] = timer;
+			current = (current + 1) % 30;
 		} else {
-			Debug.Log (sum / iSamples * 1000f + " ms");
+			sum += timer;
+			runningAverage[current] = timer;
+			current = (current + 1) % 30;
+			if (current == 0) full = true;
 		}
 		timer = 0;
+
+		if (full) {
+			Debug.Log ("Average: " + sum / 30f * 1000f + " ms");
+		} else {
+			Debug.Log ("Average: " + sum / (current - 1) * 1000f + " ms");
+		}
 	}
 
 
