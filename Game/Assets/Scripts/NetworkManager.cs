@@ -17,6 +17,7 @@ public class NetworkManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
 	{
+		initAverage ();
 		btnX = Screen.width * 0.01f;
 		btnY = Screen.width * 0.01f;
 		btnW = Screen.width * 0.15f;
@@ -37,7 +38,7 @@ public class NetworkManager : MonoBehaviour
 	void startServer ()
 	{
 		Network.InitializeServer (2, 25001, !Network.HavePublicAddress ());
-		MasterServer.RegisterHost (gameName, "Dan", "Testing  stuff");
+		MasterServer.RegisterHost (gameName, "Mine!", "Testing  stuff");
 	}
 
 	//Get the list of servers from the Master Server
@@ -115,8 +116,18 @@ public class NetworkManager : MonoBehaviour
 	float timer = 0;
 	bool timerRunning = false;
 
-	float averageLatency = 0;
-	int averageTimes = 0;
+	float[] runningAverage;
+	int current;
+	float sum;
+	bool full;
+
+	void initAverage() {
+		runningAverage = new float[30];
+		current = 0;
+		sum = 0f;
+		full = false;
+	}
+
 
 	void FixedUpdate() {
 		if (Network.isServer) {
@@ -139,11 +150,26 @@ public class NetworkManager : MonoBehaviour
 	[RPC]
 	void latencyReturn() {
 		timerRunning = false;
-		Debug.Log (timer * 1000 + " ms");
-		averageLatency += timer;
-		averageTimes++;
-		Debug.Log(averageLatency / averageTimes * 1000 + " average ms");
+		//Debug.Log( "Sample: " + timer * 1000f + " ms");
+
+		//running average
+		if (full) {
+			sum = sum + timer - runningAverage[current];
+			runningAverage[current] = timer;
+			current = (current + 1) % 30;
+		} else {
+			sum += timer;
+			runningAverage[current] = timer;
+			current = (current + 1) % 30;
+			if (current == 0) full = true;
+		}
 		timer = 0;
+
+		if (full) {
+			Debug.Log ("Average: " + sum / 30f * 1000f + " ms");
+		} else {
+			Debug.Log ("Average: " + sum / (current - 1) * 1000f + " ms");
+		}
 	}
 
 
