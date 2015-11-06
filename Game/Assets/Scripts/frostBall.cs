@@ -26,9 +26,6 @@ public class frostBall : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        
-
-
         if (collider.CompareTag("Ground") || collider.CompareTag("shield"))
         {
             DestroyObject(gameObject);
@@ -38,7 +35,11 @@ public class frostBall : MonoBehaviour {
             UnityEngine.Debug.Log("Inner If");
             if (collider.GetComponent<Health>() == null) return;
             collider.gameObject.GetComponent<Health>().health -= damage;
-            DestroyObject(gameObject);
+			if(collider.GetComponent<Player>() != null){
+				collider.GetComponent<Player>().moveSpeed *= 0.8f;
+				collider.GetComponent<Light>().color = Color.blue;
+			}
+			DestroyObject(gameObject);
         }
     }
 }

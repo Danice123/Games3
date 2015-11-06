@@ -60,11 +60,9 @@ public class p3 : MonoBehaviour
 				GetComponentInChildren<Animator>().SetTrigger("Attack");
 				player.squareCooldownTimer = 15;
 			}
-			
 		}
 		if (Input.GetButtonDown(playerNumber + "Ability2") && player.triangleCooldownTimer == 0)
         {
-
             float angle = Mathf.Atan2(facing.y, facing.x) * Mathf.Rad2Deg;
             for (int b = 0; b< 3 + 2 * player.ability2Level; b++)
             {
@@ -72,7 +70,6 @@ public class p3 : MonoBehaviour
                 a.GetComponent<Rigidbody2D>().velocity = facing * FIREBALL_SPEED;
                 a.GetComponent<fireball>().owner = gameObject.tag;
             }
-
             GetComponentInChildren<Animator>().SetTrigger("Attack");
             player.triangleCooldownTimer = 240;
         }
