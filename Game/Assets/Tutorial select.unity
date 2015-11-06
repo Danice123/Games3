@@ -145,12 +145,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2036422493}
-        m_MethodName: LoadCharSelect
+        m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 4
+          m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -170,7 +170,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 72b004c519c8baa4388e6857fdad2219, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 20defe8dc26f28f44aadaae7106c5016, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -249,7 +249,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 1dea6669360355d47a29c4f1e33f5d50, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f053258488c30154688e769abff63073, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -297,12 +297,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2036422493}
-        m_MethodName: LoadLevel
+        m_MethodName: LoadCharSelect
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 5
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -562,7 +562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 77be2e0e5e13dc7458640f5bfe2de137, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3d080de7ffbef2a439cdef0618f5ebca, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -676,7 +676,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: 65754d4523cd03a4ebe32a23100b0ad7, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 24464c87b0c62644090c964ba31f2485, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -765,12 +765,12 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 2036422493}
-        m_MethodName: LoadCharSelect
+        m_MethodName: LoadLevel
         m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 2
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -790,7 +790,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Sprite: {fileID: 21300000, guid: bd947886bba7f8344b9ca952f66846a4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 98e74ee55abe1f14c936d4e98552cbcb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
