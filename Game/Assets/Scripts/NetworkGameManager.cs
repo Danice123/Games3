@@ -33,8 +33,8 @@ public class NetworkGameManager : MonoBehaviour {
 		if (player != null && player.GetComponent<Player> ().isDead) {
 			player.GetComponent<Player>().respawnTimer--;
 			if (player.GetComponent<Player>().respawnTimer <= 0) {
-				player.SetActive(true);
 				player.GetComponent<Player>().isDead = false;
+				player.GetComponent<NetworkView>().RPC("respawn", RPCMode.AllBuffered, null);
 			}
 		}
 	}

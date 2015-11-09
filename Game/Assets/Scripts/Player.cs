@@ -55,7 +55,8 @@ public class Player : MonoBehaviour {
 			isDead = true;
 			GetComponent<Transform>().position = respawnPosition.position;
 			GetComponent<NetworkView>().RPC("resetHealth", RPCMode.AllBuffered, null);
-			gameObject.SetActive(false);
+			kill ();
+			GetComponent<NetworkView>().RPC("kill", RPCMode.OthersBuffered, null);
 		}
 
 		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
@@ -114,5 +115,21 @@ public class Player : MonoBehaviour {
 		} else {
 			Physics2D.IgnoreCollision(hit.collider, GetComponent<Collider2D>());
 		}
+	}
+
+	[RPC]
+	void kill() {
+		if (!GetComponent<NetworkView>().isMine)
+			transform.GetChild (0).gameObject.SetActive (false);
+		else
+			gameObject.SetActive (false);
+	}
+	
+	[RPC]
+	void respawn() {
+		if (!GetComponent<NetworkView>().isMine)
+			transform.GetChild (0).gameObject.SetActive (true);
+		else
+			gameObject.SetActive (true);
 	}
 }
