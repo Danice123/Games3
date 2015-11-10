@@ -17,6 +17,9 @@ public class Player : MonoBehaviour {
 	public Vector2 facing = new Vector2(1, 0);
 	public int jumped = 0;
 
+	public float slowTimer;
+	public float stunTimer;
+
 	public int level = 1;
 	public int ability1Level = 0;
 	public int ability2Level = 0;
@@ -26,6 +29,8 @@ public class Player : MonoBehaviour {
     public int max_exp = 100;
 	public float squareCooldown, squareCooldownTimer;
 	bool levelupMode = false;
+
+	public GameObject model;
 
 	private Animator animator;
     
