@@ -28,6 +28,7 @@ public class Player : MonoBehaviour {
 	public int abilityPoints = 1;
     public int max_exp = 100;
 	public float squareCooldown, squareCooldownTimer;
+    public float originalMoveSpeed;
 	bool levelupMode = false;
 
 	public GameObject model;
@@ -37,6 +38,7 @@ public class Player : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		animator = GetComponentInChildren<Animator> ();
+        originalMoveSpeed = moveSpeed;
 	}
 	
     public void setcooldown(int cd)
@@ -63,7 +65,7 @@ public class Player : MonoBehaviour {
 			kill ();
 			GetComponent<NetworkView>().RPC("kill", RPCMode.OthersBuffered, null);
 		}
-
+        
 		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
 			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
 				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
@@ -102,6 +104,17 @@ public class Player : MonoBehaviour {
 					levelupMode = false;
 				}
 			}
+            if(slowTimer != 0)
+            {
+                model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+                slowTimer--;
+            }
+            else
+            {
+                model.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+                moveSpeed = originalMoveSpeed;
+            }
+
 		}
 	}
 

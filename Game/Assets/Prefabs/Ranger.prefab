@@ -890,6 +890,8 @@ MonoBehaviour:
   maxHealth: 400
   xOffset: 40
   yOffset: 50
+  showBar: 1
+  model: {fileID: 0}
 --- !u!114 &11479062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -913,6 +915,8 @@ MonoBehaviour:
   triangleCooldown: 0
   facing: {x: 1, y: 0}
   jumped: 0
+  slowTimer: 0
+  stunTimer: 0
   level: 1
   ability1Level: 0
   ability2Level: 0
@@ -922,6 +926,8 @@ MonoBehaviour:
   max_exp: 100
   squareCooldown: 0
   squareCooldownTimer: 0
+  originalMoveSpeed: 0
+  model: {fileID: 155106}
 --- !u!114 &11495910
 MonoBehaviour:
   m_ObjectHideFlags: 1

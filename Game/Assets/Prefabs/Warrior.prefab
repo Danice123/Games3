@@ -951,6 +951,8 @@ MonoBehaviour:
   maxHealth: 500
   xOffset: 40
   yOffset: 50
+  showBar: 1
+  model: {fileID: 0}
 --- !u!114 &11454410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -974,6 +976,8 @@ MonoBehaviour:
   triangleCooldown: 0
   facing: {x: 1, y: 0}
   jumped: 0
+  slowTimer: 0
+  stunTimer: 0
   level: 1
   ability1Level: 0
   ability2Level: 0
@@ -983,6 +987,8 @@ MonoBehaviour:
   max_exp: 100
   squareCooldown: 0
   squareCooldownTimer: 0
+  originalMoveSpeed: 0
+  model: {fileID: 164422}
 --- !u!114 &11473444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -995,11 +1001,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sword: {fileID: 121804, guid: 259db2cbb7b47a143894ebcac3e6c012, type: 2}
-  jabspeed: 2
+  blade1: {fileID: 0}
+  blade2: {fileID: 0}
   IsSword: {fileID: 0}
+  swordtime: 1
   shield: {fileID: 144084, guid: 5d04fbf50c4682a4bb9f64c9c1ad8817, type: 2}
   shieldtime: .5
   IsShield: {fileID: 0}
+  bladetime: 4
 --- !u!137 &13739308
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 1
@@ -1118,6 +1127,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_StateSynchronization
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: model
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

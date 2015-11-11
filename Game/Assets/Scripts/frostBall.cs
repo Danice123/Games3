@@ -36,8 +36,9 @@ public class frostBall : MonoBehaviour {
             if (collider.GetComponent<Health>() == null) return;
             collider.gameObject.GetComponent<Health>().health -= damage;
 			if(collider.GetComponent<Player>() != null){
-				collider.GetComponent<Player>().moveSpeed *= 0.8f;
-				collider.GetComponent<Light>().color = Color.blue;
+				collider.GetComponent<Player>().moveSpeed = 0.8f;
+                collider.GetComponent<Player>().slowTimer = 60;
+                collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
 			}
 			DestroyObject(gameObject);
         }
