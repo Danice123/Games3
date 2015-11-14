@@ -37,6 +37,6 @@ public class CameraControl : MonoBehaviour {
 			return;
 		}
 		Vector3 newPos = tracking.GetComponent<Transform> ().position;
-		GetComponent<Transform> ().position = new Vector3 (newPos.x, newPos.y, pos.z);
+		GetComponent<Transform> ().position = new Vector3 (newPos.x, newPos.y + 3, pos.z);
 	}
 }
