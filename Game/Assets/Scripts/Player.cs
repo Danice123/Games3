@@ -128,6 +128,7 @@ public class Player : MonoBehaviour {
 				if (exp >= max_exp) {
 					level++;
 					abilityPoints++;
+					exp = 0;
 				}
 			}
 			DestroyObject(hit.gameObject);
