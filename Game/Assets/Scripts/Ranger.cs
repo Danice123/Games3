@@ -20,6 +20,8 @@ public class Ranger : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		player = GetComponent<Player> ();
+		player.triangleCooldown = 240;
+		player.squareCooldown = 15;
 		if ((Network.isServer || Network.isClient) && !GetComponent<NetworkView> ().isMine) {
 			Destroy (GetComponent<Rigidbody2D>());
 		}
@@ -34,7 +36,7 @@ public class Ranger : MonoBehaviour {
 			Vector2 facing = player.facing;
 
 			//Ability 1
-			if (Input.GetButtonDown (playerNumber + "Ability1")/* && player.ability1Level > 0*/) {
+			if (Input.GetButtonDown (playerNumber + "Ability1") && player.squareCooldownTimer == 0 /* && player.ability1Level > 0*/) {
 				float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
 				Vector2 vel = facing * arrowSpeed + new Vector2 (0, 5);
 				Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
@@ -43,14 +45,16 @@ public class Ranger : MonoBehaviour {
 				shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
 				view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+				player.squareCooldownTimer = 15;
 			}
 
 			//Ability 2
-			if (Input.GetButtonDown (playerNumber + "Ability2")/* && player.ability2Level > 0*/) {
+			if (Input.GetButtonDown (playerNumber + "Ability2") && player.triangleCooldownTimer == 0 /* && player.ability2Level > 0*/) {
 				ticksHeld = 0;
 				player.canMove = false;
 				Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, vel.y);
+				player.triangleCooldownTimer = 240;
 			}
 			if (ticksHeld >= 0) {
 				ticksHeld++;
@@ -70,6 +74,14 @@ public class Ranger : MonoBehaviour {
 			}
 		}
 		GetComponentInChildren<Animator> ().SetBool("isAttacking", player.canMove);
+		player.triangleCooldownTimer--;
+		if (player.triangleCooldownTimer < 0) {
+			player.triangleCooldownTimer = 0;
+		}
+		player.squareCooldownTimer--;
+		if (player.squareCooldownTimer < 0) {
+			player.squareCooldownTimer = 0;
+		}
 	}
 
 	[RPC]
