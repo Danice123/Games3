@@ -6,6 +6,7 @@ public class NetworkStart : MonoBehaviour {
 	public GameObject canvas;
 	
 	public GameObject ranger;
+	public GameObject mage;
 	public GameObject gm;
 	
 	public void playerChooseCharacter(int character) {
@@ -17,7 +18,7 @@ public class NetworkStart : MonoBehaviour {
 			return;
 			break;
 		case 2:
-			return;
+			gm.GetComponent<NetworkGameManager>().player = mage;
 			break;
 		}
 		canvas.SetActive (false);

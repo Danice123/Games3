@@ -27,15 +27,13 @@ public class Ranger : MonoBehaviour {
 		largeArrowList = new List<GameObject> ();
 	}
 
-	void Update () {
-
-	}
-
 	void FixedUpdate () {
 		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
 			NetworkView view = GetComponent<NetworkView> ();
 			string playerNumber = player.playerNumber;
 			Vector2 facing = player.facing;
+
+			//Ability 1
 			if (Input.GetButtonDown (playerNumber + "Ability1")/* && player.ability1Level > 0*/) {
 				float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
 				Vector2 vel = facing * arrowSpeed + new Vector2 (0, 5);
@@ -43,18 +41,17 @@ public class Ranger : MonoBehaviour {
 				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 
 				shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-				view.RPC("shootArrow", RPCMode.Others, pos, q, new Vector3(vel.x, vel.y, 0));
+				view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
 			}
-		
+
+			//Ability 2
 			if (Input.GetButtonDown (playerNumber + "Ability2")/* && player.ability2Level > 0*/) {
 				ticksHeld = 0;
 				player.canMove = false;
-
 				Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 				GetComponent<Rigidbody2D> ().velocity = new Vector2 (0, vel.y);
 			}
-		
 			if (ticksHeld >= 0) {
 				ticksHeld++;
 			
@@ -65,7 +62,7 @@ public class Ranger : MonoBehaviour {
 					Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 
 					shootLargeArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-					view.RPC("shootLargeArrow", RPCMode.Others, pos, q, new Vector3(vel.x, vel.y, 0));
+					view.RPC("shootLargeArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 					ticksHeld = -1;
 					player.canMove = true;
 					GetComponentInChildren<Animator> ().SetTrigger ("Attack");

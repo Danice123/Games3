@@ -15,7 +15,7 @@ public class fireball : MonoBehaviour {
     void FixedUpdate()
     {
         if (ticksAlive == 0)
-            DestroyObject(gameObject);
+			gameObject.SetActive(false);
         ticksAlive--;
 
         Vector2 dir = GetComponent<Rigidbody2D>().velocity;
@@ -27,14 +27,14 @@ public class fireball : MonoBehaviour {
     {
         if (collider.CompareTag("Ground") || collider.CompareTag("shield"))
         {
-            DestroyObject(gameObject);
+			gameObject.SetActive(false);
         }
         if (!collider.CompareTag(owner))
         {
             UnityEngine.Debug.Log("Inner If");
             if (collider.GetComponent<Health>() == null) return;
-            collider.gameObject.GetComponent<Health>().health -= damage;
-            DestroyObject(gameObject);
+			if (!Network.isClient) collider.gameObject.GetComponent<Health>().health -= damage;
+			gameObject.SetActive(false);
         }
     }
 }

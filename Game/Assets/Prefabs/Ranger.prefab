@@ -436,7 +436,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121062}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.22952485, y: 2.42750692, z: 0}
+  m_LocalPosition: {x: -169.848206, y: -6.46399689, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 461628}
@@ -890,8 +890,8 @@ MonoBehaviour:
   maxHealth: 400
   xOffset: 40
   yOffset: 50
-  showBar: 1
-  model: {fileID: 0}
+  showBar: 0
+  model: {fileID: 155106}
 --- !u!114 &11479062
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1064,6 +1064,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: arrowSpeed
       value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: showBar
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

@@ -29,17 +29,19 @@ public class cooldownView : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            var tImage = triangle.GetComponent<Image>();
-            Color c = tImage.color;
-            if(player.GetComponent<Player>().triangleCooldownTimer != 0)
-            {
-                c.a = (1.0f - (player.GetComponent<Player>().triangleCooldownTimer + 0.0f) / player.GetComponent<Player>().triangleCooldown)/2.0f;
-            }
-            else
-            {
-                c.a = 1.0f;
-            }
-            tImage.color = c;
+		if (player == null)
+			return;
+        var tImage = triangle.GetComponent<Image>();
+        Color c = tImage.color;
+        if(player.GetComponent<Player>().triangleCooldownTimer != 0)
+        {
+            c.a = (1.0f - (player.GetComponent<Player>().triangleCooldownTimer + 0.0f) / player.GetComponent<Player>().triangleCooldown)/2.0f;
+        }
+        else
+        {
+            c.a = 1.0f;
+        }
+        tImage.color = c;
 
 		var sImage = square.GetComponent<Image>();
 		c = sImage.color;

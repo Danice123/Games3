@@ -17,6 +17,7 @@ public class NetworkGameManager : MonoBehaviour {
 	public GameObject RightSpawner;
 	
 	public GameObject GameOverCanvas;
+	public GameObject HUD;
 	bool gameOver = false;
 	
 	// Use this for initialization
@@ -45,10 +46,14 @@ public class NetworkGameManager : MonoBehaviour {
 			player = (GameObject)Network.Instantiate (player, player1Spawn.position, Quaternion.identity, 0);
 			player.GetComponent<NetworkView> ().RPC ("networkSetTag", RPCMode.AllBuffered, "Left");
 			player.GetComponent<Player> ().respawnPosition = player1Spawn;
+			HUD.GetComponent<cooldownView>().player = player;
+			HUD.GetComponent<cooldownView>().initPlayer();
 		} else {
 			player = (GameObject) Network.Instantiate(player, player2Spawn.position, Quaternion.identity, 0);
 			player.GetComponent<NetworkView> ().RPC ("networkSetTag", RPCMode.AllBuffered, "Right");
 			player.GetComponent<Player> ().respawnPosition = player2Spawn;
+			HUD.GetComponent<cooldownView>().player = player;
+			HUD.GetComponent<cooldownView>().initPlayer();
 		}
 		
 		//Setup Camera

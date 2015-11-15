@@ -14,8 +14,9 @@ public class frostBall : MonoBehaviour {
 
     void FixedUpdate()
     {
-        if (ticksAlive == 0)
-            DestroyObject(gameObject);
+		if (ticksAlive == 0) {
+			gameObject.SetActive(false);
+		}
         ticksAlive--;
 
         Vector2 dir = GetComponent<Rigidbody2D>().velocity;
@@ -28,19 +29,22 @@ public class frostBall : MonoBehaviour {
     {
         if (collider.CompareTag("Ground") || collider.CompareTag("shield"))
         {
-            DestroyObject(gameObject);
+			gameObject.SetActive(false);
         }
         if (!collider.CompareTag(owner))
         {
             UnityEngine.Debug.Log("Inner If");
             if (collider.GetComponent<Health>() == null) return;
-            collider.gameObject.GetComponent<Health>().health -= damage;
-			if(collider.GetComponent<Player>() != null){
-				collider.GetComponent<Player>().moveSpeed = 0.8f;
-                collider.GetComponent<Player>().slowTimer = 60;
-                collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+			if (!Network.isClient) {
+	            collider.gameObject.GetComponent<Health>().health -= damage;
+				if(collider.GetComponent<Player>() != null){
+					//slow to fix still
+					collider.GetComponent<Player>().moveSpeed = 0.8f;
+	                collider.GetComponent<Player>().slowTimer = 60;
+	                collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+				}
 			}
-			DestroyObject(gameObject);
+			gameObject.SetActive(false);
         }
     }
 }
