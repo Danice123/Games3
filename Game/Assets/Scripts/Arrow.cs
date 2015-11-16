@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour {
 	public int ticksAlive = 30;
 	public int rotateSpeed = 100;
 	public string owner;
+	public float stunTimer = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -34,6 +35,9 @@ public class Arrow : MonoBehaviour {
 			if (!Network.isClient) {
 				collider.GetComponent<Health>().changeHealth(-damage);
 				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+				if(collider.GetComponent<Player>()){
+					collider.GetComponent<Player>().stunTimer = stunTimer;
+				}
 			}
 			gameObject.SetActive(false);
 		}

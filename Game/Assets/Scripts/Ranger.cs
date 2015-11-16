@@ -41,11 +41,12 @@ public class Ranger : MonoBehaviour {
 				Vector2 vel = facing * arrowSpeed + new Vector2 (0, 5);
 				Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
 				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-
-				shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-				view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
-				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
-				player.squareCooldownTimer = 15;
+				for (int b = 0; b< player.ability2Level + 1; b++) {
+					shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
+					view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
+					GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+					player.squareCooldownTimer = 15;
+				}
 			}
 
 			//Ability 2
@@ -64,9 +65,10 @@ public class Ranger : MonoBehaviour {
 					Vector2 vel = facing * largeArrowSpeed;
 					Vector3 pos = GetComponent<Transform> ().position + new Vector3 (0, 1, 0);
 					Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
-
-					shootLargeArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-					view.RPC("shootLargeArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
+					for(int a = 0; a < player.ability2Level + 1; a++){
+						shootLargeArrow(pos, q, new Vector3(vel.x, vel.y, 0));
+						view.RPC("shootLargeArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
+					}
 					ticksHeld = -1;
 					player.canMove = true;
 					GetComponentInChildren<Animator> ().SetTrigger ("Attack");

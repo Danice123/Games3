@@ -75,6 +75,7 @@ MonoBehaviour:
   ticksAlive: 50
   rotateSpeed: 100
   owner: 
+  stunTimer: 40
 --- !u!212 &21218240
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -131,6 +132,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: .75
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: stunTimer
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
