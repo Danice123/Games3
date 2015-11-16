@@ -6,6 +6,7 @@ public class cooldownView : MonoBehaviour {
     public GameObject x, square, circle, triangle;
     public GameObject player;
     public GameObject HUD;
+	public GameObject levelUp;
     public GameObject healthBar;
     public GameObject expBar;
     public GameObject circleOutline, squareOutline, triangleOutline, xOutline;
@@ -18,6 +19,9 @@ public class cooldownView : MonoBehaviour {
         expBarOriginalPos = expBar.transform.position.x;
         previousHealth = player.GetComponent<Health>().health;
         startingHealthPos = healthBar.transform.position.x;
+		Color temp = levelUp.GetComponent<Image> ().color;
+		temp.a = 0;
+		levelUp.GetComponent<Image> ().color = temp;
     }
     public void initPlayer()
     {
@@ -32,6 +36,7 @@ public class cooldownView : MonoBehaviour {
 		if (player == null)
 			return;
         var tImage = triangle.GetComponent<Image>();
+		var levelupImage = levelUp.GetComponent<Image>();
         Color c = tImage.color;
         if(player.GetComponent<Player>().triangleCooldownTimer != 0)
         {
@@ -55,6 +60,20 @@ public class cooldownView : MonoBehaviour {
 		}
 		sImage.color = c;
 	
+
+		//Level up indicator
+		if (player.GetComponent<Player> ().abilityPoints > 0) {
+			Color temp = levelupImage.color;
+			temp.a = 1;
+			levelUp.GetComponent<Image> ().color = temp;
+		} else {
+			Color temp = levelupImage.color;
+			temp.a = 0;
+			levelUp.GetComponent<Image> ().color = temp;
+		}
+
+
+
 		Vector3 healthTemp = new Vector3 (healthBarOriginalPos - (float)healthBar.GetComponent<Image>().rectTransform.rect.width *
 		                      (1 - (float)player.GetComponent<Health> ().health / (float)player.GetComponent<Health> ().maxHealth),
 		                      healthBar.transform.position.y,

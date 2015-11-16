@@ -904,8 +904,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerNumber: 1
-  jumpTimes: 2
-  moveSpeed: 5
+  jumpTimes: 3
+  moveSpeed: 10
   jumpSpeed: 12
   isDead: 0
   respawnTimer: 60
@@ -1068,6 +1068,18 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: showBar
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: moveSpeed
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpSpeed
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpTimes
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

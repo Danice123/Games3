@@ -18,7 +18,9 @@ public class p3 : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
         player = GetComponent<Player>();
+		player.abilityPoints = 1;
         player.triangleCooldown = 240;
 		player.squareCooldown = 15;
 		if ((Network.isServer || Network.isClient) && !GetComponent<NetworkView> ().isMine) {
