@@ -41,7 +41,11 @@ public class sword : MonoBehaviour {
 	void OnTriggerEnter2D(Collider2D collider) {
 
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
-			collider.gameObject.GetComponent<Health>().health -= damage;
+			if (collider.GetComponent<Health>() == null) return;
+			if (!Network.isClient) {
+				collider.GetComponent<Health>().changeHealth(-damage);
+				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+			}
 			ticksAlive = 20;
 			gameObject.SetActive(false);
 		}

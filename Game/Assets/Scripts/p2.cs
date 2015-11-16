@@ -36,6 +36,11 @@ public class p2 : MonoBehaviour {
 		IsSword.GetComponent<sword>().owner = gameObject.tag;
 		IsSword.GetComponent<sword> ().player = gameObject;
 		IsSword.SetActive (false);
+
+		player.triangleCooldown = 60;
+		player.squareCooldown = 10;
+
+
 	}
 
 	
@@ -47,16 +52,18 @@ public class p2 : MonoBehaviour {
 
 
 	void FixedUpdate() {
-		string playerNumber = GetComponent<Player> ().playerNumber;
-		Vector2 facing = GetComponent<Player> ().facing;
-		shieldtime -= Time.deltaTime;
-		swordtime -= Time.deltaTime;
-		if (!IsSword.activeSelf) {
-			IsSword.transform.position = gameObject.transform.position;
-		}
-		if (!IsShield.activeSelf) {
-			IsShield.transform.position = gameObject.transform.position;
-		}
+		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
+			NetworkView view = GetComponent<NetworkView> ();
+			string playerNumber = GetComponent<Player> ().playerNumber;
+			Vector2 facing = GetComponent<Player> ().facing;
+			shieldtime -= Time.deltaTime;
+			swordtime -= Time.deltaTime;
+			if (!IsSword.activeSelf) {
+				IsSword.transform.position = gameObject.transform.position;
+			}
+			if (!IsShield.activeSelf) {
+				IsShield.transform.position = gameObject.transform.position;
+			}
 
 
 
@@ -66,23 +73,31 @@ public class p2 : MonoBehaviour {
 			
 
 
-		
-		if (Input.GetButtonDown (playerNumber + "Ability2") && shieldtime <=0) {
-			Debug.Log ("test");
-			shieldtime = 3.0f;
-			IsShield.SetActive(true);
-
-		}
-
-		if (Input.GetButtonDown (playerNumber + "Ability3") && bladetime <=0) {
-
-
 			
-		}
-		
-		if (Input.GetButtonDown (playerNumber + "Ability1") && swordtime <=0) {
-			swordtime = 1.0f;
-			IsSword.SetActive(true);
+			if (Input.GetButtonDown (playerNumber + "Ability2") && player.triangleCooldownTimer == 0) {
+
+				shieldtime = 3.0f;
+
+				SetShield();
+				view.RPC("SetShield", RPCMode.OthersBuffered, null);
+				
+				player.triangleCooldownTimer = 60;
+
+
+			}
+
+			if (Input.GetButtonDown (playerNumber + "Ability3") && bladetime <= 0) {
+
+
+				
+			}
+			
+			if (Input.GetButtonDown (playerNumber + "Ability1") && player.squareCooldownTimer == 0) {
+				swordtime = 1.0f;
+				SetSword();
+				view.RPC("SetSword", RPCMode.OthersBuffered, null);
+
+				player.squareCooldownTimer = 10;
 
 
 				
@@ -90,6 +105,39 @@ public class p2 : MonoBehaviour {
 
 			}
 		}
+
+		player.triangleCooldownTimer--;
+		if (player.triangleCooldownTimer < 0) {
+			player.triangleCooldownTimer = 0;
+		}
+		player.squareCooldownTimer--;
+		if (player.squareCooldownTimer < 0) {
+			player.squareCooldownTimer = 0;
+		}
+
+	}
+
+
+	[RPC]
+	void SetShield() {
+		
+		IsShield.SetActive (true);
+		
+	}
+
+
+	[RPC]
+	void SetSword() {
+
+		IsSword.SetActive (true);
+
+	}
+
+	[RPC]
+	void networkSetTag(string tag) {
+		this.tag = tag;
+	}
+
 
 
 	}
