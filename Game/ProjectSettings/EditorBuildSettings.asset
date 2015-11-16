@@ -19,3 +19,7 @@ EditorBuildSettings:
     path: Assets/Tutorial select.unity
   - enabled: 1
     path: Assets/AboutPage.unity
+  - enabled: 1
+    path: Assets/MagePage.unity
+  - enabled: 1
+    path: Assets/RangerPage.unity

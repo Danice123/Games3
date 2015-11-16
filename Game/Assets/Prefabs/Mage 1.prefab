@@ -828,7 +828,7 @@ MonoBehaviour:
   playerNumber: 1
   jumpTimes: 2
   moveSpeed: 10
-  jumpSpeed: 10
+  jumpSpeed: 15
   isDead: 0
   respawnTimer: 60
   respawnPosition: {fileID: 0}
@@ -993,6 +993,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_StateSynchronization
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: jumpSpeed
+      value: 15
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
