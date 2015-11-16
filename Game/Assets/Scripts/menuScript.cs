@@ -52,7 +52,7 @@ public class menuScript : MonoBehaviour {
         }
         else
         {
-            PlayerSpawn.playerType = ch;
+			persistObject.GetComponent<menuObjectScript>().player1 = ch;
             Application.LoadLevel(persistObject.GetComponent<menuObjectScript>().gameType);
         }
 

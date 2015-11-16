@@ -42,18 +42,19 @@ public class GameManager : MonoBehaviour {
                 player1 = mage;
                 break;
         }
-        switch (persistObject.GetComponent<menuObjectScript>().player2)
-        {
-            case 0:
-                player2 = ranger;
-                break;
-            case 1:
-                player2 = warrior;
-                break;
-            case 2:
-                player2 = mage;
-                break;
-        }
+		if (persistObject.GetComponent<menuObjectScript> ().gameType != 2) {
+			switch (persistObject.GetComponent<menuObjectScript> ().player2) {
+			case 0:
+				player2 = ranger;
+				break;
+			case 1:
+				player2 = warrior;
+				break;
+			case 2:
+				player2 = mage;
+				break;
+			}
+		}
         StartGame();
     }
 	
@@ -86,20 +87,22 @@ public class GameManager : MonoBehaviour {
 		player1.GetComponent<Player> ().respawnPosition = player1Spawn;
 
 
-
-		player2 = (GameObject) Instantiate (player2, player2Spawn.position, Quaternion.identity);
-		player2.GetComponent<Player> ().playerNumber = "2";
-		player2.tag = "Right";
-		player2.GetComponent<Player> ().respawnPosition = player2Spawn;
-
+		if (player2 != null) {
+			player2 = (GameObject)Instantiate (player2, player2Spawn.position, Quaternion.identity);
+			player2.GetComponent<Player> ().playerNumber = "2";
+			player2.tag = "Right";
+			player2.GetComponent<Player> ().respawnPosition = player2Spawn;
+		}
 
         //HUDS
         HUD1.GetComponent<cooldownView>().player = player1;
-        HUD2.GetComponent<cooldownView>().player = player2;
+		if (player2 != null)
+        	HUD2.GetComponent<cooldownView>().player = player2;
 
         //Setup Camera
         camera.GetComponent<CameraControl> ().tracking = player1;
-		camera.GetComponent<CameraControl> ().tracking2 = player2;
+		if (player2 != null)
+			camera.GetComponent<CameraControl> ().tracking2 = player2;
 
 		//Setup Towers
 		GameObject gotower;
