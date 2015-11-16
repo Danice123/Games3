@@ -30,6 +30,7 @@ public class Player : MonoBehaviour {
 	public float squareCooldown, squareCooldownTimer;
     public float originalMoveSpeed;
 	bool levelupMode = false;
+	public GameObject levelUpText;
 
 	public GameObject model;
 
@@ -129,6 +130,8 @@ public class Player : MonoBehaviour {
 					level++;
 					abilityPoints++;
 					exp = 0;
+					levelUpText.SetActive(true);
+					levelUpText.GetComponent<LevelUpText>().timer = 60;
 				}
 			}
 			DestroyObject(hit.gameObject);

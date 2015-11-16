@@ -48,12 +48,14 @@ public class NetworkGameManager : MonoBehaviour {
 			player.GetComponent<Player> ().respawnPosition = player1Spawn;
 			HUD.GetComponent<cooldownView>().player = player;
 			HUD.GetComponent<cooldownView>().initPlayer();
+			player.GetComponent<Player> ().levelUpText = HUD.transform.Find ("LevelUp").gameObject;
 		} else {
 			player = (GameObject) Network.Instantiate(player, player2Spawn.position, Quaternion.identity, 0);
 			player.GetComponent<NetworkView> ().RPC ("networkSetTag", RPCMode.AllBuffered, "Right");
 			player.GetComponent<Player> ().respawnPosition = player2Spawn;
 			HUD.GetComponent<cooldownView>().player = player;
 			HUD.GetComponent<cooldownView>().initPlayer();
+			player.GetComponent<Player> ().levelUpText = HUD.transform.Find ("LevelUp").gameObject;
 		}
 		
 		//Setup Camera
