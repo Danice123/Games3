@@ -85,6 +85,7 @@ public class Player : MonoBehaviour {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
 				}
 				animator.SetFloat ("Speed", Mathf.Abs (ha));
+				GetComponent<NetworkView>().RPC("setPlayerSpeed", RPCMode.OthersBuffered, Mathf.Abs (ha));
 			}
 			if (!levelupMode && abilityPoints > 0 && Input.GetButtonDown ("LevelUp" + playerNumber)) {
 				levelupMode = true;
@@ -113,6 +114,7 @@ public class Player : MonoBehaviour {
             }
             else
             {
+				GetComponent<NetworkView>().RPC("playerIsFine", RPCMode.OthersBuffered);
                 model.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
                 moveSpeed = originalMoveSpeed;
             }
@@ -154,5 +156,28 @@ public class Player : MonoBehaviour {
 			transform.GetChild (0).gameObject.SetActive (true);
 		else
 			gameObject.SetActive (true);
+	}
+
+	[RPC]
+	void playerIsSlowed() {
+		moveSpeed = 0.8f;
+		slowTimer = 60;
+		model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
+	}
+
+	[RPC]
+	void playerIsFine() {
+		model.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
+		moveSpeed = originalMoveSpeed;
+	}
+
+	[RPC]
+	void setPlayerSpeed(float speed) {
+		animator.SetFloat ("Speed", speed);
+	}
+
+	[RPC]
+	void setPlayerAttack() {
+		GetComponentInChildren<Animator> ().SetTrigger ("Attack");
 	}
 }

@@ -52,6 +52,7 @@ public class Minion : MonoBehaviour {
 				}
 				if (attackCooldown > 0)
 					attackCooldown--;
+				GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, false);
 				animator.SetBool ("walking", false);
 				animator.SetBool ("attack", true);
 			} else {
@@ -59,6 +60,7 @@ public class Minion : MonoBehaviour {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, vel.y);
 				else
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-moveSpeed, vel.y);
+				GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, true);
 				animator.SetBool ("walking", true);
 				animator.SetBool ("attack", false);
 			}
@@ -112,5 +114,11 @@ public class Minion : MonoBehaviour {
 			a.GetComponent<Rigidbody2D> ().velocity = new Vector2 (-0.5f, 0.5f) * expSpeed;
 		else
 			a.GetComponent<Rigidbody2D> ().velocity = new Vector2 (0.5f, 0.5f) * expSpeed;
+	}
+
+	[RPC]
+	void setAnimations(bool isWalking) {
+		animator.SetBool ("walking", isWalking);
+		animator.SetBool ("attack", !isWalking);
 	}
 }

@@ -35,14 +35,13 @@ public class frostBall : MonoBehaviour {
         {
             UnityEngine.Debug.Log("Inner If");
             if (collider.GetComponent<Health>() == null) return;
-			if (!Network.isClient) {
-	            collider.gameObject.GetComponent<Health>().health -= damage;
-				if(collider.GetComponent<Player>() != null){
-					//slow to fix still
-					collider.GetComponent<Player>().moveSpeed = 0.8f;
-	                collider.GetComponent<Player>().slowTimer = 60;
-	                collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
-				}
+            collider.gameObject.GetComponent<Health>().health -= damage;
+			if(collider.GetComponent<Player>() != null){
+				//slow to fix still
+				collider.GetComponent<Player>().GetComponent<NetworkView>().RPC("playerIsSlowed", RPCMode.OthersBuffered);
+				collider.GetComponent<Player>().moveSpeed = 0.8f;
+                collider.GetComponent<Player>().slowTimer = 60;
+                collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;
 			}
 			gameObject.SetActive(false);
         }

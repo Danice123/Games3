@@ -41,6 +41,7 @@ public class p3 : MonoBehaviour
 					shootIce(GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.AngleAxis (angle, Vector3.forward), facing * FROSTBALL_SPEED + new Vector2 (0, 5));
 					view.RPC("shootIce", RPCMode.OthersBuffered, GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.AngleAxis (angle, Vector3.forward), (Vector3) (facing * FROSTBALL_SPEED + new Vector2 (0, 5)));
 					GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+					GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 					player.squareCooldownTimer = 15;
 				}
 			}
@@ -52,6 +53,7 @@ public class p3 : MonoBehaviour
 					view.RPC("shootFire", RPCMode.OthersBuffered, GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.AngleAxis (angle, Vector3.forward), (Vector3) (facing * FIREBALL_SPEED));
 				}
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+				GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 				player.triangleCooldownTimer = 240;
 			} else {
 				player.triangleCooldownTimer--;

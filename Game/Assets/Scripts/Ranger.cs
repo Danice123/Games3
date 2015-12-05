@@ -45,6 +45,7 @@ public class Ranger : MonoBehaviour {
 				shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
 				view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+				GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 				player.squareCooldownTimer = 15;
 			}
 
@@ -70,6 +71,7 @@ public class Ranger : MonoBehaviour {
 					ticksHeld = -1;
 					player.canMove = true;
 					GetComponentInChildren<Animator> ().SetTrigger ("Attack");
+					GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 				}
 			}
 		}
