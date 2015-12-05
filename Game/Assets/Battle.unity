@@ -2791,6 +2791,30 @@ Prefab:
       propertyPath: m_Name
       value: Map
       objectReference: {fileID: 0}
+    - target: {fileID: 415004, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 465730, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 468070, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 453990, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 464004, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 13
+      objectReference: {fileID: 0}
+    - target: {fileID: 459984, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 12
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8366fa79c077b1f469da5d612994386d, type: 2}
   m_IsPrefabParent: 0
