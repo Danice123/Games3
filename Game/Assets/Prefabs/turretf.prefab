@@ -486,6 +486,8 @@ MonoBehaviour:
   maxHealth: 1000
   xOffset: 40
   yOffset: 50
+  showBar: 1
+  model: {fileID: 0}
 --- !u!114 &11487974
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -503,6 +505,8 @@ MonoBehaviour:
   crystal: {fileID: 167414}
   cannon_point: {fileID: 451218}
   crystal_point: {fileID: 471430}
+  fire: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
+  health: 0
 --- !u!114 &11496896
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1663,6 +1667,22 @@ Prefab:
       propertyPath: maxHealth
       value: 1000
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: fire1
+      value: 
+      objectReference: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: fire2
+      value: 
+      objectReference: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: fire3
+      value: 
+      objectReference: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: fire
+      value: 
+      objectReference: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 148836}

@@ -1,10 +1,16 @@
 fileFormatVersion: 2
 guid: 1ba9ca8146d2ec8458c08b3eedccbeb4
-timeCreated: 1444194709
-licenseType: Pro
+timeCreated: 1449454352
+licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - TowerShot: {instanceID: 0}
+  - cannon: {instanceID: 0}
+  - crystal: {instanceID: 0}
+  - cannon_point: {instanceID: 0}
+  - crystal_point: {instanceID: 0}
+  - fire: {fileID: 100000, guid: f766cb0ed6750804ebf9a931fb5412f2, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

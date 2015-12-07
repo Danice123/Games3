@@ -85,7 +85,6 @@ public class GameManager : MonoBehaviour {
 		player1 = (GameObject) Instantiate (player1, player1Spawn.position, Quaternion.identity);
 		player1.tag = "Left";
 		player1.GetComponent<Player> ().respawnPosition = player1Spawn;
-		player1.GetComponent<Player> ().levelUpText = HUD1.transform.Find ("LevelUp").gameObject;
 
 
 		if (player2 != null) {
@@ -93,7 +92,6 @@ public class GameManager : MonoBehaviour {
 			player2.GetComponent<Player> ().playerNumber = "2";
 			player2.tag = "Right";
 			player2.GetComponent<Player> ().respawnPosition = player2Spawn;
-			player2.GetComponent<Player> ().levelUpText = HUD2.transform.Find ("LevelUp").gameObject;
 		}
 
         //HUDS

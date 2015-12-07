@@ -14,6 +14,5 @@ public class Defender : MonoBehaviour {
 			turret.GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
 			turret.GetComponent<Tower>().kill();
 		}
-
 	}
 }

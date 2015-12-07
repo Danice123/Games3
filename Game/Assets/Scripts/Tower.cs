@@ -12,14 +12,40 @@ public class Tower : MonoBehaviour {
 	public GameObject crystal;
 	public Transform cannon_point;
 	public Transform crystal_point;
-	
+	public GameObject fire;
+	public int health;
+    int fireCounter = 0;
 	void Start () {
 		attackList = new List<GameObject> ();
 		Rdelay = delay;
+		health = transform.FindChild ("turretbase").GetComponent<Health> ().health;
+
+		if (health <= 1000) {
+			var fireObject = (GameObject)Instantiate(fire, transform.position, Quaternion.identity);
+		}
 	}
 
 	void FixedUpdate () {
-		if (tag == "Right") {
+		health = transform.FindChild ("turretbase").GetComponent<Health> ().health;
+        if (health <= 1000 && fireCounter == 0)
+        {
+            var fireObject = (GameObject)Instantiate(fire, transform.position, Quaternion.identity);
+            fireObject.transform.localScale = new Vector3(4.0f, 4.0f, 1.0f);
+            fireCounter++;
+        }
+        if(health <= 1000 && fireCounter == 1)
+        {
+            var fireObject = (GameObject)Instantiate(fire, transform.position + new Vector3(30, 40, 0), Quaternion.identity);
+            fireObject.transform.localScale = new Vector3(4.0f, 4.0f, 1.0f);
+            fireCounter++;
+        }
+        if(health <= 1000 && fireCounter == 2)
+        {
+            var fireObject = (GameObject)Instantiate(fire, transform.position + new Vector3(-30, 40, 0), Quaternion.identity);
+            fireObject.transform.localScale = new Vector3(4.0f, 4.0f, 1.0f);
+            fireCounter++;
+        }
+        if (tag == "Right") {
 			crystal.SetActive(true);
 			cannon.SetActive(false);
 		}
