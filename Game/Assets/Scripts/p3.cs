@@ -48,7 +48,7 @@ public class p3 : MonoBehaviour
 			//Ability 2
 			if (Input.GetButtonDown (playerNumber + "Ability2") && player.triangleCooldownTimer == 0) {
 				float angle = Mathf.Atan2 (facing.y, facing.x) * Mathf.Rad2Deg;
-				for (int b = 0; b< 3 + 2 * player.ability2Level; b++) {
+				for (int b = 0; b<= player.ability2Level; b++) {
 					shootFire(GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.AngleAxis (angle, Vector3.forward), facing * FIREBALL_SPEED);
 					view.RPC("shootFire", RPCMode.OthersBuffered, GetComponent<Transform> ().position + new Vector3 (0, 1, 0), Quaternion.AngleAxis (angle, Vector3.forward), (Vector3) (facing * FIREBALL_SPEED));
 				}

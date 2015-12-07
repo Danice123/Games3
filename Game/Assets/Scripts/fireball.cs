@@ -7,6 +7,7 @@ public class fireball : MonoBehaviour {
     public int ticksAlive = 50;
     public int rotateSpeed = 100;
     public string owner;
+
     // Use this for initialization
     void Start() {
 
@@ -19,7 +20,7 @@ public class fireball : MonoBehaviour {
         ticksAlive--;
 
         Vector2 dir = GetComponent<Rigidbody2D>().velocity;
-       
+       	
       
     }
 
