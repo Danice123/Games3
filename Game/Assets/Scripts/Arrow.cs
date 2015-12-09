@@ -33,11 +33,12 @@ public class Arrow : MonoBehaviour {
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			if (collider.GetComponent<Health>() == null) return;
 			if (!Network.isClient) {
-				collider.GetComponent<Health>().changeHealth(-damage);
 				if(isLarge){
 					collider.GetComponent<Player>().stunTimer = 100;
+					if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView>().RPC("setPlayerStun", RPCMode.OthersBuffered);
 				}
-				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+				collider.GetComponent<Health>().changeHealth(-damage);
+				if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
 			}
 			gameObject.SetActive(false);
 		}

@@ -38,7 +38,7 @@ public class frostBall : MonoBehaviour {
             collider.gameObject.GetComponent<Health>().health -= damage;
 			if(collider.GetComponent<Player>() != null){
 				//slow to fix still
-				collider.GetComponent<Player>().GetComponent<NetworkView>().RPC("playerIsSlowed", RPCMode.OthersBuffered);
+				if (NetworkManager.isNetworkGame) collider.GetComponent<Player>().GetComponent<NetworkView>().RPC("playerIsSlowed", RPCMode.OthersBuffered);
 				collider.GetComponent<Player>().moveSpeed = 0.8f;
                 collider.GetComponent<Player>().slowTimer = 60;
                 collider.GetComponent<Player>().model.GetComponent<SkinnedMeshRenderer>().material.color = Color.blue;

@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		NetworkManager.isNetworkGame = false;
         persistObject = GameObject.Find("persistObject");
         switch (persistObject.GetComponent<menuObjectScript>().player1)
         {
