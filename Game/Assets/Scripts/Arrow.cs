@@ -35,6 +35,7 @@ public class Arrow : MonoBehaviour {
 			if (!Network.isClient) {
 				if(isLarge){
 					collider.GetComponent<Player>().stunTimer = 100;
+					if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView>().RPC("setPlayerStun", RPCMode.OthersBuffered);
 				}
 				collider.GetComponent<Health>().changeHealth(-damage);
 				if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);

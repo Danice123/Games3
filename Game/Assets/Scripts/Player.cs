@@ -184,4 +184,9 @@ public class Player : MonoBehaviour {
 	void setPlayerAttack() {
 		GetComponentInChildren<Animator> ().SetTrigger ("Attack");
 	}
+
+	[RPC]
+	void setPlayerStun() {
+		collider.GetComponent<Player>().stunTimer = 100;
+	}
 }
