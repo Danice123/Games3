@@ -131,7 +131,7 @@ public class Player : MonoBehaviour {
 			jumped = jumpTimes;
 		} else if (hit.gameObject.tag == "Exp") {
 			if (!(Network.isServer && Network.isClient) || GetComponent<NetworkView> ().isMine) {
-				exp += 10;
+				exp += 20;
 				if (exp >= max_exp) {
 					level++;
 					abilityPoints++;
