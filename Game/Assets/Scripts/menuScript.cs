@@ -57,6 +57,10 @@ public class menuScript : MonoBehaviour {
         }
 
 	}
+
+	public void QuitGame(){
+		Application.Quit ();
+	}
 	// Update is called once per frame
 	void Update () {
 
