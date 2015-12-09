@@ -15,6 +15,7 @@ public class NetworkGameManager : MonoBehaviour {
 	
 	public GameObject LeftSpawner;
 	public GameObject RightSpawner;
+	public GameObject persistObject;
 	
 	public GameObject GameOverCanvas;
 	public GameObject HUD;
@@ -22,7 +23,7 @@ public class NetworkGameManager : MonoBehaviour {
 	
 	// Use this for initialization
 	void Start () {
-		
+		persistObject = GameObject.Find("persistObject");
 	}
 	
 	// Update is called once per frame

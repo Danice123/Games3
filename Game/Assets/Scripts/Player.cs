@@ -187,6 +187,6 @@ public class Player : MonoBehaviour {
 
 	[RPC]
 	void setPlayerStun() {
-		collider.GetComponent<Player>().stunTimer = 100;
+		GetComponent<Collider>().GetComponent<Player>().stunTimer = 100;
 	}
 }

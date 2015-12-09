@@ -949,10 +949,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1728231886}
   m_RootOrder: 10
-  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -63.7000008, y: -72}
-  m_SizeDelta: {x: -175.399994, y: -103.800003}
+  m_AnchoredPosition: {x: -187.75, y: -143.444}
+  m_SizeDelta: {x: 143.449997, y: 54}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &633619991
 MonoBehaviour:
@@ -1472,6 +1472,7 @@ MonoBehaviour:
   tower: {fileID: 148836, guid: da8ecf4b608a4cf48aee7c3c5b0f3421, type: 2}
   LeftSpawner: {fileID: 196700, guid: 14c8e92ec6c744f44bb795bbc1c3b600, type: 2}
   RightSpawner: {fileID: 145834, guid: 7d8f15e93f3e64746be533cb984c2035, type: 2}
+  persistObject: {fileID: 0}
   GameOverCanvas: {fileID: 676381152}
   HUD: {fileID: 1728231885}
 --- !u!148 &1085165997
@@ -2608,10 +2609,10 @@ RectTransform:
   - {fileID: 633619990}
   m_Father: {fileID: 984991423}
   m_RootOrder: 0
-  m_AnchorMin: {x: .74671793, y: .741422772}
+  m_AnchorMin: {x: .985282183, y: .979616642}
   m_AnchorMax: {x: .985282183, y: .979616642}
-  m_AnchoredPosition: {x: 1.5, y: .699996948}
-  m_SizeDelta: {x: -5, y: -.399993896}
+  m_AnchoredPosition: {x: -122.5, y: -68.8000031}
+  m_SizeDelta: {x: 243, y: 138.600006}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1728231887
 MonoBehaviour:

@@ -4,6 +4,7 @@ using System.Collections;
 public class NetworkStart : MonoBehaviour {
 	
 	public GameObject canvas;
+
 	
 	public GameObject ranger;
 	public GameObject mage;
