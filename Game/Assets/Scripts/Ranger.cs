@@ -43,10 +43,10 @@ public class Ranger : MonoBehaviour {
 				Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 				for (int b = 0; b <= player.ability1Level; b++) {
 					shootArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-					view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
+					if (NetworkManager.isNetworkGame) view.RPC("shootArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 				}
 				GetComponentInChildren<Animator> ().SetTrigger ("Attack");
-				GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 				player.squareCooldownTimer = 15;
 			}
 
@@ -68,12 +68,12 @@ public class Ranger : MonoBehaviour {
 					Quaternion q = Quaternion.AngleAxis (angle, Vector3.forward);
 					for (int b = 0; b <= player.ability2Level; b++) {
 						shootLargeArrow(pos, q, new Vector3(vel.x, vel.y, 0));
-						view.RPC("shootLargeArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
+						if (NetworkManager.isNetworkGame) view.RPC("shootLargeArrow", RPCMode.OthersBuffered, pos, q, new Vector3(vel.x, vel.y, 0));
 						ticksHeld = -1;
 					}
 					player.canMove = true;
 					GetComponentInChildren<Animator> ().SetTrigger ("Attack");
-					GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
+					if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("setPlayerAttack", RPCMode.OthersBuffered);
 				}
 			}
 		}

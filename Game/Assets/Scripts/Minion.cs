@@ -32,9 +32,9 @@ public class Minion : MonoBehaviour {
 		if (!Network.isClient) {
 			if (GetComponent<Health> ().health <= 0) {
 				spawnExp();
-				GetComponent<NetworkView> ().RPC("spawnExp", RPCMode.OthersBuffered, null);
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView> ().RPC("spawnExp", RPCMode.OthersBuffered, null);
 				kill ();
-				GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
 			}
 			Vector2 vel = GetComponent<Rigidbody2D> ().velocity;
 
@@ -47,20 +47,20 @@ public class Minion : MonoBehaviour {
 						return;
 					}
 					target.GetComponent<Health>().changeHealth(-10);
-					target.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+					if (NetworkManager.isNetworkGame) target.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
 					attackCooldown = 20;
 				}
 				if (attackCooldown > 0)
 					attackCooldown--;
-				GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, false);
-				animator.SetBool ("walking", false);
-				animator.SetBool ("attack", true);
+					if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, false);
+					animator.SetBool ("walking", false);
+					animator.SetBool ("attack", true);
 			} else {
 				if (isLeftMinion)
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (moveSpeed, vel.y);
 				else
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (-moveSpeed, vel.y);
-				GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, true);
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("setAnimations", RPCMode.OthersBuffered, true);
 				animator.SetBool ("walking", true);
 				animator.SetBool ("attack", false);
 			}

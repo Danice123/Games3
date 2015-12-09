@@ -63,9 +63,9 @@ public class Player : MonoBehaviour {
 			isDead = true;
 			GetComponent<Transform>().position = respawnPosition.position;
 			GetComponent<Health>().resetHealth();
-			GetComponent<NetworkView>().RPC("resetHealth", RPCMode.OthersBuffered, null);
+			if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("resetHealth", RPCMode.OthersBuffered, null);
 			kill ();
-			GetComponent<NetworkView>().RPC("kill", RPCMode.OthersBuffered, null);
+			if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("kill", RPCMode.OthersBuffered, null);
 		}
         
 		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
@@ -85,7 +85,7 @@ public class Player : MonoBehaviour {
 					GetComponent<Rigidbody2D> ().velocity = new Vector2 (ha, vel.y);
 				}
 				animator.SetFloat ("Speed", Mathf.Abs (ha));
-				GetComponent<NetworkView>().RPC("setPlayerSpeed", RPCMode.OthersBuffered, Mathf.Abs (ha));
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("setPlayerSpeed", RPCMode.OthersBuffered, Mathf.Abs (ha));
 			}
 			if (!levelupMode && abilityPoints > 0 && Input.GetButtonDown ("LevelUp" + playerNumber)) {
 				levelupMode = true;
@@ -114,7 +114,7 @@ public class Player : MonoBehaviour {
             }
             else
             {
-				GetComponent<NetworkView>().RPC("playerIsFine", RPCMode.OthersBuffered);
+				if (NetworkManager.isNetworkGame) GetComponent<NetworkView>().RPC("playerIsFine", RPCMode.OthersBuffered);
                 model.GetComponent<SkinnedMeshRenderer>().material.color = Color.white;
                 moveSpeed = originalMoveSpeed;
             }

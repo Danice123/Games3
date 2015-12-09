@@ -33,7 +33,7 @@ public class Arrow : MonoBehaviour {
 			if (collider.GetComponent<Health>() == null) return;
 			if (!Network.isClient) {
 				collider.GetComponent<Health>().changeHealth(-damage);
-				collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
+				if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
 			}
 			gameObject.SetActive(false);
 		}

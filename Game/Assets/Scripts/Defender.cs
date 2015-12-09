@@ -11,7 +11,7 @@ public class Defender : MonoBehaviour {
 			else
 				GameObject.Find("GameManager").GetComponent<GameManager>().endGame(tag);
 
-			turret.GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
+			if (NetworkManager.isNetworkGame) turret.GetComponent<NetworkView> ().RPC("kill", RPCMode.OthersBuffered, null);
 			turret.GetComponent<Tower>().kill();
 		}
 	}

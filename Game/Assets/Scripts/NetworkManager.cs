@@ -3,6 +3,7 @@ using System.Collections;
 
 public class NetworkManager : MonoBehaviour
 {
+	public static bool isNetworkGame = false;
 	private float btnX, btnY, btnW, btnH;
 	private string gameName = "edu.gcc.wb.2DMOBA";  // You need to change this for your game!
 	private bool refreshingHostList = false;
@@ -54,12 +55,14 @@ public class NetworkManager : MonoBehaviour
 	{
 		Debug.Log ("Server initialized");
 		charScreen.SetActive (true);
+		isNetworkGame = true;
 	}
 
 	void OnConnectedToServer ()
 	{
 		Debug.Log ("Connected to server");
 		charScreen.SetActive (true);
+		isNetworkGame = true;
 	}
 
 	void OnMasterServerEvent (MasterServerEvent mse)
