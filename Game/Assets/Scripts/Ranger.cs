@@ -127,6 +127,7 @@ public class Ranger : MonoBehaviour {
 			GameObject a = (GameObject)Instantiate (largeArrow, position, angle);
 			a.GetComponent<Rigidbody2D> ().velocity = velocity;
 			a.GetComponent<Arrow> ().owner = gameObject.tag;
+			a.GetComponent<Arrow> ().isLarge = true;
 			largeArrowList.Add (a);
 		}
 	}

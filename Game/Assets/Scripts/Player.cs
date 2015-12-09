@@ -69,6 +69,10 @@ public class Player : MonoBehaviour {
 		}
         
 		if (!(Network.isServer || Network.isClient) || GetComponent<NetworkView> ().isMine) {
+			if(stunTimer != 0){
+				stunTimer--;
+				return;
+			}
 			if (Input.GetAxisRaw ("Horizontal" + playerNumber) != 0 || Input.GetAxisRaw ("Vertical" + playerNumber) != 0) {
 				facing = new Vector2 (Input.GetAxisRaw ("Horizontal" + playerNumber), -Input.GetAxisRaw ("Vertical" + playerNumber)).normalized;
 			}

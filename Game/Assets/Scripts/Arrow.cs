@@ -7,6 +7,7 @@ public class Arrow : MonoBehaviour {
 	public int ticksAlive = 30;
 	public int rotateSpeed = 100;
 	public string owner;
+	public bool isLarge = false;
 
 	// Use this for initialization
 	void Start () {
@@ -32,6 +33,9 @@ public class Arrow : MonoBehaviour {
 		if ((collider.CompareTag ("Left") || collider.CompareTag ("Right")) && !collider.CompareTag(owner)) {
 			if (collider.GetComponent<Health>() == null) return;
 			if (!Network.isClient) {
+				if(isLarge){
+					collider.GetComponent<Player>().stunTimer = 100;
+				}
 				collider.GetComponent<Health>().changeHealth(-damage);
 				if (NetworkManager.isNetworkGame) collider.GetComponent<NetworkView> ().RPC("changeHealth", RPCMode.OthersBuffered, -10);
 			}
